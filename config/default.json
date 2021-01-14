@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://ssmith:f1g5cUNStpDBKuy9@liftmetrics.2empx.mongodb.net/liftmetrics?retryWrites=true&w=majority",
+  "urlPrefix": "/api/v1"
+}
