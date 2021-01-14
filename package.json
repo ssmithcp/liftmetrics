@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "test",
-    "local": "nodemon server",
-    "start": "NODE_ENV=production node server"
+    "local": "nodemon server/server",
+    "start": "NODE_ENV=production node server/server"
   },
   "keywords": [
     "lift",
@@ -16,7 +16,7 @@
     "progress"
   ],
   "author": "Scott Smith (https://www.linkedin.com/in/scottcsmithdev/)",
-  "license": "MIT",
+  "license": "Commercial",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.3",
