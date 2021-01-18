@@ -1,11 +1,7 @@
 import React from 'react'
 
-import Container from '../util/Container'
-
 const LoginPage = () => (
-  <Container>
-    <h1>Login page</h1>
-  </Container>
+  <h1>Login page</h1>
 )
 
 export default LoginPage

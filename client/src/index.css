@@ -14,5 +14,13 @@
 	}
 }
 
+@layer base {
+	a {
+		text-decoration: underline;
+		color: #3b82f6;
+		cursor: pointer;
+	}
+}
+
 @tailwind components;
 @tailwind utilities;
