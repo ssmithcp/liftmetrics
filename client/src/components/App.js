@@ -1,11 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import LoginPage from './login/login';
+import LoginPage from './login/LoginPage'
+import Nav from './Nav'
 
 function App() {
   return (
     <Router>
+      <Nav />
       <Switch>
         <Route path='/' exact component={ LoginPage } />
       </Switch>
@@ -13,4 +15,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
