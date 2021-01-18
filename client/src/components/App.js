@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import Nav from './nav/Nav'
+import NavBar from './nav/NavBar'
 import Container from './util/Container'
 
 import Home from './Home'
@@ -16,7 +16,7 @@ const withContainer = Page => (
 function App() {
   return (
     <Router>
-      <Nav />
+      <NavBar />
       <Switch>
         <Route path='/' exact render={ () => withContainer(Home) } />
         <Route path='/login' exact render={ () => withContainer(LoginPage) } />
