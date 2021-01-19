@@ -1,7 +1,7 @@
 import React from 'react'
 import NavLink from './NavLink'
 
-const NOT_LOGGED_IN = [
+const NotLoggedIn = [
   {
     title: 'Sign Up',
     route: '/signup',
@@ -14,7 +14,7 @@ const NOT_LOGGED_IN = [
 
 const Navigation = () => (
   <ul>
-    { NOT_LOGGED_IN.map(item =>
+    { NotLoggedIn.map(item =>
       <NavLink key={ item.route } { ...item } />
     )}
   </ul>
