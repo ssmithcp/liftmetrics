@@ -9,10 +9,13 @@ connectDB()
 
 const urlPrefix = config.get('urlPrefix')
 
-app.get('/', (req, res) => res.send('API '))
-
 app.use(urlPrefix + '/auth', require('./routes/api/auth'))
 app.use(urlPrefix + '/users', require('./routes/api/users'))
+
+app.use((err, req, res, next) => {
+  console.error('uncaught error:', err)
+  res.status(500).send('internal error')
+})
 
 const port = process.env.PORT || 5000
 app.listen(port, () => {
