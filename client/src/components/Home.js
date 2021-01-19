@@ -11,7 +11,7 @@ const P = ({ children }) => (
 )
 
 const Home = () => (
-  <div className='text-lg flex flex-col md:block'>
+  <section className='text-lg flex flex-col md:block'>
     <h1 className='text-3xl text-center pb-4'>Welcome to LiftMetrics!</h1>
     <div className='flex flex-col items-center md:flex-row'>
       <img
@@ -30,7 +30,7 @@ const Home = () => (
     <P>The goal of LiftMetrics is to be a platform where any metric related to lifting weights (workout reps sets and intensity, body dimensions, body weight, food, sleep, suppliemention, cardio etc..) can be tracked. Once tracked, you can analyze the data (with graphs, charts and tables) to determine what metrics contribute to your desired outcome.</P>
     <P>For example: you can determine which bicep exercise most effectively grows your guns 💪 and how staying up late to play ‘Escape From Tarkov’ influences your one rep max squat weight.</P>
     <P><NavLink to='/signup' className={ LinkStyle }>Create an account</NavLink> and start kicking ass!</P>
-  </div>
+  </section>
 )
 
 export default Home

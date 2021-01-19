@@ -13,11 +13,13 @@ const NotLoggedIn = [
 ]
 
 const Navigation = () => (
-  <ul>
-    { NotLoggedIn.map(item =>
-      <NavLink key={ item.route } { ...item } />
-    )}
-  </ul>
+  <nav>
+    <ul>
+      { NotLoggedIn.map(item =>
+        <NavLink key={ item.route } { ...item } />
+      )}
+    </ul>
+  </nav>
 )
 
 export default Navigation
