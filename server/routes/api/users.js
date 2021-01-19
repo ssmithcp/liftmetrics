@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 
 const config = require('../../config')
 const User = require('../../models/User')
+const profile = require('./profile')
 const { withoutErrors, asyncHandler } = require('../../middleware/errors')
 
 const register = asyncHandler(async (req, res, next) => {
@@ -38,16 +39,14 @@ const register = asyncHandler(async (req, res, next) => {
   })
   await user.save()
 
-  const payload = {
-    user: {
-      id: user.id
-    }
-  }
-
+  const profileContents = await profile.getOrCreate(user);
   const expires = config.get('tokenExpiresSeconds')
 
-  jwt.sign(
-    payload,
+  jwt.sign({
+      user: {
+        id: user.id
+      }
+    },
     config.get('jwtSecret'),
     { expiresIn: `${expires} seconds` },
     (err, token) => {
@@ -62,7 +61,7 @@ const register = asyncHandler(async (req, res, next) => {
         expires: new Date(Date.now() + (expires * 1000))
       })
 
-      res.json({ profile: 'adf' })
+      res.json(profileContents)
     }
   )
 })
