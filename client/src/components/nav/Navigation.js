@@ -1,9 +1,22 @@
 import React from 'react'
+import NavLink from './NavLink'
+
+const NOT_LOGGED_IN = [
+  {
+    title: 'Sign Up',
+    route: '/signup',
+  },
+  {
+    title: 'Login',
+    route: '/login'
+  }
+]
 
 const Navigation = () => (
   <ul>
-    <li className='inline-block mx-2'>Login</li>
-    <li className='inline-block mx-2'>Sign Up</li>
+    { NOT_LOGGED_IN.map(item =>
+      <NavLink key={ item.route } { ...item } />
+    )}
   </ul>
 )
 

@@ -12,15 +12,15 @@ const P = ({ children }) => (
 
 const Home = () => (
   <div className='text-lg flex flex-col md:block'>
-    <h1 className='text-3xl text-center py-4'>Welcome to LiftMetrics!</h1>
+    <h1 className='text-3xl text-center pb-4'>Welcome to LiftMetrics!</h1>
     <div className='flex flex-col items-center md:flex-row'>
       <img
         src='images/head_shot.jpg'
         alt='scott smith head shot'
-        className='h-56 w-56 rounded-full mr-7 mb-2 lg:float-left'
+        className='h-56 w-56 mr-7 mb-2 lg:float-left'
       />
       <div>
-        <P><span className="text-2xl mr-2">👋</span>My name is Scott Smith and LiftMetrics is a portfolio project that I built and maintain.</P>
+        <P><span className="text-2xl mr-2">👋</span>My name is Scott and LiftMetrics is a portfolio project that I built and maintain.</P>
         <P>To contact me about a job opportunity, reach out on <SafeExternalLink target={ LINKEDIN_URL }>LinkedIn</SafeExternalLink> or shoot me an email at <span className='font-mono text-base'>ssmith <strong>dot</strong> cp <strong>at</strong> gmail <strong>dot</strong> com</span>. Check out some of my other projects on <SafeExternalLink target={ GITHUB_URL }>GitHub</SafeExternalLink>.</P>
         <P>The source code for LiftMetrics isn’t publicly available on the off chance I monetize the site; if you’re a potential client or employer and would like to see the code, just ask!</P>
       </div>
