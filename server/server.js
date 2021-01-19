@@ -1,6 +1,6 @@
 const express = require('express')
 const connectDB = require('./models/db')
-const config = require('./util/config')
+const config = require('./config')
 
 const app = express()
 app.use(express.json({ extended: false }))
