@@ -11,10 +11,10 @@ import About from './About'
 import NotFound from './util/NotFound'
 
 const withContainer = Page => () => (
-  <Container>
-    <main>
+  <Container className='mt-20'>
+    {/* <main> */}
       <Page />
-    </main>
+    {/* </main> */}
   </Container>
 )
 
@@ -22,7 +22,7 @@ const App = () => (
   <Router>
     <NavBar />
     <Switch>
-      <Route path='/' exact render={ withContainer(Home) } />
+      <Route path='/' exact component={ Home } />
       <Route path='/signup' exact render={ withContainer(SignUp) } />
       <Route path='/login' exact render={ withContainer(Login) } />
       <Route path='/about' exact render={ withContainer(About) } />

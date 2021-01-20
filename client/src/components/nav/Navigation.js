@@ -16,8 +16,8 @@ const NotLoggedIn = [
   }
 ]
 
-const Navigation = () => (
-  <nav>
+const Navigation = ({ className }) => (
+  <nav className={ className }>
     <ul>
       { NotLoggedIn.map(item =>
         <NavLink key={ item.route } { ...item } />

@@ -1,7 +1,7 @@
 {
   "name": "liftmetrics",
   "version": "1.0.0",
-  "description": "Lift. Track. Analyze. PR.",
+  "description": "Lift. Track. PR.",
   "main": "server/server.js",
   "scripts": {
     "test": "test",

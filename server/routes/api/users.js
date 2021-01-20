@@ -9,7 +9,7 @@ const User = require('../../models/User')
 const profile = require('./profile')
 const { withoutErrors, asyncHandler } = require('../../middleware/errors')
 
-const register = asyncHandler(async (req, res, next) => {
+const register = asyncHandler(async (req, res) => {
   console.log('new user request', { ...req.body, password: '******' })
 
   const { firstName, lastName, email } = req.body

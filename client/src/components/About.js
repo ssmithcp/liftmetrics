@@ -15,7 +15,7 @@ const About = () => (
     <h1 className='text-3xl text-center pb-4'>Welcome to LiftMetrics!</h1>
     <div className='flex flex-col items-center md:flex-row'>
       <img
-        src='images/head_shot.jpg'
+        src='images/scott-head-shot.jpg'
         alt='scott smith head shot'
         className='h-56 w-56 mr-7 mb-2 lg:float-left'
       />
