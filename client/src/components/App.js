@@ -7,26 +7,28 @@ import Container from './util/Container'
 import Home from './Home'
 import Login from './login/Login'
 import SignUp from './login/SignUp'
+import About from './About'
 import NotFound from './util/NotFound'
 
 const withContainer = Page => () => (
   <Container>
-    <Page />
+    <main>
+      <Page />
+    </main>
   </Container>
 )
 
-function App() {
-  return (
-    <Router>
-      <NavBar />
-      <Switch>
-        <Route path='/' exact render={ withContainer(Home) } />
-        <Route path='/signup' exact render={ withContainer(SignUp) } />
-        <Route path='/login' exact render={ withContainer(Login) } />
-        <Route render={ withContainer(NotFound) } />
-      </Switch>
-    </Router>
-  )
-}
+const App = () => (
+  <Router>
+    <NavBar />
+    <Switch>
+      <Route path='/' exact render={ withContainer(Home) } />
+      <Route path='/signup' exact render={ withContainer(SignUp) } />
+      <Route path='/login' exact render={ withContainer(Login) } />
+      <Route path='/about' exact render={ withContainer(About) } />
+      <Route render={ withContainer(NotFound) } />
+    </Switch>
+  </Router>
+)
 
 export default App

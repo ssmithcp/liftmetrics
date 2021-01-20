@@ -8,7 +8,11 @@ const NotLoggedIn = [
   },
   {
     title: 'Login',
-    route: '/login'
+    route: '/login',
+  },
+  {
+    title: 'About',
+    route: '/about'
   }
 ]
 
