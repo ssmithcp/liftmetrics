@@ -13,7 +13,12 @@ const Navigation = ({ className }) => (
   <nav className={ className }>
     <ul>
       { NotLoggedIn.map(item =>
-        <NavLink key={ item.route }{ ...item } />
+        <NavLink
+          // this prop is ignored but key set explicitly in NavLink
+          // this is here to avoid react warning
+          key={ item.path }
+          { ...item }
+        />
       )}
     </ul>
   </nav>

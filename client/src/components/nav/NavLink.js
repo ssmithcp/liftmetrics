@@ -2,16 +2,11 @@ import React from 'react'
 import { NavLink as NL } from 'react-router-dom'
 
 const NavLink = ({ title, path }) => (
-  <NL
-    exact
-    to={ path }
-    activeClassName='current'
-    className='p-3 hover:text-primary'
-  >
-   <li className='inline-block'>
+  <li key={ path } className='inline-block p-3 hover:text-primary'>
+    <NL exact to={ path } activeClassName='current'>
       { title }
-    </li>
-  </NL>
+    </NL>
+  </li>
 )
 
 export default NavLink

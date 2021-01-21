@@ -13,7 +13,7 @@ import Login from './account/Login'
 import NotFound from './util/NotFound'
 
 const withContainer = Page => () => (
-  <Container className='mt-28 md:mt-20'>
+  <Container className='mt-28 md:mt-24'>
     <main>
       <Page />
     </main>

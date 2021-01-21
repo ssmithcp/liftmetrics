@@ -1,5 +1,8 @@
 import React from 'react'
 
+import InternalLink from './util/InternalLink'
+import routes from './nav'
+
 const Home = () => (
   <>
     <section className='h-screen flex flex-col justify-center items-center'>
@@ -13,7 +16,7 @@ const Home = () => (
     </section>
     <footer className='fixed right-0 bottom-0 left-0 z-10 text-center'>
       <p className='m-2 text-gray-700'>
-        &#169; { new Date().getFullYear() } Scott Smith
+        &#169; { new Date().getFullYear() } <InternalLink to={ routes.about.path }>Scott Smith</InternalLink>
       </p>
     </footer>
   </>
