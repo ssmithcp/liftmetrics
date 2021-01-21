@@ -2,8 +2,8 @@ import React from 'react'
 
 export const Style = 'text-primary cursor-pointer hover:underline'
 
-const SafeExternalLink = ({ target, children }) => (
-  <a href={ target } target='_blank' rel='noopener noreferrer' className={ Style }>
+const SafeExternalLink = ({ to, children, ...rest }) => (
+  <a href={ to } target='_blank' rel='noopener noreferrer' className={ Style } { ...rest }>
     { children }
   </a>
 )

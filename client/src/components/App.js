@@ -5,9 +5,11 @@ import NavBar from './nav/NavBar'
 import Container from './util/Container'
 
 import Home from './Home'
-import Login from './login/Login'
-import SignUp from './login/SignUp'
 import About from './About'
+
+import Create from './account/Create'
+import Login from './account/Login'
+
 import NotFound from './util/NotFound'
 
 const withContainer = Page => () => (
@@ -23,9 +25,11 @@ const App = () => (
     <NavBar />
     <Switch>
       <Route path='/' exact component={ Home } />
-      <Route path='/signup' exact render={ withContainer(SignUp) } />
-      <Route path='/login' exact render={ withContainer(Login) } />
       <Route path='/about' exact render={ withContainer(About) } />
+
+      <Route path='/account/create' exact render={ withContainer(Create) } />
+      <Route path='/account/login' exact render={ withContainer(Login) } />
+
       <Route render={ withContainer(NotFound) } />
     </Switch>
   </Router>

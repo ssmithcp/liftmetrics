@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom'
 
 import { Style } from './SafeExternalLink'
 
-const InternalLink = ({ to, children }) => (
-  <NavLink to={ to } className={ Style }>
+const InternalLink = ({ to, children, ...rest }) => (
+  <NavLink to={ to } className={ Style } { ...rest} >
     { children }
   </NavLink>
 )

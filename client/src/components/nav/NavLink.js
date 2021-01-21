@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink as NL } from 'react-router-dom'
 
-const NavLink = ({ title, route }) => (
+const NavLink = ({ title, path }) => (
   <NL
     exact
-    to={ route }
+    to={ path }
     activeClassName='current'
     className='p-3 hover:text-primary'
   >
