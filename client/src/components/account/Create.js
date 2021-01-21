@@ -5,6 +5,9 @@ import SafeExternalLink from '../util/SafeExternalLink'
 import InternalLink from '../util/InternalLink'
 
 import routes from '../nav'
+import SubmitButton from '../util/SubmitButton'
+
+const focusStyle = ''
 
 const Create = () => {
   const [showPassword, setShowPassword] = React.useState(true)
@@ -21,7 +24,7 @@ const Create = () => {
   return (
     <div className='mx-auto text-center md:w-750px'>
       <h1 className='text-2xl mb-4'>Sign Up</h1>
-      <p className='my-3'>
+      <p>
         Already have an account? <InternalLink to={ routes.login.path }>{ routes.login.title }</InternalLink>
       </p>
       <form
@@ -48,16 +51,16 @@ const Create = () => {
             className='block w-full'
           />
         </div>
-        <div className='text-center'>
-          <input
-          type='submit'
-          className='my-3 py-4 w-full text-xl border-2 border-black bg-white md:w-2/4 cursor-pointer'
-          value='Create account'
+        <div className='text-center my-6'>
+          <SubmitButton
+            className='py-4 w-full md:w-2/4 '
+            value='Create account'
           />
         </div>
       </form>
-      <p className='text-sm mt-4'>
-        * Your avatar is sourced from <SafeExternalLink to='https://gravatar.com' tabIndex='-1'>gravatar.com</SafeExternalLink> using this email
+      <p className='text-sm'>
+        * Your avatar is sourced from <SafeExternalLink to='https://gravatar.com' tabIndex='-1'>gravatar.com</SafeExternalLink>
+        using this email
       </p>
     </div>
   )
