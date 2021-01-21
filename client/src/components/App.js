@@ -11,10 +11,10 @@ import About from './About'
 import NotFound from './util/NotFound'
 
 const withContainer = Page => () => (
-  <Container className='mt-20'>
-    {/* <main> */}
+  <Container className='mt-28 md:mt-20'>
+    <main>
       <Page />
-    {/* </main> */}
+    </main>
   </Container>
 )
 

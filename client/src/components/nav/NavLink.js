@@ -6,7 +6,7 @@ const NavLink = ({ title, route }) => (
     exact
     to={ route }
     activeClassName='current'
-    className='p-3'
+    className='p-3 hover:text-primary'
   >
    <li className='inline-block'>
       { title }
