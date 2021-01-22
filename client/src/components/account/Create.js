@@ -9,7 +9,7 @@ import Input from '../form/Input'
 import SafeExternalLink from '../util/SafeExternalLink'
 import InternalLink from '../util/InternalLink'
 
-import routes from '../nav'
+import routes from '../navbar'
 import SubmitButton from '../form/SubmitButton'
 
 const Create = ({ register }) => {

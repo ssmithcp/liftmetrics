@@ -1,7 +1,7 @@
 import React from 'react'
 
 import InternalLink from '../util/InternalLink'
-import routes from '../nav'
+import routes from '../navbar'
 
 import barbell from '../images/barbell.png'
 

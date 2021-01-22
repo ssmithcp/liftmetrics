@@ -4,7 +4,7 @@ import config from '../../util/config'
 import SafeExternalLink from '../util/SafeExternalLink'
 import InternalLink from '../util/InternalLink'
 
-import routes from '../nav'
+import routes from '../navbar'
 
 import headShot from '../images/scott_head_shot.jpg'
 

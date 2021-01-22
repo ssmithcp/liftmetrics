@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import NavBar from './nav/NavBar'
+import NavBar from './navbar/NavBar'
 import Alert from './util/Alert'
 import Container from './util/Container'
 
