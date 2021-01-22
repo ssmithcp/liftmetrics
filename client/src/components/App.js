@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import NavBar from './nav/NavBar'
+import Alert from './util/Alert'
 import Container from './util/Container'
 
 import Home from './Home'
@@ -15,6 +16,7 @@ import NotFound from './util/NotFound'
 const withContainer = Page => () => (
   <Container className='mt-28 md:mt-24'>
     <main>
+      {/* <Alert /> */}
       <Page />
     </main>
   </Container>
