@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Input from '../util/Input'
+import Input from '../form/Input'
 import SafeExternalLink from '../util/SafeExternalLink'
 import InternalLink from '../util/InternalLink'
 
 import routes from '../nav'
-import SubmitButton from '../util/SubmitButton'
+import SubmitButton from '../form/SubmitButton'
 
 const Create = () => {
   const [showPassword, setShowPassword] = React.useState(true)
