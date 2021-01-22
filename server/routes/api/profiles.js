@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Profile = require('../../models/Profile')
+const auth = require('../../middleware/auth')
 const { sanitize } = require('../../models/utils')
 
 const getOrCreate = async user => {
@@ -30,8 +31,7 @@ const getOrCreate = async user => {
   }
 }
 
-router.get('/me', (req, res) => res.send('auths route'))
+router.get('/me', [auth], (req, res) => res.send('auths route'))
 
-module.exports = {
-  getOrCreate
-}
+module.exports = router
+module.exports.getOrCreate = getOrCreate

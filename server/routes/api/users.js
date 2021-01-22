@@ -6,8 +6,8 @@ const jwt = require('jsonwebtoken')
 
 const config = require('../../config')
 const User = require('../../models/User')
-const profile = require('./profile')
-const { withoutErrors, asyncHandler } = require('../../middleware/errors')
+const profile = require('./profiles')
+const { withoutValidationErrors, asyncHandler } = require('../../middleware/errors')
 
 const register = asyncHandler(async (req, res) => {
   console.log('new user request', { ...req.body, password: '******' })
@@ -56,7 +56,7 @@ const register = asyncHandler(async (req, res) => {
 
       res.cookie('access_token', token, {
         httpOnly: true,
-        secure: true,
+        secure: !config.get('isDev'),
         sameSite: true,
         expires: new Date(Date.now() + (expires * 1000))
       })
@@ -66,6 +66,6 @@ const register = asyncHandler(async (req, res) => {
   )
 })
 
-router.post('/', [withoutErrors], register)
+router.post('/', [withoutValidationErrors], register)
 
 module.exports = router

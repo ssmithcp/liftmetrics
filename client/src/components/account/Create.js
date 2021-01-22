@@ -26,7 +26,7 @@ const Create = ({ register, isLoggedIn }) => {
     ? {
       firstName: 'Scott',
       lastName: 'Smith',
-      email: `ssmith.cp${ Date.now() }@gmail.com`,
+      email: `ss${ Date.now() }@gmail.com`,
       password: `${ uuid() }`,
     }
     : {

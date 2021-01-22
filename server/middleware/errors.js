@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator')
 
-const withoutErrors = async (req, res, next) => {
+const withoutValidationErrors = async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() })
@@ -20,6 +20,6 @@ const asyncHandler = fn =>
   }
 
 module.exports = {
-  withoutErrors,
+  withoutValidationErrors,
   asyncHandler,
 }
