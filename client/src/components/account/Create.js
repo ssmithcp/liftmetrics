@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import config from '../../util/config'
@@ -12,7 +13,7 @@ import InternalLink from '../util/InternalLink'
 import routes from '../navbar'
 import SubmitButton from '../form/SubmitButton'
 
-const Create = ({ register }) => {
+const Create = ({ register, isLoggedIn }) => {
   const [showPassword, setShowPassword] = React.useState(true)
 
   const toggleShowPassword = e => {
@@ -35,6 +36,10 @@ const Create = ({ register }) => {
     }
   const [formData, setFormData] = React.useState(defaultState)
   const [submitEnabled, setSubmitEnabled] = React.useState(true)
+
+  if (isLoggedIn) {
+    return <Redirect to={ routes.profile.path } />
+  }
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
@@ -123,4 +128,8 @@ const Create = ({ register }) => {
   )
 }
 
-export default connect(null, { register })(Create)
+const mapStateToProps = state =>({
+  isLoggedIn: state.profile !== null
+})
+
+export default connect(mapStateToProps, { register })(Create)

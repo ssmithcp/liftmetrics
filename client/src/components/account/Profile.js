@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 const Profile = ({ profile }) => (
   <table>
-    { Object.keys(profile).map( key =>
+    { Object.keys(profile).map(key =>
         <tr>
           <td>{ key }</td>
           <td>{ JSON.stringify(profile[key]) }</td>

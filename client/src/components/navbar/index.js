@@ -15,6 +15,18 @@ const routes = {
     title: 'Login',
     path: '/account/login',
   },
+  profile: {
+    title: 'Profile',
+    path: '/account/me',
+  },
+  trackHome: {
+    title: 'Track',
+    path: '/track'
+  },
+  analyzeHome: {
+    title: 'Analyze',
+    path: '/analyze'
+  }
 }
 
 export default routes
