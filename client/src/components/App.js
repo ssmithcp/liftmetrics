@@ -5,8 +5,8 @@ import NavBar from './nav/NavBar'
 import Alert from './util/Alert'
 import Container from './util/Container'
 
-import Home from './Home'
-import About from './About'
+import Home from './landing/Home'
+import About from './landing/About'
 
 import Create from './account/Create'
 import Login from './account/Login'
@@ -16,7 +16,7 @@ import NotFound from './util/NotFound'
 const withContainer = Page => () => (
   <Container className='mt-28 md:mt-24'>
     <main>
-      {/* <Alert /> */}
+      <Alert />
       <Page />
     </main>
   </Container>

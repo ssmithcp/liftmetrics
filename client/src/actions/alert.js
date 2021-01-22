@@ -7,12 +7,12 @@ export const CLEAR_ALERTS = 'CLEAR_ALERTS'
 export const WARNING = 'WARNING'
 export const ERROR = 'ERROR'
 
-export const setAlert = (msg, alertType = ERROR, timeout = 5000) => dispatch => {
+export const alert = (msg, alertType = ERROR, timeout = 5000) => dispatch => {
   const id = uuidv4()
 
   dispatch({
     type: SET_ALERT,
-    payload: { msg, alertType, id }
+    payload: { id, alertType, msg }
   })
 
   setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout);

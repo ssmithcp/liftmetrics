@@ -1,4 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { v4 as uuid } from 'uuid'
+
+import config from '../../util/config'
+import { register } from '../../actions/profile'
 
 import Input from '../form/Input'
 import SafeExternalLink from '../util/SafeExternalLink'
@@ -7,7 +12,7 @@ import InternalLink from '../util/InternalLink'
 import routes from '../nav'
 import SubmitButton from '../form/SubmitButton'
 
-const Create = () => {
+const Create = ({ register }) => {
   const [showPassword, setShowPassword] = React.useState(true)
 
   const toggleShowPassword = e => {
@@ -15,18 +20,30 @@ const Create = () => {
     setShowPassword(!showPassword)
   }
 
-  const [formData, setFormData] = React.useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  })
+  const defaultState = config.isDev
+    ? {
+      firstName: 'Scott',
+      lastName: 'Smith',
+      email: `ssmith.cp${ Date.now() }@gmail.com`,
+      password: `${ uuid() }`,
+    }
+    : {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    }
+  const [formData, setFormData] = React.useState(defaultState)
+  const [submitEnabled, setSubmitEnabled] = React.useState(true)
 
-  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault()
-    console.log('submitted!', formData)
+    setSubmitEnabled(false)
+
+    register(formData)
+      .then(() => setSubmitEnabled(true))
   }
 
   const defaultArgs = {
@@ -95,6 +112,7 @@ const Create = () => {
           <SubmitButton
             className='py-4 w-full md:w-2/4 '
             value='Create account'
+            enabled={ submitEnabled }
           />
         </div>
       </form>
@@ -105,4 +123,4 @@ const Create = () => {
   )
 }
 
-export default Create
+export default connect(null, { register })(Create)

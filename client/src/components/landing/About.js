@@ -1,10 +1,12 @@
 import React from 'react'
 
-import config from '../util/config'
-import SafeExternalLink from './util/SafeExternalLink'
-import InternalLink from './util/InternalLink'
+import config from '../../util/config'
+import SafeExternalLink from '../util/SafeExternalLink'
+import InternalLink from '../util/InternalLink'
 
-import routes from './nav'
+import routes from '../nav'
+
+import headShot from '../images/scott_head_shot.jpg'
 
 const P = ({ children }) => (
   <p className='mb-3'>
@@ -17,7 +19,7 @@ const About = () => (
     <h1 className='text-3xl text-center pb-4'>Welcome to LiftMetrics!</h1>
     <div className='flex flex-col items-center md:flex-row'>
       <img
-        src='images/scott_head_shot.jpg'
+        src={ headShot }
         alt='scott head shot'
         className='h-56 w-56 mr-7 mb-2 lg:float-left'
       />
