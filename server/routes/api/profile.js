@@ -1,3 +1,6 @@
+const express = require('express')
+const router = express.Router()
+
 const Profile = require('../../models/Profile')
 const { sanitize } = require('../../models/utils')
 
@@ -26,6 +29,8 @@ const getOrCreate = async user => {
     availableWeekStartDays: Profile.weekStartDays,
   }
 }
+
+router.get('/me', (req, res) => res.send('auths route'))
 
 module.exports = {
   getOrCreate

@@ -66,6 +66,6 @@ const register = asyncHandler(async (req, res) => {
   )
 })
 
-router.post('/', withoutErrors, register)
+router.post('/', [withoutErrors], register)
 
 module.exports = router

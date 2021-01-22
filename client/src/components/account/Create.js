@@ -10,6 +10,7 @@ import Input from '../form/Input'
 import SafeExternalLink from '../util/SafeExternalLink'
 import InternalLink from '../util/InternalLink'
 
+import Template from './Template'
 import routes from '../navbar'
 import SubmitButton from '../form/SubmitButton'
 
@@ -51,17 +52,9 @@ const Create = ({ register, isLoggedIn }) => {
       .catch(() => setSubmitEnabled(true))
   }
 
-  const defaultArgs = {
-    required: true,
-    minLength: '3',
-    maxLength: '50',
-    onChange
-  }
-
   return (
-    <div className='mx-auto text-center md:w-750px'>
-      <h1 className='text-2xl mb-4'>Sign Up</h1>
-      <p>
+    <Template title='Sign Up'>
+      <p className='mb-2'>
         Already have an account? <InternalLink to={ routes.login.path }>{ routes.login.title }</InternalLink>
       </p>
       <form
@@ -69,18 +62,24 @@ const Create = ({ register, isLoggedIn }) => {
         onSubmit={ onSubmit }
       >
         <Input
+          required
           type='text'
           placeholder='First name'
           name='firstName'
           value={ formData.firstName }
-          { ... defaultArgs }
+          minLength='3'
+          maxLength='50'
+          onChange={ onChange }
         />
         <Input
+          required
           type='text'
           placeholder='Last name'
           name='lastName'
           value={ formData.lastName }
-          { ... defaultArgs }
+          minLength='1'
+          maxLength='50'
+          onChange={ onChange }
         />
         <Input
           required
@@ -124,7 +123,7 @@ const Create = ({ register, isLoggedIn }) => {
       <p className='text-sm'>
         * Your avatar is sourced from <SafeExternalLink to='https://gravatar.com' tabIndex='-1'>gravatar.com</SafeExternalLink> using this email
       </p>
-    </div>
+    </Template>
   )
 }
 
