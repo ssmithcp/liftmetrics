@@ -20,16 +20,16 @@ const Navigation = ({ profile }) => {
 
   return (
     <nav>
-      <ul className='flex'>
+      <ul className='flex items-center'>
         { navItems.map(item =>
-          <li key={ item.path } className='p-3 hover:text-primary'>
+          <li key={ item.path } className='p-3 text-lg hover:text-primary'>
             <NavLink exact to={ item.path } activeClassName='current'>
               { item.title }
             </NavLink>
           </li>
         )}
         { profile !== null && profile.avatar && (
-          <li key='profile avatar' className='px-3'>
+          <li key='profile avatar' className='pl-3'>
             <NavLink exact to={ routes.profile.path } activeClassName='current'>
               <img
                 src={ profile.avatar }
@@ -39,6 +39,7 @@ const Navigation = ({ profile }) => {
             </NavLink>
           </li>
         )}
+        {/* XXX add handling in case avatar is null somehow? */}
       </ul>
     </nav>
   )

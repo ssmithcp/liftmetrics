@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 
 const Profile = ({ profile }) => (
   <table>
-    { Object.keys(profile).map(key =>
-        <tr>
-          <td>{ key }</td>
-          <td>{ JSON.stringify(profile[key]) }</td>
-        </tr>
-    )}
+    <tbody>
+      { Object.keys(profile).map(key =>
+          <tr key={ key }>
+            <td>{ key }</td>
+            <td>{ Array.isArray(profile[key])
+                    ? JSON.stringify(profile[key])
+                    : profile[key]
+                }</td>
+          </tr>
+      )}
+    </tbody>
   </table>
 )
 

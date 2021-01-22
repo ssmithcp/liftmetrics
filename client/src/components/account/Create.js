@@ -48,7 +48,7 @@ const Create = ({ register, isLoggedIn }) => {
     setSubmitEnabled(false)
 
     register(formData)
-      .then(() => setSubmitEnabled(true))
+      .catch(() => setSubmitEnabled(true))
   }
 
   const defaultArgs = {
