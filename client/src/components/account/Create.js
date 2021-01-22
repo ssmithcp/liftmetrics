@@ -50,7 +50,7 @@ const Create = ({ register }) => {
     required: true,
     minLength: '3',
     maxLength: '50',
-    onChange: onChange
+    onChange
   }
 
   return (
@@ -112,7 +112,7 @@ const Create = ({ register }) => {
           <SubmitButton
             className='py-4 w-full md:w-2/4 '
             value='Create account'
-            enabled={ submitEnabled }
+            disabled={ !submitEnabled }
           />
         </div>
       </form>
