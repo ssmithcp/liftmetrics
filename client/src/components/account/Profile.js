@@ -1,14 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import api from '../../util/api'
-
 const Profile = ({ profile }) => {
-
-  // (async () => {
-  //   console.log(await api.get('/profiles/me'))
-  // })()
-
   return (
     <table>
       <tbody>

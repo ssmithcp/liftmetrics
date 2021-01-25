@@ -23,3 +23,15 @@ export const clearAlerts = () => dispatch => {
     type: CLEAR_ALERTS,
   })
 }
+
+export const alertOnAPIError = (fun, dispatch) => {
+  try {
+    fun()
+  } catch (err) {
+    const errors = err.response.data.errors
+
+    if (errors) {
+      errors.forEach(error => dispatch(alert(error.msg, ERROR)))
+    }
+  }
+}

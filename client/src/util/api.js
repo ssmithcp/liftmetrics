@@ -1,4 +1,6 @@
 import axios from 'axios'
+
+import store from '../store'
 import config from './config'
 
 const api = axios.create({
@@ -10,7 +12,12 @@ const api = axios.create({
 
 api.interceptors.response.use(
   res => res,
-  err => Promise.reject(err)
+  err => {
+    if (err.response.status === 401) {
+      // store.dispatch({ type: LOGOUT })
+    }
+    return Promise.reject(err)
+  }
 )
 
 export default api

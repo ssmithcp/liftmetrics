@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import config from '../../util/config'
-import { register } from '../../actions/profile'
+import { register } from '../../actions/auth'
 
 import Input from '../form/Input'
 import SafeExternalLink from '../util/SafeExternalLink'
@@ -39,7 +39,7 @@ const Create = ({ register, isLoggedIn }) => {
   const [submitEnabled, setSubmitEnabled] = React.useState(true)
 
   if (isLoggedIn) {
-    return <Redirect to={ routes.profile.path } />
+    return <Redirect to={ routes.home.path } />
   }
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })

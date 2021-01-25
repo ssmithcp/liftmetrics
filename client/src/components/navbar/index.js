@@ -1,6 +1,6 @@
 const routes = {
-  home: {
-    title: 'Home',
+  index: {
+    title: 'Landing page',
     path: '/'
   },
   about: {
@@ -11,13 +11,17 @@ const routes = {
     title: 'Sign Up',
     path: '/account/create',
   },
+  home: {
+    title: 'Home',
+    path: '/home',
+  },
   login: {
     title: 'Login',
     path: '/account/login',
   },
   profile: {
     title: 'Profile',
-    path: '/account/me',
+    path: '/account/profile',
   },
   trackHome: {
     title: 'Track',

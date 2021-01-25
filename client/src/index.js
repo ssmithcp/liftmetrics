@@ -1,21 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import App from './components/App'
-import reducer from './reducers'
-import middleware from './middleware'
+import store from './store'
 
 import './index.css'
 
-const store = createStore(reducer, middleware)
-
-ReactDOM.render(
+const Root = () => (
   <React.StrictMode>
     <Provider store={ store }>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
+)
+
+ReactDOM.render(
+  <Root />,
   document.getElementById('root')
 )

@@ -1,5 +1,6 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
 
 import NavBar from './navbar/NavBar'
 import routes from './navbar'
@@ -7,6 +8,7 @@ import Alert from './util/Alert'
 import Container from './util/Container'
 import PrivateRoute from './util/PrivateRoute'
 
+import Index from './landing/Index'
 import Home from './landing/Home'
 import About from './landing/About'
 
@@ -29,24 +31,41 @@ const withContainer = Page => () => (
   </Container>
 )
 
-const App = () => (
-  <Router>
-    <NavBar />
-    <Switch>
-      <Route path={ routes.home.path } exact component={ Home } />
-      <Route path={ routes.about.path } exact render={ withContainer(About) } />
+const App = () => {
+  // React.useEffect(() => {
+  //   profileUpdated(getProfile())
 
-      <Route path={ routes.signUp.path } exact render={ withContainer(Create) } />
-      <Route path={ routes.login.path } exact render={ withContainer(Login) } />
-      <PrivateRoute path={ routes.profile.path } exact render={ withContainer(Profile) } />
+  //   if (window) {
+  //     // log user out from all tabs if they log out in one tab
+  //     window.addEventListener('storage', () => {
+  //       if (!getProfile()) {
+  //         // store.dispatch({ type: LOGOUT })
+  //       }
+  //     })
+  //   }
+  // }, [])
 
-      <PrivateRoute path={ routes.trackHome.path } exact render={ withContainer(TrackDashboard) } />
+  return (
+    <>
+      <NavBar />
+      <Switch>
+        <Route path={ routes.index.path } exact component={ Index } />
+        <Route path={ routes.about.path } exact render={ withContainer(About) } />
 
-      <PrivateRoute path={ routes.analyzeHome.path } exact render={ withContainer(AnalyzeDashboard) } />
+        <Route path={ routes.signUp.path } exact render={ withContainer(Create) } />
+        <Route path={ routes.login.path } exact render={ withContainer(Login) } />
 
-      <Route render={ withContainer(NotFound) } />
-    </Switch>
-  </Router>
-)
+        <PrivateRoute path={ routes.home.path } exact render={ withContainer(Home) } />
+        <PrivateRoute path={ routes.profile.path } exact render={ withContainer(Profile) } />
 
-export default App
+        <PrivateRoute path={ routes.trackHome.path } exact render={ withContainer(TrackDashboard) } />
+
+        <PrivateRoute path={ routes.analyzeHome.path } exact render={ withContainer(AnalyzeDashboard) } />
+
+        <Route render={ withContainer(NotFound) } />
+      </Switch>
+    </>
+  )
+}
+
+export default connect()(App)
