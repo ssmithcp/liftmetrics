@@ -4,7 +4,7 @@
   "description": "Lift. Track. PR.",
   "main": "server/server.js",
   "scripts": {
-    "server": "nodemon server/server",
+    "server": "node server/server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "NODE_ENV=production nodemon server/server",
