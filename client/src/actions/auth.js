@@ -1,33 +1,29 @@
 import api from '../util/api'
 
-import { alertOnAPIError } from './alert'
+import { getProfile, profileUpdated } from './profile'
 
-export const LOGGED_IN = 'LOGGED_IN'
-export const LOGGED_OUT = 'LOGGED_OUT'
+import { alertOnAPIError } from './alert'
 
 export const register = formData => async dispatch => {
   alertOnAPIError(async () => {
-    await api.post('/users', formData)
-    dispatch({
-      type: LOGGED_IN,
-    })
+    await api.post('/auth/register', formData)
+
+    dispatch(getProfile())
   }, dispatch)
 }
 
 export const login = formData => async dispatch => {
   alertOnAPIError(async () => {
-    await api.post('/login', formData)
-    dispatch({
-      type: LOGGED_IN,
-    })
+    await api.post('/auth/login', formData)
+
+    dispatch(getProfile())
   }, dispatch)
 }
 
 export const logout = () => async dispatch => {
   alertOnAPIError(async () => {
-    await api.get('/logout')
-    dispatch({
-      type: LOGGED_OUT,
-    })
+    await api.get('/auth/logout')
+
+    dispatch(profileUpdated(null))
   }, dispatch)
 }

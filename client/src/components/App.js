@@ -22,6 +22,10 @@ import AnalyzeDashboard from './analyze/Dashboard'
 
 import NotFound from './util/NotFound'
 
+import { logout } from '../actions/auth'
+import { profileUpdated } from '../actions/profile'
+import { getProfile } from '../util/profileStorage'
+
 const withContainer = Page => () => (
   <Container className='mt-28 md:mt-24'>
     <main>
@@ -31,19 +35,19 @@ const withContainer = Page => () => (
   </Container>
 )
 
-const App = () => {
-  // React.useEffect(() => {
-  //   profileUpdated(getProfile())
+const App = ({ profileUpdated, logout }) => {
+  React.useEffect(() => {
+    profileUpdated(getProfile())
 
-  //   if (window) {
-  //     // log user out from all tabs if they log out in one tab
-  //     window.addEventListener('storage', () => {
-  //       if (!getProfile()) {
-  //         // store.dispatch({ type: LOGOUT })
-  //       }
-  //     })
-  //   }
-  // }, [])
+    if (window) {
+      // log user out from all tabs if they log out in one tab
+      window.addEventListener('storage', () => {
+        if (!getProfile()) {
+          logout()
+        }
+      })
+    }
+  })
 
   return (
     <>
@@ -68,4 +72,4 @@ const App = () => {
   )
 }
 
-export default connect()(App)
+export default connect(null, { profileUpdated, logout })(App)
