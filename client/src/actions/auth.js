@@ -5,12 +5,26 @@ import { getProfile, profileUpdated } from './profile'
 import { alertOnAPIError } from './alert'
 
 export const register = formData => async dispatch => {
-  alertOnAPIError(async () => {
+  try {
     await api.post('/auth/register', formData)
 
     dispatch(getProfile())
-  }, dispatch)
+  } catch (err) {
+    const errors = err.response.data.errors
+
+    if (errors) {
+      errors.forEach(error => dispatch(alert(error.msg, 'ERROR')))
+    }
+  }
 }
+
+// export const register = formData => async dispatch => {
+//   alertOnAPIError(async () => {
+//     await api.post('/auth/register', formData)
+
+//     dispatch(getProfile())
+//   }, dispatch)
+// }
 
 export const login = formData => async dispatch => {
   alertOnAPIError(async () => {

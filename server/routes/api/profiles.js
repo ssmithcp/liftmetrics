@@ -15,7 +15,7 @@ const getOrCreate = async userId => {
     const session = await Profile.startSession()
 
     await session.withTransaction(async () => {
-      let profile = await Profile.findOne({ user: user.id })
+      profile = await Profile.findOne({ user: user.id })
 
       if (!profile) {
         profile = await Profile.create({ user: user.id })

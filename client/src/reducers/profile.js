@@ -1,6 +1,7 @@
 import { PROFILE_UPDATED } from '../actions/profile'
+import { getProfile } from '../util/profileStorage'
 
-function profile(state = null, action) {
+function profile(state = getProfile(), action) {
   switch (action.type) {
     case PROFILE_UPDATED:
       return action.profile
