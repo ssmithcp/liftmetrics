@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom'
 
 import NavBar from './navbar/NavBar'
 import routes from './navbar'
-import Alert from './util/Alert'
 import Container from './util/Container'
 import PrivateRoute from './util/PrivateRoute'
 
@@ -28,7 +27,6 @@ import { getProfile } from '../util/profileStorage'
 const withContainer = Page => () => (
   <Container className='mt-28 md:mt-24'>
     <main>
-      <Alert />
       <Page />
     </main>
   </Container>

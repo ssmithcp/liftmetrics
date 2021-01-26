@@ -34,6 +34,7 @@ const NavLinks = ({ profile }) => {
             <NavLink exact to={ routes.profile.path } activeClassName='current'>
               <img
                 src={ profile.avatar }
+                title={ routes.profile.title }
                 alt='avatar'
                 className='w-10 h-10 rounded-full'
               />
