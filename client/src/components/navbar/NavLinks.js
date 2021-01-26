@@ -11,11 +11,12 @@ const NotLoggedIn = [
 ]
 
 const LoggedIn = [
+  routes.home,
   routes.trackHome,
   routes.analyzeHome,
 ]
 
-const Navigation = ({ profile }) => {
+const NavLinks = ({ profile }) => {
   const navItems = profile !== null ? LoggedIn : NotLoggedIn
 
   return (
@@ -49,4 +50,4 @@ const mapStateToProps = state => ({
   profile: state.profile
 })
 
-export default connect(mapStateToProps)(Navigation)
+export default connect(mapStateToProps)(NavLinks)
