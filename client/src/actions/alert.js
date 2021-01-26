@@ -25,13 +25,18 @@ export const clearAlerts = () => dispatch => {
 }
 
 export const alertOnAPIError = (fun, dispatch) => {
-  try {
-    fun()
-  } catch (err) {
-    const errors = err.response.data.errors
+  return Promise.resolve(fun())
+    .catch(err => {
+      if (err.response && err.response.data && err.response.data.errors) {
+        const errors = err.response.data.errors
 
-    if (errors) {
-      errors.forEach(error => dispatch(alert(error.msg, ERROR)))
-    }
-  }
+        errors.forEach(error => dispatch(alert(error.msg, ERROR)))
+      } else if (err.message) {
+        dispatch(alert(err.message, ERROR))
+      } else {
+        dispatch(alert(err, ERROR))
+      }
+
+      throw err // allow subsequent catch functions to run
+    })
 }

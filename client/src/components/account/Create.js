@@ -14,7 +14,7 @@ import Template from './Template'
 import routes from '../navbar'
 import SubmitButton from '../form/SubmitButton'
 
-const Create = ({ register, isLoggedIn }) => {
+const Create = ({ isLoggedIn, register }) => {
   const [showPassword, setShowPassword] = React.useState(true)
 
   const toggleShowPassword = e => {
@@ -41,7 +41,6 @@ const Create = ({ register, isLoggedIn }) => {
   if (isLoggedIn) {
     return <Redirect to={ routes.home.path } />
   }
-
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
   const onSubmit = e => {

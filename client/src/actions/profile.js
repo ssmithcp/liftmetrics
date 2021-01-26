@@ -15,9 +15,9 @@ export const profileUpdated = profile => dispatch => {
   })
 }
 
-export const getProfile = () => dispatch => {
+export const getProfile = () => dispatch => (
   alertOnAPIError(async () => {
     const res = await api.get('/profile/me')
     profileUpdated(res.data)(dispatch)
   }, dispatch)
-}
+)

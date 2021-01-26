@@ -1,43 +1,31 @@
 import api from '../util/api'
 
-import { getProfile, profileUpdated } from './profile'
+import { profileUpdated } from './profile'
 
 import { alertOnAPIError } from './alert'
 
-export const register = formData => async dispatch => {
-  try {
+export const register = formData => dispatch => (
+  alertOnAPIError(async () => {
     await api.post('/auth/register', formData)
 
-    dispatch(getProfile())
-  } catch (err) {
-    const errors = err.response.data.errors
+    const res = await api.get('/profile/me')
+    profileUpdated(res.data)(dispatch)
+  }, dispatch)
+)
 
-    if (errors) {
-      errors.forEach(error => dispatch(alert(error.msg, 'ERROR')))
-    }
-  }
-}
-
-// export const register = formData => async dispatch => {
-//   alertOnAPIError(async () => {
-//     await api.post('/auth/register', formData)
-
-//     dispatch(getProfile())
-//   }, dispatch)
-// }
-
-export const login = formData => async dispatch => {
+export const login = formData => dispatch => (
   alertOnAPIError(async () => {
     await api.post('/auth/login', formData)
 
-    dispatch(getProfile())
+    const res = await api.get('/profile/me')
+    profileUpdated(res.data)(dispatch)
   }, dispatch)
-}
+)
 
-export const logout = () => async dispatch => {
+export const logout = () => dispatch => (
   alertOnAPIError(async () => {
     await api.get('/auth/logout')
 
-    dispatch(profileUpdated(null))
+    profileUpdated(null)(dispatch)
   }, dispatch)
-}
+)
