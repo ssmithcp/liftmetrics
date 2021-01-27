@@ -11,7 +11,7 @@ import Index from './landing/Index'
 import Home from './landing/Home'
 import About from './landing/About'
 
-import Create from './account/Create'
+import SignUp from './account/SignUp'
 import Login from './account/Login'
 import Profile from './account/Profile'
 
@@ -57,7 +57,7 @@ const App = ({ logout }) => {
         <Route path={ routes.index.path } exact component={ Index } />
         <Route path={ routes.about.path } exact render={ withContainer(About) } />
 
-        <Route path={ routes.signUp.path } exact render={ withContainer(Create) } />
+        <Route path={ routes.signUp.path } exact render={ withContainer(SignUp) } />
         <Route path={ routes.login.path } exact render={ withContainer(Login) } />
 
         <PrivateRoute path={ routes.home.path } exact render={ withContainer(Home) } />

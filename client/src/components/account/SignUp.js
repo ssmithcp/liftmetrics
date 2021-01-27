@@ -14,7 +14,7 @@ import Template from './Template'
 import routes from '../navbar'
 import SubmitButton from '../form/SubmitButton'
 
-const Create = ({ isLoggedIn, register }) => {
+const SignUp = ({ isLoggedIn, register }) => {
   const [showPassword, setShowPassword] = React.useState(true)
 
   const toggleShowPassword = e => {
@@ -130,4 +130,4 @@ const mapStateToProps = state =>({
   isLoggedIn: state.profile !== null
 })
 
-export default connect(mapStateToProps, { register })(Create)
+export default connect(mapStateToProps, { register })(SignUp)

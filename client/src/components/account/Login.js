@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
+import { login } from '../../actions/auth'
+
 import Template from './Template'
 import Input from '../form/Input'
 import SubmitButton from '../form/SubmitButton'
@@ -9,7 +11,7 @@ import SubmitButton from '../form/SubmitButton'
 import InternalLink from '../util/InternalLink'
 import routes from '../navbar'
 
-const Login = ({ isLoggedIn }) => {
+const Login = ({ isLoggedIn, login }) => {
   const [formData, setFormData] = React.useState({
     email: '',
     password: ''
@@ -17,7 +19,7 @@ const Login = ({ isLoggedIn }) => {
   const [submitEnabled, setSubmitEnabled] = React.useState(true)
 
   if (isLoggedIn) {
-    return <Redirect to={ routes.profile.path } />
+    return <Redirect to={ routes.home.path } />
   }
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -26,8 +28,8 @@ const Login = ({ isLoggedIn }) => {
     e.preventDefault()
     setSubmitEnabled(false)
 
-    // register(formData)
-    //   .catch(() => setSubmitEnabled(true))
+    login(formData)
+      .catch(() => setSubmitEnabled(true))
   }
 
   return (
@@ -76,4 +78,4 @@ const mapStateToProps = state => ({
   isLoggedIn: state.profile !== null,
 })
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, { login })(Login)

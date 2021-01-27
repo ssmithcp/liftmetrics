@@ -8,6 +8,33 @@ const config = require('../../config')
 const User = require('../../models/User')
 const { withoutValidationErrors, asyncHandler } = require('../../middleware/errors')
 
+const returnWithToken = (res, user) => {
+  const expires = config.get('tokenExpiresSeconds')
+
+  jwt.sign({
+      user: {
+        id: user.id
+      }
+    },
+    config.get('jwtSecret'),
+    { expiresIn: `${expires} seconds` },
+    (err, token) => {
+      if (err) {
+        throw err
+      }
+
+      res.cookie('access_token', token, {
+        httpOnly: true,
+        secure: !config.get('isDev'),
+        sameSite: true,
+        expires: new Date(Date.now() + (expires * 1000))
+      })
+
+      res.send()
+    }
+  )
+}
+
 const register = asyncHandler(async (req, res) => {
   console.log('new user request', { ...req.body, password: '******' })
 
@@ -37,37 +64,37 @@ const register = asyncHandler(async (req, res) => {
     password
   })
   await user.save()
-  const expires = config.get('tokenExpiresSeconds')
 
-  jwt.sign({
-      user: {
-        id: user.id
-      }
-    },
-    config.get('jwtSecret'),
-    { expiresIn: `${expires} seconds` },
-    (err, token) => {
-      if (err) {
-        throw err
-      }
-
-      res.cookie('access_token', token, {
-        httpOnly: true,
-        secure: !config.get('isDev'),
-        sameSite: true,
-        expires: new Date(Date.now() + (expires * 1000))
-      })
-
-      res.send()
-    }
-  )
+  returnWithToken(res, user)
 })
 
 router.post('/register', [withoutValidationErrors], register)
 
 
 const login = asyncHandler(async (req, res) => {
+  console.log('login request', { ...req.body, password: '******' })
 
+  const { email, password } = req.body
+  let user = await User.findOne({ email })
+
+  if (!user) {
+    return res
+      .status(400)
+      .json({ errors: [{ msg: 'Login failed' }] })
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    return res
+      .status(400)
+      .json({ errors: [{ msg: 'Login failed' }] });
+  }
+
+  user.lastLogin = Date.now()
+  await user.save()
+
+  returnWithToken(res, user)
 })
 
 router.post('/login', [withoutValidationErrors], login)
