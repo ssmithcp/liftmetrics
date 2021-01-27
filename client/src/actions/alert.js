@@ -21,8 +21,15 @@ export const alert = (message, type = ERROR, timeout = 5000) => dispatch => {
     }
   })
 
-  setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), timeout);
+  setTimeout(() => removeAlert(id)(dispatch), timeout);
 }
+
+export const removeAlert = id => dispatch => (
+  dispatch({
+    type: REMOVE_ALERT,
+    id
+  })
+)
 
 export const clearAlerts = () => dispatch => {
   dispatch({
