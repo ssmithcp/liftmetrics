@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import config from './util/config'
 import store from './store'
 
 import App from './components/App'
@@ -20,24 +19,7 @@ const Root = () => (
   </React.StrictMode>
 )
 
-// only show strict mode warnings in development
-const SrictInDev = ({ children }) => (
-  config.isDev
-    ? (
-      <React.StrictMode>
-        { children }
-      </React.StrictMode>
-    )
-    : (
-      <>
-        { children }
-      </>
-    )
-)
-
 ReactDOM.render(
-  <SrictInDev>
-    <Root />
-  </SrictInDev>,
+  <Root />,
   document.getElementById('root')
 )
