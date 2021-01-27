@@ -4,29 +4,40 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import config from './util/config'
+import store from './store'
 
 import App from './components/App'
-import store from './store'
 
 import './index.css'
 
-const StrictMode = () => (
-  config.isDev // only show strict mode warnings in devlopment
-    ? React.StrictMode
-    : React.Fragment
-)
-
 const Root = () => (
-  <StrictMode>
+  <React.StrictMode>
     <Provider store={ store }>
       <Router>
         <App />
       </Router>
     </Provider>
-  </StrictMode>
+  </React.StrictMode>
+)
+
+// only show strict mode warnings in devlopment
+const SrictInDev = ({ children }) => (
+  config.isDev
+    ? (
+      <React.StrictMode>
+        { children }
+      </React.StrictMode>
+    )
+    : (
+      <>
+        { children }
+      </>
+    )
 )
 
 ReactDOM.render(
-  <Root />,
+  <SrictInDev>
+    <Root />
+  </SrictInDev>,
   document.getElementById('root')
 )

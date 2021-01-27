@@ -48,7 +48,7 @@ const App = ({ logout }) => {
         window.removeEventListener('storage', doLogout)
       }
     }
-  })
+  }, [logout])
 
   return (
     <>
