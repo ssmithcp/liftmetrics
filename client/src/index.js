@@ -20,7 +20,7 @@ const Root = () => (
   </React.StrictMode>
 )
 
-// only show strict mode warnings in devlopment
+// only show strict mode warnings in development
 const SrictInDev = ({ children }) => (
   config.isDev
     ? (
