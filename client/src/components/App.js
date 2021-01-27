@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 
@@ -33,7 +33,7 @@ const withContainer = Page => () => (
 )
 
 const App = ({ logout }) => {
-  React.useEffect(() => {
+  useEffect(() => {
     if (window) {
       const doLogout = () => {
         if (!getProfile()) {

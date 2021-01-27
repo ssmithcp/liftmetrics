@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
@@ -12,11 +12,11 @@ import InternalLink from '../util/InternalLink'
 import routes from '../navbar'
 
 const Login = ({ isLoggedIn, login }) => {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
-  const [submitEnabled, setSubmitEnabled] = React.useState(true)
+  const [submitEnabled, setSubmitEnabled] = useState(true)
 
   if (isLoggedIn) {
     return <Redirect to={ routes.home.path } />

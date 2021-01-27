@@ -1,5 +1,3 @@
-import React from 'react'
-
 import InternalLink from '../util/InternalLink'
 import routes from '../navbar'
 

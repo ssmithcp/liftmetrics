@@ -1,4 +1,3 @@
-import React from 'react'
 import Alerts from '../util/Alerts'
 
 import Container from '../util/Container'

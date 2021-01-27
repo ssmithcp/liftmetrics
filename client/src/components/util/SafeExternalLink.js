@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const Style = 'text-primary cursor-pointer hover:underline'
 
 const SafeExternalLink = ({ to, children, ...rest }) => (

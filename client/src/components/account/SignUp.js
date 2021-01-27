@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
@@ -15,7 +15,7 @@ import routes from '../navbar'
 import SubmitButton from '../form/SubmitButton'
 
 const SignUp = ({ isLoggedIn, register }) => {
-  const [showPassword, setShowPassword] = React.useState(true)
+  const [showPassword, setShowPassword] = useState(true)
 
   const toggleShowPassword = e => {
     e.preventDefault()
@@ -35,8 +35,8 @@ const SignUp = ({ isLoggedIn, register }) => {
       email: '',
       password: '',
     }
-  const [formData, setFormData] = React.useState(defaultState)
-  const [submitEnabled, setSubmitEnabled] = React.useState(true)
+  const [formData, setFormData] = useState(defaultState)
+  const [submitEnabled, setSubmitEnabled] = useState(true)
 
   if (isLoggedIn) {
     return <Redirect to={ routes.home.path } />

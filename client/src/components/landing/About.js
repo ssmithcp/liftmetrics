@@ -1,5 +1,3 @@
-import React from 'react'
-
 import config from '../../util/config'
 import SafeExternalLink from '../util/SafeExternalLink'
 import InternalLink from '../util/InternalLink'
