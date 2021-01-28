@@ -4,7 +4,7 @@ import InternalLink from '../util/InternalLink'
 
 import routes from '../navbar'
 
-import headShot from '../images/scott_head_shot.jpg'
+import scottSquat from '../images/scott_squat_low.jpg'
 
 const P = ({ children }) => (
   <p className='mb-3'>
@@ -17,8 +17,8 @@ const About = () => (
     <h1 className='text-3xl text-center pb-4'>Welcome to LiftMetrics!</h1>
     <div className='flex flex-col items-center md:flex-row'>
       <img
-        src={ headShot }
-        alt='scott head shot'
+        src={ scottSquat }
+        alt='scott squatting'
         className='h-56 w-56 mr-7 mb-2 lg:float-left'
       />
       <div>

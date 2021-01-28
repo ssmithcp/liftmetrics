@@ -1,3 +1,5 @@
+import config from './../../util/config'
+
 import InternalLink from '../util/InternalLink'
 import routes from '../navbar'
 
@@ -6,7 +8,10 @@ import barbell from '../images/barbell.png'
 const Index = () => (
   <>
     <section className='h-screen flex flex-col justify-center items-center'>
-      <h1 className='text-6xl'>LiftMetrics</h1>
+      <div className='relative' title={ config.versionTitle }>
+        <h1 className='text-6xl'>LiftMetrics</h1>
+        <p className='font-semibold absolute right-0 top-0 transform translate-x-full'>&alpha;</p>
+      </div>
       <img src={ barbell } alt='barbell' className='w-550px my-7' />
       <ul className='flex text-4xl mb-2'>
         <li className='m-6'>Lift</li>
