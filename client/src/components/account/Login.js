@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
@@ -18,29 +18,24 @@ const Login = ({ isLoggedIn, login }) => {
   })
   const [submitEnabled, setSubmitEnabled] = useState(true)
 
-  const onChange = useCallback(
-    e => setFormData({ ...formData, [e.target.name]: e.target.value }),
-    [formData]
-  )
-
-  const onSubmit = useCallback(e => {
-      e.preventDefault()
-      setSubmitEnabled(false)
-
-      login(formData)
-        .catch(() => setSubmitEnabled(true))
-    },
-    [formData, login]
-  )
-
   if (isLoggedIn) {
     return <Redirect to={ routes.home.path } />
+  }
+
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+
+  const onSubmit = e => {
+    e.preventDefault()
+    setSubmitEnabled(false)
+
+    login(formData)
+      .catch(() => setSubmitEnabled(true))
   }
 
   return (
     <Template title='Login'>
       <p className='mb-2'>
-        Don't have an account yet? <InternalLink route={ routes.signUp } />
+        Don't have an account yet? <InternalLink to={ routes.signUp.path }>{ routes.signUp.title }</InternalLink>
       </p>
       <form
         className='flex flex-col'
