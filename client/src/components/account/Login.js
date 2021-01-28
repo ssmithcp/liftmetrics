@@ -35,7 +35,7 @@ const Login = ({ isLoggedIn, login }) => {
   return (
     <Template title='Login'>
       <p className='mb-2'>
-        Don't have an account yet? <InternalLink to={ routes.signUp.path }>{ routes.signUp.title }</InternalLink>
+        Don't have an account yet? <InternalLink route={ routes.signUp } />
       </p>
       <form
         className='flex flex-col'
