@@ -29,7 +29,7 @@ const About = () => (
     </div>
     <h2 className='text-xl my-4 font-bold'>About the site</h2>
     <P>I’ve been thinking about LiftMetrics for some time. The original idea came from a lifting buddy Brian (Hi Brian!) and I’ve been percolating on the idea for years. I took time off to study Full Stack Web Development and LiftMetrics is the result.</P>
-    <P>The goal of LiftMetrics is to be a platform where any metric related to lifting weights (workout reps sets and intensity, body dimensions, body weight, food, sleep, suppliemention, cardio, etc...) can be tracked. Once tracked, you can analyze the data (with graphs, charts and tables) to determine what metrics contribute to your desired outcome.</P>
+    <P>The goal of LiftMetrics is to be a platform where any metric related to lifting weights (workout reps sets and intensity, body dimensions, body weight, food, sleep, supplementation, cardio, etc...) can be tracked. Once tracked, you can analyze the data (with graphs, charts and tables) to determine what metrics contribute to your desired outcome.</P>
     <P>For example: you can determine which bicep exercise most effectively grows your guns 💪 and how staying up late to play ‘Escape From Tarkov’ influences your one rep max squat weight.</P>
     <P><InternalLink to={ routes.signUp.path }>Create an account</InternalLink> and start kicking ass!</P>
   </section>
