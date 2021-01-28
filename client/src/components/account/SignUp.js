@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
@@ -17,12 +17,15 @@ import SubmitButton from '../form/SubmitButton'
 const SignUp = ({ isLoggedIn, register }) => {
   const [showPassword, setShowPassword] = useState(true)
 
-  const toggleShowPassword = e => {
-    e.preventDefault()
-    setShowPassword(!showPassword)
-  }
+  const toggleShowPassword = useCallback(e => {
+      e.preventDefault()
+      setShowPassword(!showPassword)
+    },
+    [showPassword]
+  )
 
-  const defaultState = config.isDev
+  const [formData, setFormData] = useState(() => (
+    config.isDev
     ? {
       firstName: 'Scott',
       lastName: 'Smith',
@@ -35,26 +38,32 @@ const SignUp = ({ isLoggedIn, register }) => {
       email: '',
       password: '',
     }
-  const [formData, setFormData] = useState(defaultState)
+  ))
   const [submitEnabled, setSubmitEnabled] = useState(true)
+
+  const onChange = useCallback(
+    e => setFormData({ ...formData, [e.target.name]: e.target.value }),
+    [formData]
+  )
+
+  const onSubmit = useCallback(e => {
+      e.preventDefault()
+      setSubmitEnabled(false)
+
+      register(formData)
+        .catch(() => setSubmitEnabled(true))
+    },
+    [formData, register]
+  )
 
   if (isLoggedIn) {
     return <Redirect to={ routes.home.path } />
-  }
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
-
-  const onSubmit = e => {
-    e.preventDefault()
-    setSubmitEnabled(false)
-
-    register(formData)
-      .catch(() => setSubmitEnabled(true))
   }
 
   return (
     <Template title='Sign Up'>
       <p className='mb-2'>
-        Already have an account? <InternalLink to={ routes.login.path }>{ routes.login.title }</InternalLink>
+        Already have an account? <InternalLink route={ routes.login } />
       </p>
       <form
         className='flex flex-col'
