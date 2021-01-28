@@ -44,6 +44,8 @@ export const alertOnAPIError = (fun, dispatch) => {
         const errors = err.response.data.errors
 
         errors.forEach(error => dispatch(alert(error.msg, ERROR)))
+      } else if (err.response && err.response.status === 401) {
+        dispatch(alert('Your session expired, please login again', WARNING))
       } else if (err.message) {
         dispatch(alert(err.message, ERROR))
       } else {

@@ -1,7 +1,9 @@
 import axios from 'axios'
 
-import store from '../store'
 import config from './config'
+
+import store from '../store'
+import { profileUpdated } from '../actions/profile'
 
 const api = axios.create({
   baseURL: config.baseURL,
@@ -14,7 +16,7 @@ api.interceptors.response.use(
   res => res,
   err => {
     if (err.response.status === 401) {
-      // store.dispatch({ type: LOGOUT })
+      profileUpdated(null)(store.dispatch)
     }
     return Promise.reject(err)
   }
