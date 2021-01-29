@@ -4,7 +4,7 @@ import { IoBarbellSharp } from 'react-icons/io5'
 import { CgPill } from 'react-icons/cg'
 import { GrTrophy } from 'react-icons/gr'
 
-import routes from '../navbar'
+import routes from '../navigation'
 
 import TileBoard from '../container/TileBoard'
 

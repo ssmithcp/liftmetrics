@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 
-import NavBar from './navbar/NavBar'
-import routes from './navbar'
+import NavBar from './navigation/NavBar'
+import routes from './navigation'
 import PageWidthContainer from './container/PageWidthContainer'
 import PrivateRoute from './util/PrivateRoute'
 

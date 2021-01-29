@@ -11,7 +11,7 @@ import SafeExternalLink from '../util/SafeExternalLink'
 import InternalLink from '../util/InternalLink'
 
 import Template from './Template'
-import routes from '../navbar'
+import routes from '../navigation'
 import SubmitButton from '../form/SubmitButton'
 
 const SignUp = ({ isLoggedIn, register }) => {

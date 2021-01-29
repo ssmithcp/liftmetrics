@@ -1,7 +1,7 @@
 import config from './../../util/config'
 
 import InternalLink from '../util/InternalLink'
-import routes from '../navbar'
+import routes from '../navigation'
 
 import barbell from '../images/barbell.png'
 

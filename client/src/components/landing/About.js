@@ -2,7 +2,7 @@ import config from '../../util/config'
 import SafeExternalLink from '../util/SafeExternalLink'
 import InternalLink from '../util/InternalLink'
 
-import routes from '../navbar'
+import routes from '../navigation'
 
 import scottSquat from '../images/scott_squat_low.jpg'
 

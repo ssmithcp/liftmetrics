@@ -9,7 +9,7 @@ import Input from '../form/Input'
 import SubmitButton from '../form/SubmitButton'
 
 import InternalLink from '../util/InternalLink'
-import routes from '../navbar'
+import routes from '../navigation'
 
 const Login = ({ isLoggedIn, login }) => {
   const [formData, setFormData] = useState({
