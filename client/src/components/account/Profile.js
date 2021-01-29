@@ -5,8 +5,6 @@ import { logout } from '../../actions/auth'
 import TitledPage from '../container/TitledPage'
 
 const Profile = ({ profile, logout }) => {
-  const { firstName, lastName } = profile
-
   return (
     <TitledPage title={ `Profile for ${ profile.firstName } ${ profile.lastName[0].toUpperCase() }` }>
       <table>
