@@ -8,9 +8,11 @@ const Tile = ({ Icon, iconStyle, title, path }) => (
     className='p-8 w-56 h-56 flex flex-col items-center justify-between hover:bg-gray-200'
     title={ `Track ${ title.toLowerCase() }` }
   >
-    <IconContext.Provider value={{ className:`w-24 h-24 text-gray-900 ${ iconStyle || '' }` }}>
-      <Icon />
-    </IconContext.Provider>
+    <div className='flex-1 flex items-center'>
+      <IconContext.Provider value={{ className:`w-24 h-24 text-gray-900 ${ iconStyle || '' }` }}>
+        <Icon />
+      </IconContext.Provider>
+    </div>
     <p className='text-xl text-center'>{ title }</p>
   </NavLink>
 )

@@ -48,7 +48,7 @@ const routes = {
     path: '/track/supplement',
   },
   trackMeasurement: {
-    title: 'Body measurement',
+    title: 'Measurement',
     path: '/track/measurement',
   },
   trackNote: {
