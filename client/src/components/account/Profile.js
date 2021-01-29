@@ -5,7 +5,7 @@ import { logout } from '../../actions/auth'
 import TitledPage from '../container/TitledPage'
 
 const Profile = ({ profile, logout }) => {
-  console.log(profile)
+  const { firstName, lastName } = profile
 
   return (
     <TitledPage title={ `Profile for ${ profile.firstName } ${ profile.lastName[0].toUpperCase() }` }>
@@ -33,17 +33,9 @@ const Profile = ({ profile, logout }) => {
   )
 }
 
-const withMatchingKeys = (state, keyFilter) =>
-  Object.keys(state)
-    .filter(keyFilter)
-    .reduce((obj, key) => {
-      obj[key] = state[key]
-      return obj
-    }, {})
-
 const mapStateToProps = state => ({
-  profile: withMatchingKeys(state.profile, k => !k.startsWith('available')),
-  profileOptions: withMatchingKeys(state.profile, k => k.startsWith('available')),
+  profile: state.profile,
+  profileOptions: state.profile,
 })
 
 export default connect(mapStateToProps, { logout })(Profile)
