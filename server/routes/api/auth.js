@@ -6,34 +6,8 @@ const jwt = require('jsonwebtoken')
 
 const config = require('../../config')
 const User = require('../../models/User')
+const { attachAuthToken } = require('../../middleware/auth')
 const { withoutValidationErrors, asyncHandler } = require('../../middleware/errors')
-
-const returnWithToken = (res, user) => {
-  const expires = config.get('tokenExpiresSeconds')
-
-  jwt.sign({
-      user: {
-        id: user.id
-      }
-    },
-    config.get('jwtSecret'),
-    { expiresIn: `${expires} seconds` },
-    (err, token) => {
-      if (err) {
-        throw err
-      }
-
-      res.cookie('access_token', token, {
-        httpOnly: true,
-        secure: !config.get('isDev'),
-        sameSite: true,
-        expires: new Date(Date.now() + (expires * 1000))
-      })
-
-      res.send()
-    }
-  )
-}
 
 const register = asyncHandler(async (req, res) => {
   console.log('new user request', { ...req.body, password: '******' })
@@ -65,11 +39,11 @@ const register = asyncHandler(async (req, res) => {
   })
   await user.save()
 
-  returnWithToken(res, user)
+  await attachAuthToken(res, user)
+  res.send()
 })
 
 router.post('/register', [withoutValidationErrors], register)
-
 
 const login = asyncHandler(async (req, res) => {
   console.log('login request', { ...req.body, password: '******' })
@@ -94,7 +68,8 @@ const login = asyncHandler(async (req, res) => {
   user.lastLogin = Date.now()
   await user.save()
 
-  returnWithToken(res, user)
+  await attachAuthToken(res, user)
+  res.send()
 })
 
 router.post('/login', [withoutValidationErrors], login)

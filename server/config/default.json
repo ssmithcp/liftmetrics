@@ -2,5 +2,6 @@
   "urlPrefix": "/api/v1",
   "jwtSecret": "jwtSecret123",
   "tokenExpiresSeconds": 432000,
+  "tokenRefreshSeconds": 86400,
   "isDev": true
 }

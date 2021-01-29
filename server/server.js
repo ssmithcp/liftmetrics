@@ -11,7 +11,7 @@ connectDB()
 const urlPrefix = config.get('urlPrefix')
 
 app.use(urlPrefix + '/auth', require('./routes/api/auth'))
-app.use(urlPrefix + '/profile', require('./routes/api/profiles'))
+app.use(urlPrefix + '/profile', require('./routes/api/profile'))
 
 if (!config.get('isDev')) {
   app.use(express.static(path.resolve(__dirname, '..', 'client', 'build')))
