@@ -2,9 +2,13 @@ import { connect } from 'react-redux'
 
 import { logout } from '../../actions/auth'
 
+import TitledPage from '../util/TitledPage'
+
 const Profile = ({ profile, logout }) => {
+  console.log(profile)
+
   return (
-    <>
+    <TitledPage title={ `Profile for ${ profile.firstName } ${ profile.lastName[0].toUpperCase() }` }>
       <table>
         <tbody>
           { Object.keys(profile).map(key =>
@@ -25,12 +29,21 @@ const Profile = ({ profile, logout }) => {
       >
         Logout!
       </button>
-    </>
+    </TitledPage>
   )
 }
 
+const withMatchingKeys = (state, keyFilter) =>
+  Object.keys(state)
+    .filter(keyFilter)
+    .reduce((obj, key) => {
+      obj[key] = state[key]
+      return obj
+    }, {})
+
 const mapStateToProps = state => ({
-  profile: state.profile,
+  profile: withMatchingKeys(state.profile, k => !k.startsWith('available')),
+  profileOptions: withMatchingKeys(state.profile, k => k.startsWith('available')),
 })
 
 export default connect(mapStateToProps, { logout })(Profile)

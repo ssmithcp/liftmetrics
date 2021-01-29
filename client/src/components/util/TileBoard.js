@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom'
 
 import { IconContext } from 'react-icons'
 
+import TitledPage from './TitledPage'
+
 const Tile = ({ Icon, iconStyle, title, path }) => (
   <NavLink
     to={ path }
@@ -19,14 +21,11 @@ const Tile = ({ Icon, iconStyle, title, path }) => (
 
 const TileBoard = ({ title, tiles }) => {
   return (
-    <>
-      <h1 className='text-2xl mb-2'>{ title }</h1>
-      <div className='flex flex-wrap'>
-        { tiles.map(tile =>
-          <Tile key={ tile.path } { ...tile } />
-        )}
-      </div>
-    </>
+    <TitledPage title={ title } className='flex flex-wrap'>
+      { tiles.map(tile =>
+        <Tile key={ tile.path } { ...tile } />
+      )}
+    </TitledPage>
   )
 }
 
