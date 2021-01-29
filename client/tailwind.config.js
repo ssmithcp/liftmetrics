@@ -15,7 +15,10 @@ module.exports = {
       spacing: {
         "550px" : "550px",
         "750px" : "750px",
-      }
+      },
+      gridTemplateColumns: {
+        "profile": "180px auto",
+      },
     },
   },
   variants: {

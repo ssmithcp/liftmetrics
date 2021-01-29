@@ -4,12 +4,14 @@ export const style =
   py-4 w-full md:w-2/4`
 
 const BigButton = ({ className, children, ...rest }) => (
-  <button
-    className={ style + (className || '') }
-    { ... rest }
-  >
-    { children }
-  </button>
+  <div className='text-center my-6'>
+    <button
+      className={ style + (className || '') }
+      { ... rest }
+    >
+      { children }
+    </button>
+  </div>
 )
 
 export default BigButton

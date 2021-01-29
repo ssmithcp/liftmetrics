@@ -112,12 +112,10 @@ const SignUp = ({ isLoggedIn, register }) => {
             onChange={ onChange }
           />
         </div>
-        <div className='text-center my-6'>
-          <SubmitButton
-            value='Create account'
-            disabled={ !submitEnabled }
-          />
-        </div>
+        <SubmitButton
+          value='Create account'
+          disabled={ !submitEnabled }
+        />
       </form>
       <p className='text-sm'>
         * Your avatar is sourced from <SafeExternalLink to='https://gravatar.com' tabIndex='-1'>gravatar.com</SafeExternalLink> using this email

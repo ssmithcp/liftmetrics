@@ -62,12 +62,10 @@ const Login = ({ isLoggedIn, login }) => {
           value={ formData.password }
           onChange={ onChange }
         />
-        <div className='text-center my-6'>
-          <SubmitButton
-            value='Login'
-            disabled={ !submitEnabled }
-          />
-        </div>
+        <SubmitButton
+          value='Login'
+          disabled={ !submitEnabled }
+        />
       </form>
     </Template>
   )
