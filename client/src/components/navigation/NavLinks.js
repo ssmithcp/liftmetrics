@@ -40,7 +40,6 @@ const NavLinks = ({ profile }) => {
             </NavLink>
           </li>
         )}
-        {/* XXX add handling in case avatar is null somehow? */}
       </ul>
     </nav>
   )

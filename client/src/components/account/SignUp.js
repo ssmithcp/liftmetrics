@@ -114,7 +114,6 @@ const SignUp = ({ isLoggedIn, register }) => {
         </div>
         <div className='text-center my-6'>
           <SubmitButton
-            className='py-4 w-full md:w-2/4 '
             value='Create account'
             disabled={ !submitEnabled }
           />

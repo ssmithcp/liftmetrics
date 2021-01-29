@@ -1,11 +1,9 @@
+import { style } from '../util/BigButton'
+
 const SubmitButton = ({ className, ...rest }) => (
   <input
     type='submit'
-    className={ `my-3 text-xl bg-white cursor-pointer focus:outline-none
-      border border-gray-400
-      hover:border-black focus:border-black
-      ${ className || '' }`
-    }
+    className={ style + (className || '') }
     { ... rest }
   />
 )
