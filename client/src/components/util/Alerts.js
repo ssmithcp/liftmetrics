@@ -4,7 +4,7 @@ import { IconContext } from 'react-icons'
 import { VscError, VscWarning, VscInfo, VscClose } from 'react-icons/vsc'
 
 import { removeAlert, ERROR, WARNING, INFO } from '../../actions/alert'
-import Container from './Container'
+import PageWidthContainer from '../container/PageWidthContainer'
 
 const iconStyle = 'p-3 w-14 h-14'
 
@@ -54,7 +54,7 @@ const Alerts = ({ alerts, removeAlert }) => {
   const displayedAlerts = lastAlert ? alerts.slice(0, 2) : alerts
 
   return (
-    <Container>
+    <PageWidthContainer>
       <div className='select-none text-center'>
         { displayedAlerts.map(a =>
           <Alert
@@ -73,7 +73,7 @@ const Alerts = ({ alerts, removeAlert }) => {
         />
         )}
       </div>
-    </Container>
+    </PageWidthContainer>
   )
 }
 

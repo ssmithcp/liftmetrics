@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import NavBar from './navbar/NavBar'
 import routes from './navbar'
-import Container from './util/Container'
+import PageWidthContainer from './container/PageWidthContainer'
 import PrivateRoute from './util/PrivateRoute'
 
 import Index from './landing/Index'
@@ -25,11 +25,11 @@ import { logout } from '../actions/auth'
 import { getProfile } from '../util/profileStorage'
 
 const withContainer = Page => () => (
-  <Container className='mt-28 md:mt-24'>
+  <PageWidthContainer className='mt-28 md:mt-24'>
     <main>
       <Page />
     </main>
-  </Container>
+  </PageWidthContainer>
 )
 
 const App = ({ logout }) => {

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import { logout } from '../../actions/auth'
 
-import TitledPage from '../util/TitledPage'
+import TitledPage from '../container/TitledPage'
 
 const Profile = ({ profile, logout }) => {
   console.log(profile)

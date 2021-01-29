@@ -6,7 +6,7 @@ import { GrTrophy } from 'react-icons/gr'
 
 import routes from '../navbar'
 
-import TileBoard from '../util/TileBoard'
+import TileBoard from '../container/TileBoard'
 
 const tiles = [
   {
