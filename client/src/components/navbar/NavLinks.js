@@ -22,7 +22,7 @@ const NavLinks = ({ profile }) => {
     <nav>
       <ul className='flex items-center'>
         { navItems.map(item =>
-          <li key={ item.path } className='p-3 text-lg hover:text-primary'>
+          <li key={ item.path } className='p-3 text-lg hover:text-primary md:py-6'>
             <NavLink exact to={ item.path } activeClassName='current'>
               { item.title }
             </NavLink>
