@@ -1,10 +1,8 @@
 import api from '../util/api'
 
+import { PROFILE_UPDATED } from '../reducers/profile'
 import { setProfile } from '../util/profileStorage'
-
 import { alertOnAPIError } from './alert'
-
-export const PROFILE_UPDATED = 'PROFILE_UPDATED'
 
 export const profileUpdated = profile => dispatch => {
   setProfile(profile)
