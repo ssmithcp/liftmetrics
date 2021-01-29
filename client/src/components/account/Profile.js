@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import _ from 'lodash'
 
 import { logout } from '../../actions/auth'
 
@@ -32,7 +33,7 @@ const Profile = ({ profile, logout }) => {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile,
+  profile: _.pickBy(state.profile, (_, k) => !k.startsWith('available')),
   profileOptions: state.profile,
 })
 
