@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
 
-import routes from '../navigation'
+import routes from '.'
 
 const PrivateRoute = ({ isLoggedIn, ...rest }) => {
   if (!isLoggedIn) {

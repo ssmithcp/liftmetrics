@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import NavBar from './navigation/NavBar'
 import routes from './navigation'
 import PageWidthContainer from './container/PageWidthContainer'
-import PrivateRoute from './util/PrivateRoute'
+import PrivateRoute from './navigation/PrivateRoute'
 
 import Index from './landing/Index'
 import Home from './landing/Home'

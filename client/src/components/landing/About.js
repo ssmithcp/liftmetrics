@@ -1,6 +1,6 @@
 import config from '../../util/config'
-import SafeExternalLink from '../util/SafeExternalLink'
-import InternalLink from '../util/InternalLink'
+import SafeExternalLink from '../navigation/SafeExternalLink'
+import InternalLink from '../navigation/InternalLink'
 
 import routes from '../navigation'
 

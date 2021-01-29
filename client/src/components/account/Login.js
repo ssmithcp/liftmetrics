@@ -8,7 +8,7 @@ import Template from './Template'
 import Input from '../form/Input'
 import SubmitButton from '../form/SubmitButton'
 
-import InternalLink from '../util/InternalLink'
+import InternalLink from '../navigation/InternalLink'
 import routes from '../navigation'
 
 const Login = ({ isLoggedIn, login }) => {

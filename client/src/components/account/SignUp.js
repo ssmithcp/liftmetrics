@@ -7,8 +7,8 @@ import config from '../../util/config'
 import { register } from '../../actions/auth'
 
 import Input from '../form/Input'
-import SafeExternalLink from '../util/SafeExternalLink'
-import InternalLink from '../util/InternalLink'
+import SafeExternalLink from '../navigation/SafeExternalLink'
+import InternalLink from '../navigation/InternalLink'
 
 import Template from './Template'
 import routes from '../navigation'
