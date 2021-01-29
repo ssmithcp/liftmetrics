@@ -55,6 +55,10 @@ const routes = {
     title: 'Note',
     path: '/track/note',
   },
+  trackGoal: {
+    title: 'Goal',
+    path: '/track/goal',
+  },
   analyzeHome: {
     title: 'Analyze',
     path: '/analyze'
