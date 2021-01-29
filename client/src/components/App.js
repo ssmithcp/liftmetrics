@@ -51,7 +51,7 @@ const App = ({ logout }) => {
   }, [logout])
 
   return (
-    <>
+    <div className='select-none'>
       <NavBar />
       <Switch>
         <Route path={ routes.index.path } exact component={ Index } />
@@ -69,7 +69,7 @@ const App = ({ logout }) => {
 
         <Route render={ withContainer(NotFound) } />
       </Switch>
-    </>
+    </div>
   )
 }
 

@@ -13,7 +13,7 @@ const P = ({ children }) => (
 )
 
 const About = () => (
-  <section className='text-lg flex flex-col md:block'>
+  <section className='text-lg flex flex-col select-text md:block'>
     <h1 className='text-3xl text-center pb-4'>Welcome to LiftMetrics!</h1>
     <div className='flex flex-col items-center md:flex-row'>
       <img
