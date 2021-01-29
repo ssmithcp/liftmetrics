@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { IconContext } from 'react-icons'
 import { VscError, VscWarning, VscInfo, VscClose } from 'react-icons/vsc'
 
-
 import { removeAlert, ERROR, WARNING, INFO } from '../../actions/alert'
 import Container from './Container'
 

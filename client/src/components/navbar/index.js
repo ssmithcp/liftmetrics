@@ -27,6 +27,34 @@ const routes = {
     title: 'Track',
     path: '/track'
   },
+  trackWeight: {
+    title: 'Weight',
+    path: '/track/weight',
+  },
+  trackFood: {
+    title: 'Food',
+    path: '/track/food',
+  },
+  trackWorkout: {
+    title: 'Workout',
+    path: '/track/workout',
+  },
+  trackSleep: {
+    title: 'Sleep',
+    path: '/track/sleep',
+  },
+  trackSupplement: {
+    title: 'Supplement',
+    path: '/track/supplement',
+  },
+  trackMeasurement: {
+    title: 'Body measurement',
+    path: '/track/measurement',
+  },
+  trackNote: {
+    title: 'Note',
+    path: '/track/note',
+  },
   analyzeHome: {
     title: 'Analyze',
     path: '/analyze'
