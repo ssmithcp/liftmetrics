@@ -1,6 +1,8 @@
+import PageTitle from '../util/PageTitle'
+
 const TitledPage = ({ title, className, children }) => (
   <>
-    <h1 className='text-2xl mb-2'>{ title }</h1>
+    <PageTitle title={ title } />
     <div className={ className }>
       { children }
     </div>

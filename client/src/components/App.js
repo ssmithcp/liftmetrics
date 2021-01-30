@@ -17,8 +17,6 @@ import Profile from './account/Profile'
 
 import TrackDashboard from './track/Dashboard'
 
-import AnalyzeDashboard from './analyze/Dashboard'
-
 import NotFound from './util/NotFound'
 
 import { logout } from '../actions/auth'
@@ -64,8 +62,6 @@ const App = ({ logout }) => {
         <PrivateRoute path={ routes.profile.path } exact render={ withContainer(Profile) } />
 
         <PrivateRoute path={ routes.trackHome.path } exact render={ withContainer(TrackDashboard) } />
-
-        <PrivateRoute path={ routes.analyzeHome.path } exact render={ withContainer(AnalyzeDashboard) } />
 
         <Route render={ withContainer(NotFound) } />
       </Switch>

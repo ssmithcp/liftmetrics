@@ -24,7 +24,7 @@ const routes = {
     path: '/account/profile',
   },
   trackHome: {
-    title: 'Track',
+    title: 'Mertics',
     path: '/track'
   },
   trackWeight: {
@@ -58,10 +58,6 @@ const routes = {
   trackGoal: {
     title: 'Goal',
     path: '/track/goal',
-  },
-  analyzeHome: {
-    title: 'Analyze',
-    path: '/analyze'
   }
 }
 

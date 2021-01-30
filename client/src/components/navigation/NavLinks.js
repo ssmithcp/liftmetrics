@@ -12,7 +12,6 @@ const NotLoggedIn = [
 const LoggedIn = [
   routes.home,
   routes.trackHome,
-  routes.analyzeHome,
 ]
 
 const NavLinks = ({ profile }) => {

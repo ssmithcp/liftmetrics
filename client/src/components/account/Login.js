@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import { login } from '../../actions/auth'
 
-import Template from './Template'
+import MediumWidth from '../container/MediumWidth'
 import Input from '../form/Input'
 import SubmitButton from '../form/SubmitButton'
 
@@ -33,7 +33,7 @@ const Login = ({ isLoggedIn, login }) => {
   }
 
   return (
-    <Template title='Login'>
+    <MediumWidth title='Login' className='text-center'>
       <p className='mb-2'>
         Don't have an account yet? <InternalLink route={ routes.signUp } />
       </p>
@@ -67,7 +67,7 @@ const Login = ({ isLoggedIn, login }) => {
           disabled={ !submitEnabled }
         />
       </form>
-    </Template>
+    </MediumWidth>
   )
 }
 

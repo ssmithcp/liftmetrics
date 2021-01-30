@@ -10,7 +10,7 @@ import Input from '../form/Input'
 import SafeExternalLink from '../navigation/SafeExternalLink'
 import InternalLink from '../navigation/InternalLink'
 
-import Template from './Template'
+import MediumWidth from '../container/MediumWidth'
 import routes from '../navigation'
 import SubmitButton from '../form/SubmitButton'
 
@@ -53,7 +53,7 @@ const SignUp = ({ isLoggedIn, register }) => {
   }
 
   return (
-    <Template title='Sign Up'>
+    <MediumWidth title='Sign Up' className='text-center'>
       <p className='mb-2'>
         Already have an account? <InternalLink route={ routes.login } />
       </p>
@@ -120,7 +120,7 @@ const SignUp = ({ isLoggedIn, register }) => {
       <p className='text-sm'>
         * Your avatar is sourced from <SafeExternalLink to='https://gravatar.com' tabIndex='-1'>gravatar.com</SafeExternalLink> using this email
       </p>
-    </Template>
+    </MediumWidth>
   )
 }
 

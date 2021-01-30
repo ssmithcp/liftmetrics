@@ -9,7 +9,7 @@ import TitledPage from '../container/TitledPage'
 const Profile = ({ profile, logout }) => {
   return (
     <TitledPage title={ `Profile for ${ profile.firstName } ${ profile.lastName[0].toUpperCase() }` }>
-      <div className='my-6 grid grid-cols-profile'>
+      <div className='my-6 text-lg grid grid-cols-profile'>
         <p>First name</p>
         <p>{ profile.firstName }</p>
         <p></p>
