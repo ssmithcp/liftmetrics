@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const gravatar = require('gravatar')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -21,12 +20,6 @@ const register = asyncHandler(async (req, res) => {
       .json({ errors: [{ msg: 'User already exists' }] })
   }
 
-  const avatar = gravatar.url(email, {
-    s: '200',
-    r: 'pg',
-    d: 'monsterid'
-  }, true)
-
   const salt = await bcrypt.genSalt(10)
   const password = await bcrypt.hash(req.body.password, salt)
 
@@ -34,7 +27,6 @@ const register = asyncHandler(async (req, res) => {
     firstName,
     lastName,
     email,
-    avatar,
     password
   })
   await user.save()

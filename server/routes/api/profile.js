@@ -1,4 +1,5 @@
 const express = require('express')
+const gravatar = require('gravatar')
 const router = express.Router()
 
 const User = require('../../models/User')
@@ -18,7 +19,16 @@ const getOrCreate = async userId => {
       profile = await Profile.findOne({ user: user.id })
 
       if (!profile) {
-        profile = await Profile.create({ user: user.id })
+        const avatar = gravatar.url(user.email, {
+          s: '200',
+          r: 'pg',
+          d: 'monsterid'
+        }, true)
+
+        profile = await Profile.create({
+          user: user.id,
+          avatar,
+         })
       }
     })
   }
@@ -27,12 +37,10 @@ const getOrCreate = async userId => {
     ...sanitize(profile.toObject()),
     firstName: user.firstName,
     lastName: user.lastName,
-    avatar: user.avatar,
     lastLogin: user.lastLogin,
     roles: user.roles,
     availableWeightUnits: Profile.weightUnits,
     availableLengthUnits: Profile.lengthUnits,
-    availableWeekStartDays: Profile.weekStartDays,
   }
 }
 
