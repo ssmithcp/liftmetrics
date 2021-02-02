@@ -1,9 +1,16 @@
 const express = require('express')
 const path = require('path')
+const helmet = require('helmet')
+
 const connectDB = require('./models/db')
 const config = require('./config')
 
 const app = express()
+
+app.use(helmet())
+// doesn't seem to work, still seeing powered by Express  in headers :shrugs:
+app.disable('x-powered-by')
+
 app.use(express.json({ extended: false }))
 
 connectDB()
