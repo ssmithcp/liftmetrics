@@ -2,9 +2,7 @@ const jwt = require('jsonwebtoken')
 const config = require('../config')
 const User = require('../models/User')
 
-const { asyncHandler } = require('./errors')
-
-module.exports = asyncHandler(function (req, res, next) {
+const authenticateRequest = function (req, res, next) {
   const cookies = req.header('cookie')
 
   if (!cookies) {
@@ -40,7 +38,9 @@ module.exports = asyncHandler(function (req, res, next) {
     res.locals.user = decoded.user
     next()
   })
-})
+}
+
+module.exports = authenticateRequest
 
 const attachAuthToken = (res, user) => (
   new Promise((resolve, reject) => {
