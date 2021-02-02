@@ -45,7 +45,7 @@ const getOrCreate = async userId => {
 }
 
 router.get('/me', [auth], async (req, res) => {
-  const profile = await getOrCreate(req.user.id)
+  const profile = await getOrCreate(res.locals.user.id)
   res.json(profile).send()
 })
 

@@ -37,7 +37,7 @@ module.exports = asyncHandler(function (req, res, next) {
       console.log('refreshed auth token for user', user)
     }
 
-    req.user = decoded.user
+    res.locals.user = decoded.user
     next()
   })
 })

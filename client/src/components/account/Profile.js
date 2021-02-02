@@ -16,7 +16,7 @@ const formatKey = key => {
   return parts.join(' ')
 }
 
-const Entry = ({ k, value, options }) => (
+const Entry = ({ k, value }) => (
   <>
     <p>{ formatKey(k) }</p>
     <p>{ value }</p>
@@ -27,12 +27,11 @@ const Profile = ({ profile, profileOptions, logout }) => {
   return (
     <TitledPage title={ `Profile for ${ profile.firstName } ${ profile.lastName[0].toUpperCase() }` }>
       <div className='my-6 text-lg grid gap-2 grid-cols-profile'>
-        { [ 'firstName', 'lastName', 'weightUnit', 'lengthUnit' ].map(key =>
-            <Entry k={ key } value={ profile[key] } options={ profileOptions[key] } />
+        { [ 'firstName', 'lastName', 'weightUnit', 'lengthUnit' ].map(k =>
+            <Entry key={ k } k={ k } value={ profile[k] } options={ profileOptions[k] } />
         )}
         <p>Last login</p>
         <p>{ format(new Date(profile.lastLogin), 'PPpp') }</p>
-        <p></p>
       </div>
 
       <BigButton onClick={ logout }>
@@ -50,7 +49,6 @@ const mapStateToProps = state => ({
   profileOptions: _.mapKeys(
     _.pickBy(state.profile, (_, k) => k.startsWith('available')),
     (_, k) => {
-      console.log(k)
       k = k.substring('available'.length)
       return k[0].toLowerCase() + k.substring(1)
     }
