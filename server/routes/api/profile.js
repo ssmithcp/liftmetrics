@@ -4,7 +4,6 @@ const router = express.Router()
 
 const User = require('../../models/User')
 const Profile = require('../../models/Profile')
-const auth = require('../../middleware/auth')
 const { sanitize } = require('../../models/utils')
 
 const getOrCreate = async userId => {
@@ -44,7 +43,7 @@ const getOrCreate = async userId => {
   }
 }
 
-router.get('/me', [auth], async (req, res) => {
+router.get('/me', async (req, res) => {
   const profile = await getOrCreate(res.locals.user.id)
   res.json(profile).send()
 })

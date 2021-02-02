@@ -4,6 +4,7 @@ const helmet = require('helmet')
 
 const connectDB = require('./models/db')
 const config = require('./config')
+const auth = require('./middleware/auth')
 
 const app = express()
 
@@ -18,6 +19,10 @@ connectDB()
 const urlPrefix = config.get('urlPrefix')
 
 app.use(urlPrefix + '/auth', require('./routes/api/auth'))
+
+// all endpoints except /auth/* endpoints need to be authorized
+app.use(auth)
+
 app.use(urlPrefix + '/profile', require('./routes/api/profile'))
 
 if (!config.get('isDev')) {
