@@ -1,12 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 
 const config = require('../../config')
 const User = require('../../models/User')
 const { attachAuthToken } = require('../../middleware/auth')
-const { withoutValidationErrors, catchErrors } = require('../../middleware/errors')
+const { catchErrors } = require('../../middleware/errors')
 
 const register = catchErrors(async (req, res) => {
   console.log('new user request', { ...req.body, password: '******' })
@@ -35,7 +34,7 @@ const register = catchErrors(async (req, res) => {
   res.send()
 })
 
-router.post('/register', [withoutValidationErrors], register)
+router.post('/register', register)
 
 const login = catchErrors(async (req, res) => {
   console.log('login request', { ...req.body, password: '******' })
@@ -64,7 +63,7 @@ const login = catchErrors(async (req, res) => {
   res.send()
 })
 
-router.post('/login', [withoutValidationErrors], login)
+router.post('/login', login)
 
 router.get('/logout', (req, res) => {
   res.clearCookie('access_token')
