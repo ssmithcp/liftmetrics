@@ -21,20 +21,20 @@ const NavLinks = ({ profile }) => {
     <nav>
       <ul className='flex items-center'>
         { navItems.map(item =>
-          <li key={ item.path } className='p-3 text-lg hover:text-primary md:py-6'>
-            <NavLink exact to={ item.path } activeClassName='current'>
+          <li key={ item.path }>
+            <NavLink exact to={ item.path } className='block p-3 text-lg hover:text-primary md:py-6' activeClassName='current'>
               { item.title }
             </NavLink>
           </li>
         )}
         { profile !== null && profile.avatar && (
-          <li key='profile avatar' className='pl-3'>
+          <li key='profile avatar'>
             <NavLink exact to={ routes.profile.path } activeClassName='current'>
               <img
                 src={ profile.avatar }
                 title={ routes.profile.title }
                 alt='avatar'
-                className='w-10 h-10 rounded-full border-2 hover:border-blue-300'
+                className='ml-3 block w-10 h-10 rounded-full border-2 hover:border-blue-300'
               />
             </NavLink>
           </li>
