@@ -6,9 +6,9 @@ const jwt = require('jsonwebtoken')
 const config = require('../../config')
 const User = require('../../models/User')
 const { attachAuthToken } = require('../../middleware/auth')
-const { withoutValidationErrors, asyncHandler } = require('../../middleware/errors')
+const { withoutValidationErrors, catchErrors } = require('../../middleware/errors')
 
-const register = asyncHandler(async (req, res) => {
+const register = catchErrors(async (req, res) => {
   console.log('new user request', { ...req.body, password: '******' })
 
   const { firstName, lastName, email } = req.body
@@ -37,7 +37,7 @@ const register = asyncHandler(async (req, res) => {
 
 router.post('/register', [withoutValidationErrors], register)
 
-const login = asyncHandler(async (req, res) => {
+const login = catchErrors(async (req, res) => {
   console.log('login request', { ...req.body, password: '******' })
 
   const { email, password } = req.body

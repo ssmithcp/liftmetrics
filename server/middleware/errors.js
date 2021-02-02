@@ -12,7 +12,7 @@ const withoutValidationErrors = async (req, res, next) => {
 // copied from express-async-handler
 // this allows errors that happen in async request handlers
 // to be caught by the default express error handler
-const asyncHandler = fn =>
+const catchErrors = fn =>
   function asyncUtilWrap(...args) {
     const fnReturn = fn(...args)
     const next = args[args.length-1]
@@ -21,5 +21,5 @@ const asyncHandler = fn =>
 
 module.exports = {
   withoutValidationErrors,
-  asyncHandler,
+  catchErrors,
 }

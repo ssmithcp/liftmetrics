@@ -18,9 +18,9 @@ connectDB()
 
 const urlPrefix = config.get('urlPrefix')
 
-app.use(urlPrefix + '/auth', require('./routes/api/auth'))
+app.use(urlPrefix + '/user', require('./routes/api/user'))
 
-// all endpoints except /auth/* endpoints need to be authorized
+// all endpoints except /user/* endpoints need to be authorized
 app.use(auth)
 
 app.use(urlPrefix + '/profile', require('./routes/api/profile'))
