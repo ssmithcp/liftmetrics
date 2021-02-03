@@ -5,4 +5,4 @@ const Input = ({ className, ...args }) => (
   />
 )
 
-export default Input;
+export default Input

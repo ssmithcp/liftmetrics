@@ -1,4 +1,4 @@
-import { SET_ALERT, REMOVE_ALERT, CLEAR_ALERTS } from '../actions/alert';
+import { SET_ALERT, REMOVE_ALERT, CLEAR_ALERTS } from '../actions/alert'
 
 function alert(state = [], action) {
   switch (action.type) {
@@ -9,7 +9,7 @@ function alert(state = [], action) {
     case CLEAR_ALERTS:
       return []
     default:
-      return state;
+      return state
   }
 }
 

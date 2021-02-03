@@ -21,7 +21,7 @@ export const alert = (message, type = ERROR, timeout = 5000) => dispatch => {
     }
   })
 
-  setTimeout(() => removeAlert(id)(dispatch), timeout);
+  setTimeout(() => removeAlert(id)(dispatch), timeout)
 }
 
 export const removeAlert = id => dispatch => (
@@ -43,7 +43,7 @@ export const alertOnAPIError = (fun, dispatch) => {
       if (err.response && err.response.data && err.response.data.errors) {
         const errors = err.response.data.errors
 
-        errors.forEach(error => dispatch(alert(error.msg, ERROR)))
+        errors.forEach(error => dispatch(alert(error.message, ERROR)))
       } else if (err.response && err.response.status === 401) {
         dispatch(alert('Your session expired, please login again', WARNING))
       } else if (err.message) {

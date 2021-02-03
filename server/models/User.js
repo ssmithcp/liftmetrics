@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const availableRoles = [ 'admin', 'user', 'demo' ]
+const availableRoles = [ 'admin', 'user', 'free', 'demo' ]
 
 const UserSchema = new mongoose.Schema({
   firstName: {
@@ -40,8 +40,10 @@ const UserSchema = new mongoose.Schema({
   },
   roles: {
     type: [String],
-    default: [ 'user' ],
-    validator: roles => roles.every(role => availableRoles.includes(role)),
+    default: [ 'free' ],
+    validate: {
+      validator: roles => roles.every(role => availableRoles.includes(role)),
+    },
   }
 })
 

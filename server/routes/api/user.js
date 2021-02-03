@@ -5,9 +5,11 @@ const bcrypt = require('bcryptjs')
 const config = require('../../config')
 const User = require('../../models/User')
 const { attachAuthToken } = require('../../middleware/auth')
-const { catchErrors } = require('../../middleware/errors')
 
-const register = catchErrors(async (req, res) => {
+const { formatError } = require('../../middleware/error')
+const catchAsyncError = require('../../middleware/catchAsyncError')
+
+const register = catchAsyncError(async (req, res) => {
   console.log('new user request', { ...req.body, password: '******' })
 
   const { firstName, lastName, email } = req.body
@@ -16,7 +18,7 @@ const register = catchErrors(async (req, res) => {
   if (user) {
     return res
       .status(400)
-      .json({ errors: [{ msg: 'User already exists' }] })
+      .json(formatError('User already exists'))
   }
 
   const salt = await bcrypt.genSalt(10)
@@ -26,7 +28,7 @@ const register = catchErrors(async (req, res) => {
     firstName,
     lastName,
     email,
-    password
+    password,
   })
   await user.save()
 
@@ -36,7 +38,7 @@ const register = catchErrors(async (req, res) => {
 
 router.post('/register', register)
 
-const login = catchErrors(async (req, res) => {
+const login = catchAsyncError(async (req, res) => {
   console.log('login request', { ...req.body, password: '******' })
 
   const { email, password } = req.body
@@ -45,15 +47,15 @@ const login = catchErrors(async (req, res) => {
   if (!user) {
     return res
       .status(400)
-      .json({ errors: [{ msg: 'Login failed' }] })
+      .json(formatError('Login failed'))
   }
 
-  const isMatch = await bcrypt.compare(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.password)
 
   if (!isMatch) {
     return res
       .status(400)
-      .json({ errors: [{ msg: 'Login failed' }] });
+      .json(formatError('Login failed'))
   }
 
   user.lastLogin = Date.now()
