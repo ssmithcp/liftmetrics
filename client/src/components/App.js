@@ -19,7 +19,7 @@ import TrackDashboard from './track/Dashboard'
 
 import NotFound from './util/NotFound'
 
-import { logout } from '../actions/auth'
+import { logout } from '../actions/user'
 import { getProfile } from '../util/profileStorage'
 
 const withContainer = Page => () => (

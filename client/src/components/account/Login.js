@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import { login } from '../../actions/auth'
+import { login } from '../../actions/user'
 
 import MediumWidth from '../container/MediumWidth'
 import Input from '../form/Input'

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import config from '../../util/config'
-import { register } from '../../actions/auth'
+import { register } from '../../actions/user'
 
 import Input from '../form/Input'
 import SafeExternalLink from '../navigation/SafeExternalLink'

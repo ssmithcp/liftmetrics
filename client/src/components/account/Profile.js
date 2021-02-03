@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { format } from 'date-fns'
 
-import { logout } from '../../actions/auth'
+import { logout } from '../../actions/user'
 
 import BigButton from '../util/BigButton'
 import TitledPage from '../container/TitledPage'
