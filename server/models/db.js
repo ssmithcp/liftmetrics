@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
-const config = require('../config')
 
-const connectDB = async () => {
+const config = require('../config')
+const { formatErrors } = require('../util/errorFormat')
+
+const connect = async () => {
   try {
     await mongoose.connect(config.get('mongoURI'),
     {
@@ -17,4 +19,22 @@ const connectDB = async () => {
   }
 }
 
-module.exports = connectDB
+module.exports.connect = connect
+
+const validationError = (err, req, res, next) => {
+  if (err instanceof mongoose.Error.ValidationError) {
+    const errors = Object.keys(err.errors)
+      .map(k => err.errors[k])
+      .map(e => ({
+        message: e.properties.message,
+        path: e.properties.path,
+        value: e.properties.value,
+      }))
+
+    res.status(400).json(formatErrors(errors))
+  } else {
+    next()
+  }
+}
+
+module.exports.validationError = validationError

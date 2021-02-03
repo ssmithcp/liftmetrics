@@ -1,13 +1,26 @@
 const mongoose = require('mongoose')
+const validate = require('mongoose-validator')
 
 const availableRoles = [ 'admin', 'user', 'free', 'demo' ]
+
+const nameValidator = [
+  validate({
+    validator: 'isLength',
+    arguments: [3, 50],
+    message: 'Name should be between {ARGS[0]} and {ARGS[1]} characters',
+  }),
+  validate({
+    validator: 'isAlphanumeric',
+    passIfEmpty: true,
+    message: 'Name should contain alpha-numeric characters only',
+  }),
+]
 
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
-    minLength: 3,
-    maxLength: 50,
+    validate: nameValidator,
   },
   lastName: {
     type: String,

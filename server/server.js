@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const helmet = require('helmet')
 
-const connectDB = require('./models/db')
+const db = require('./models/db')
 const config = require('./config')
 const auth = require('./middleware/auth')
 
@@ -14,7 +14,7 @@ app.disable('x-powered-by')
 
 app.use(express.json({ extended: false }))
 
-connectDB()
+db.connect()
 
 const urlPrefix = config.get('urlPrefix')
 
@@ -31,6 +31,8 @@ if (!config.get('isDev')) {
     res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'))
   })
 }
+
+app.use(db.validationError)
 
 app.use((err, req, res, next) => {
   console.error('uncaught error:', err)

@@ -6,7 +6,7 @@ const config = require('../../config')
 const User = require('../../models/User')
 const { attachAuthToken } = require('../../middleware/auth')
 
-const { formatError } = require('../../middleware/error')
+const { formatError } = require('../../util/errorFormat')
 const catchAsyncError = require('../../middleware/catchAsyncError')
 
 const register = catchAsyncError(async (req, res) => {
