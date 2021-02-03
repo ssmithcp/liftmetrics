@@ -11,7 +11,7 @@ const auth = require('./middleware/auth')
 const app = express()
 
 app.use(helmet())
-// doesn't seem to work, still seeing powered by Express  in headers :shrugs:
+// doesn't seem to work, still seeing powered by Express in headers :shrugs:
 app.disable('x-powered-by')
 
 app.use(express.json({ extended: false }))
