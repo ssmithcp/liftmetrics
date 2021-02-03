@@ -3,26 +3,11 @@ const config = require('../config')
 const User = require('../models/User')
 
 const authenticateRequest = function (req, res, next) {
-  const cookies = req.header('cookie')
-
-  if (!cookies) {
+  if (!req.cookies || !req.cookies.access_token) {
     return res.status(401).end()
   }
 
-  const token = cookies.split(';')
-    .map(c => c.trim())
-    .map(c => {
-      const parts = c.split('=')
-      return {
-        name: parts[0],
-        value: parts[1],
-      }
-    })
-    .filter(c => c.name === 'access_token')
-    .map(c => c.value)
-    .find(() => true)
-
-  jwt.verify(token, config.get('jwtSecret'), async (error, decoded) => {
+  jwt.verify(req.cookies.access_token, config.get('jwtSecret'), async (error, decoded) => {
     if (error) {
       return res.status(401).end()
     }

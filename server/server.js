@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const helmet = require('helmet')
+const cookieParser = require('cookie-parser')
 
 const db = require('./models/db')
 const config = require('./config')
@@ -13,6 +14,7 @@ app.use(helmet())
 app.disable('x-powered-by')
 
 app.use(express.json({ extended: false }))
+app.use(cookieParser())
 
 db.connect()
 
