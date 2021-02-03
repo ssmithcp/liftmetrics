@@ -10,8 +10,13 @@ import TileBoard from '../container/TileBoard'
 
 const tiles = [
   {
-    Icon: () => <AiOutlineTrophy />,
-    ...routes.trackGoal,
+    Icon: () => <GiChickenLeg />,
+    ...routes.trackFood,
+    comingSoon: true,
+  },
+  {
+    Icon: () => <FaBed />,
+    ...routes.trackSleep,
     comingSoon: true,
   },
   {
@@ -20,18 +25,8 @@ const tiles = [
     comingSoon: true,
   },
   {
-    Icon: () => <GiChickenLeg />,
-    ...routes.trackFood,
-    comingSoon: true,
-  },
-  {
     Icon: () => <IoBarbellSharp />,
     ...routes.trackWorkout,
-    comingSoon: true,
-  },
-  {
-    Icon: () => <FaBed />,
-    ...routes.trackSleep,
     comingSoon: true,
   },
   {
@@ -42,6 +37,11 @@ const tiles = [
   {
     Icon: () => <GiBiceps />,
     ...routes.trackMeasurement,
+    comingSoon: true,
+  },
+  {
+    Icon: () => <AiOutlineTrophy />,
+    ...routes.trackGoal,
     comingSoon: true,
   },
   {
