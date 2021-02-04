@@ -31,7 +31,7 @@ const validationError = (err, req, res, next) => {
         value: e.properties.value,
       }))
 
-    res.status(400).json(formatErrors(errors))
+    res.status(400).json({ errors })
   } else {
     next()
   }

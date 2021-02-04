@@ -1,16 +1,26 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
+const { body, validationResult } = require('express-validator');
 
 const config = require('../../config')
 const User = require('../../models/User')
 const { attachAuthToken } = require('../../middleware/auth')
 
-const { formatError } = require('../../util/errorFormat')
+const { formatError, formatErrors } = require('../../util/errorFormat')
 const catchAsyncError = require('../../middleware/catchAsyncError')
 
 const register = catchAsyncError(async (req, res) => {
   console.log('new user request', { ...req.body, password: '******' })
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log('array is')
+    console.dir(errors.array())
+    return res
+      .status(400)
+      .json(formatErrors(errors.array()))
+  }
 
   const { firstName, lastName, email } = req.body
   let user = await User.findOne({ email })
@@ -36,7 +46,11 @@ const register = catchAsyncError(async (req, res) => {
   res.send()
 })
 
-router.post('/register', register)
+router.post('/register',
+  body('password').isLength({ min: 7, max: 50 }).withMessage('Password must be between 7 and 50 characters'),
+  body('email').isEmail().withMessage('Email is invalid'),
+  // first+last name is validated by mongo validators
+  register)
 
 const login = catchAsyncError(async (req, res) => {
   console.log('login request', { ...req.body, password: '******' })

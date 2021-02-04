@@ -101,7 +101,7 @@ const SignUp = ({ isLoggedIn, register }) => {
           </button>
           <Input
             required
-            minLength='6'
+            minLength='7'
             maxLength='50'
             type={ showPassword ? 'password' : 'text' }
             placeholder='Password'

@@ -4,7 +4,7 @@ const router = express.Router()
 
 const User = require('../../models/User')
 const Profile = require('../../models/Profile')
-const { sanitize } = require('../../models/utils')
+const sanitize = require('../../models/sanitize')
 
 const getOrCreate = async userId => {
   console.log('get or create profile', userId)

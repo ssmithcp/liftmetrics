@@ -10,6 +10,4 @@ const sanitize = res => {
   return copy
 }
 
-module.exports = {
-  sanitize
-}
+module.exports = sanitize
