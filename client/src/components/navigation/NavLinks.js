@@ -34,7 +34,7 @@ const NavLinks = ({ profile }) => {
                 src={ profile.avatar }
                 title={ routes.profile.title }
                 alt='avatar'
-                className='ml-3 block w-10 h-10 rounded-full border-2 hover:border-blue-300'
+                className='ml-3 block w-10 h-10 rounded-full border-2 hover:border-blue-500'
               />
             </NavLink>
           </li>

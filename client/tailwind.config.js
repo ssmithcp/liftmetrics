@@ -9,7 +9,7 @@ module.exports = {
         'sans': ['"Nunito"', 'sans-serif'],
       },
       colors: {
-        primary: colors.blue['500'],
+        primary: colors.blue['600'],
         'soft-black': colors.gray['500'],
       },
       spacing: {

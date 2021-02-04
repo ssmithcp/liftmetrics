@@ -2,9 +2,10 @@ import { NavLink } from 'react-router-dom'
 
 import { IconContext } from 'react-icons'
 
+import Icon from '../navigation/Icon'
 import TitledPage from './TitledPage'
 
-const Tile = ({ Icon, iconStyle, title, comingSoon }) => (
+const Tile = ({ iconStyle, title, comingSoon }) => (
   <div
     className='p-8 w-56 h-56 flex flex-col items-center justify-between hover:bg-gray-200'
     title={ `Track ${ title.toLowerCase() }` }
@@ -14,9 +15,9 @@ const Tile = ({ Icon, iconStyle, title, comingSoon }) => (
     )}
     <div className='relative flex-1 flex items-center'>
       <IconContext.Provider value={{
-          className:`w-24 h-24 ${ comingSoon ? 'text-gray-400' : 'text-gray-900' } ${ iconStyle || '' }`
+          className:`w-24 h-24 ${ comingSoon ? 'text-gray-400' : 'text-primary' } ${ iconStyle || '' }`
         }}>
-        <Icon />
+        <Icon name={ title }/>
       </IconContext.Provider>
     </div>
     <p className='text-xl text-center'>{ title }</p>
