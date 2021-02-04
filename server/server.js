@@ -22,12 +22,12 @@ db.connect()
 
 const urlPrefix = config.get('urlPrefix')
 
+// all endpoints except /user/* endpoints need to be authorized
 app.use(urlPrefix + '/user', require('./routes/api/user'))
 
-// all endpoints except /user/* endpoints need to be authorized
 app.use(auth)
-
 app.use(urlPrefix + '/profile', require('./routes/api/profile'))
+app.use(urlPrefix + '/weight', require('./routes/api/weight'))
 
 if (!config.get('isDev')) {
   app.use(express.static(path.resolve(__dirname, '..', 'client', 'build')))

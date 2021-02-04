@@ -10,7 +10,8 @@ const connect = async () => {
 			useNewUrlParser: true,
 			useCreateIndex: true,
 			useFindAndModify: false,
-			useUnifiedTopology: true
+      useUnifiedTopology: true,
+      autoIndex: false,
 		})
     console.log('connected to mongo db')
   } catch (e) {

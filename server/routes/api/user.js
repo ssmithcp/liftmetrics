@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
-const { body, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator')
 
 const config = require('../../config')
 const User = require('../../models/User')
@@ -13,7 +13,7 @@ const catchAsyncError = require('../../middleware/catchAsyncError')
 const register = catchAsyncError(async (req, res) => {
   console.log('new user request', { ...req.body, password: '******' })
 
-  const errors = validationResult(req);
+  const errors = validationResult(req)
   if (!errors.isEmpty()) {
     console.log('array is')
     console.dir(errors.array())

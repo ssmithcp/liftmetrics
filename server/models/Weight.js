@@ -21,4 +21,6 @@ const BodyWeightSchema = new mongoose.Schema({
   },
 })
 
+BodyWeightSchema.index({ user: 1, created: -1 })
+
 module.exports = mongoose.model('bodyWeight', BodyWeightSchema)
