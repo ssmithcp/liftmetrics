@@ -2,7 +2,7 @@ import api from '../util/api'
 
 import { PROFILE_UPDATED } from '../reducers/profile'
 import { setProfile } from '../util/profileStorage'
-import { alertOnAPIError } from './alert'
+import { alertAndThrow } from './alert'
 
 export const profileUpdated = profile => dispatch => {
   setProfile(profile)
@@ -13,9 +13,11 @@ export const profileUpdated = profile => dispatch => {
   })
 }
 
-export const getProfile = () => dispatch => (
-  alertOnAPIError(async () => {
+export const getProfile = () => async dispatch => {
+  try {
     const res = await api.get('/profile/me')
     profileUpdated(res.data)(dispatch)
-  }, dispatch)
-)
+  } catch (err) {
+    alertAndThrow(err)
+  }
+}

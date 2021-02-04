@@ -2,30 +2,35 @@ import api from '../util/api'
 
 import { profileUpdated } from './profile'
 
-import { alertOnAPIError } from './alert'
+import { alertAndThrow } from './alert'
 
-export const register = formData => dispatch => (
-  alertOnAPIError(async () => {
+export const register = formData => async dispatch => {
+  try {
     await api.post('/user/register', formData)
 
     const res = await api.get('/profile/me')
     profileUpdated(res.data)(dispatch)
-  }, dispatch)
-)
+  } catch (err) {
+    alertAndThrow(err, dispatch)
+  }
+}
 
-export const login = formData => dispatch => (
-  alertOnAPIError(async () => {
+export const login = formData => async dispatch => {
+  try {
     await api.post('/user/login', formData)
 
     const res = await api.get('/profile/me')
     profileUpdated(res.data)(dispatch)
-  }, dispatch)
-)
+  } catch (err) {
+    alertAndThrow(err, dispatch)
+  }
+}
 
-export const logout = () => dispatch => (
-  alertOnAPIError(async () => {
+export const logout = () => async dispatch => {
+  try {
     await api.get('/user/logout')
-
     profileUpdated(null)(dispatch)
-  }, dispatch)
-)
+  } catch (err) {
+    alertAndThrow(err, dispatch)
+  }
+}

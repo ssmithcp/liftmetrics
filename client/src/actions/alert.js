@@ -37,21 +37,18 @@ export const clearAlerts = () => dispatch => {
   })
 }
 
-export const alertOnAPIError = (fun, dispatch) => {
-  return Promise.resolve(fun())
-    .catch(err => {
-      if (err.response && err.response.data && err.response.data.errors) {
-        const errors = err.response.data.errors
+export const alertAndThrow = (err, dispatch) => {
+  if (err.response && err.response.data && err.response.data.errors) {
+    const errors = err.response.data.errors
 
-        errors.forEach(error => dispatch(alert(error.message, ERROR)))
-      } else if (err.response && err.response.status === 401) {
-        dispatch(alert('Your session expired, please login again', WARNING))
-      } else if (err.message) {
-        dispatch(alert(err.message, ERROR))
-      } else {
-        dispatch(alert(err, ERROR))
-      }
+    errors.forEach(error => dispatch(alert(error.message, ERROR)))
+  } else if (err.response && err.response.status === 401) {
+    dispatch(alert('Your session expired, please login again', WARNING))
+  } else if (err.message) {
+    dispatch(alert(err.message, ERROR))
+  } else {
+    dispatch(alert(err, ERROR))
+  }
 
-      throw err // allow subsequent catch functions to run
-    })
+  throw err // allow subsequent catch functions to run
 }
