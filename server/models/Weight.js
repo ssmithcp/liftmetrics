@@ -1,18 +1,19 @@
 const mongoose = require('mongoose')
-const { weightUnits } = require('./Profile')
+const validator = require('./validator')
 
 const BodyWeightSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId
+    type: mongoose.Schema.Types.ObjectId,
   },
   weight: {
     type: Number,
     required: true,
+    validator: validator.isWeight,
   },
   unit: {
     type: String,
     required: true,
-    validator: units => units.every(unit => weightUnits.includes(unit)),
+    validator: validator.isWeightUnit,
   },
   created: {
     type: Date,

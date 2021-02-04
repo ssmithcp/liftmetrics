@@ -39,9 +39,7 @@ const UserSchema = new mongoose.Schema({
   roles: {
     type: [String],
     default: [ 'free' ],
-    validate: {
-      validator: roles => roles.every(role => availableRoles.includes(role)),
-    },
+    validate: validate.namedEnumList('role', availableRoles),
   }
 })
 
