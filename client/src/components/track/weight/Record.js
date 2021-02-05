@@ -5,7 +5,7 @@ import Button from '../../util/Button'
 
 import { asDay } from '../../util/date'
 
-// TODO pressing enter submits weight
+// TODO change to 'Saved' when saved, maybe add a check mark to the button?
 
 const Record = ({ initialWeight, weightUnit }) => {
   const [now] = useState(Date.now)
@@ -20,8 +20,8 @@ const Record = ({ initialWeight, weightUnit }) => {
   const pluralWeight = weightUnit + 's'
 
   return (
-    <form>
-      <label htmlFor='weight'>{ `Record weight for ${ asDay(now)}` }</label>
+    <form >
+      <label htmlFor='weight' className='text-xl'>Today's weight</label>
       <div>
         <Input
           id='weight'
@@ -39,7 +39,6 @@ const Record = ({ initialWeight, weightUnit }) => {
       >
         Save
       </Button>
-
     </form>
   )
 }

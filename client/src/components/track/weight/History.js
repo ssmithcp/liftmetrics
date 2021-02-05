@@ -1,6 +1,8 @@
 import { format } from 'date-fns'
 
 const History = ({ samples }) => (
+  <>
+  <h2 className='text-xl'>Last 6 weeks of weigh-ins</h2>
   <table>
     <tbody>
       {
@@ -13,6 +15,7 @@ const History = ({ samples }) => (
       }
     </tbody>
   </table>
+  </>
 )
 
 export default History
