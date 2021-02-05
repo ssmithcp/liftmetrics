@@ -1,5 +1,5 @@
-const LB_TO_KG = 2.205
-const KG_TO_LB = 0.453592
+const LB_TO_KG = 0.453592
+const KG_TO_LB = 2.205
 
 export const normalize = (weight, desiredUnit) => {
   if (weight.unit === desiredUnit) {
@@ -20,6 +20,7 @@ export const normalize = (weight, desiredUnit) => {
 
   return {
     ...weight,
-    value: weight.value * conversion
+    value: weight.value * conversion,
+    unit: desiredUnit,
   }
 }
