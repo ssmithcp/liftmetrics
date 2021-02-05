@@ -30,7 +30,7 @@ const namedEnumList = (name, values) => ({
 const isWeightUnit = () => namedEnum('Weight', units.weight)
 const isLengthUnit = () => namedEnum('Length', units.length)
 
-const isWeight = () => ({
+const weightInRange = () => ({
   validator: v => validator.isFloat(v, 0.0, 5000.0),
   message: 'Weight must be a decimal between 0 and 5000',
 })
@@ -42,5 +42,5 @@ module.exports = {
   namedEnumList,
   isWeightUnit,
   isLengthUnit,
-  isWeight,
+  weightInRange,
 }

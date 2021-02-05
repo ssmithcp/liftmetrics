@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+
+import WeightContext from './context'
+
 import { isFloat } from 'validator'
 import Input from '../../form/Input'
 import Button from '../../util/Button'
 
-import { asDay } from '../../util/date'
-
 // TODO change to 'Saved' when saved, maybe add a check mark to the button?
 
-const Record = ({ initialWeight, weightUnit }) => {
-  const [now] = useState(Date.now)
-  const [weight, setWeight] = useState(initialWeight ? initialWeight.weight : null)
+const Record = () => {
+  const { current, unit } = useContext(WeightContext)
+  const [weight, setWeight] = useState(current === null ? null : current.value)
 
   const maybeSetWeight = val => {
     if (val === '' || isFloat(val)) {
@@ -17,10 +18,10 @@ const Record = ({ initialWeight, weightUnit }) => {
     }
   }
 
-  const pluralWeight = weightUnit + 's'
+  const pluralWeight = unit + 's'
 
   return (
-    <form >
+    <form className='flex flex-col justify-center items-center'>
       <label htmlFor='weight' className='text-xl'>Today's weight</label>
       <div>
         <Input

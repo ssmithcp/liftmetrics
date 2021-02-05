@@ -5,19 +5,19 @@ const BodyWeightSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
   },
-  weight: {
+  created: {
+    type: Date,
+    default: Date.now,
+  },
+  value: {
     type: Number,
     required: true,
-    validator: validator.isWeight,
+    validator: validator.weightInRange,
   },
   unit: {
     type: String,
     required: true,
     validator: validator.isWeightUnit,
-  },
-  created: {
-    type: Date,
-    default: Date.now,
   },
 })
 

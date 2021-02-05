@@ -1,27 +1,41 @@
+import { useContext } from 'react'
 import { isToday } from 'date-fns'
 
-import { deltaToSummary } from './utils'
+import WeightContext from './context'
 
-const Trends = ({ samples }) => {
-  if (!samples || samples.length < 2 || !isToday(samples[0].date)) {
-    return <p>Reccord a body weight to see recent trends</p>
+import DeltaSummary from './DeltaSummary'
+
+const Wrapper = ({ children, className = ''}) => (
+  <div className={ `flex flex-col justify-center items-center ${ className }` }>
+    <div>
+      { children }
+    </div>
+  </div>
+)
+
+const Trends = ({ className }) => {
+  const { weights, current } = useContext(WeightContext)
+
+  if (weights.length < 2 || !isToday(weights[0].date)) {
+    return (
+      <Wrapper className={ className }>
+        <p>Reccord a body weight to see recent trends</p>
+      </Wrapper>
+    )
   }
-
-  const first = samples[0]
-  const unit = first.unit
-
   // delta since last weigh in, if weight given today
   // change in last week, today vs
   // change in last month
 
-  const sinceLast = first.weight - samples[1].weight
-
-
   return (
-    <div>
+    <Wrapper className={ className }>
       <h3 className='text-xl'>Trends</h3>
-      <p>Since last weigh in: { `${ deltaToSummary(sinceLast, unit) }` }</p>
-    </div>
+      <DeltaSummary
+        description='since last weigh in'
+        start={ weights[1].date }
+        end={ current.date }
+      />
+    </Wrapper>
   )
 }
 

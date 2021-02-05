@@ -1,5 +1,9 @@
+import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { parse } from 'date-fns'
+
+import WeightContext from './context'
+import { normalize } from '../../../util/weight'
 
 import TitledPage from '../../container/TitledPage'
 import Record from './Record'
@@ -16,22 +20,35 @@ import History from './History'
 // saved notification fade-in-out
 
 const Weight = () => {
-  const samples = [
-    { weight: 181, unit: 'lb', date: parse('2/4/2021', 'MM/dd/yyyy', new Date()) },
-    { weight: 180, unit: 'lb', date: parse('1/1/2021', 'MM/dd/yyyy', new Date()) },
-    { weight: 179, unit: 'lb', date: parse('12/1/2020', 'MM/dd/yyyy', new Date()) },
-    { weight: 178, unit: 'lb', date: parse('11/1/2020', 'MM/dd/yyyy', new Date()) },
+  let samples = [
+    { value: 182, unit: 'lb', date: parse('2/5/2021', 'MM/dd/yyyy', new Date()) },
+    { value: 181, unit: 'lb', date: parse('2/4/2021', 'MM/dd/yyyy', new Date()) },
+    { value: 180, unit: 'lb', date: parse('1/1/2021', 'MM/dd/yyyy', new Date()) },
+    { value: 179, unit: 'lb', date: parse('12/1/2020', 'MM/dd/yyyy', new Date()) },
+    { value: 178, unit: 'lb', date: parse('11/1/2020', 'MM/dd/yyyy', new Date()) },
   ]
 
-  const weightUnit = useSelector(s => s.profile.weightUnit)
+  const unit = useSelector(s => s.profile.weightUnit)
+  samples = samples.map(w => normalize(w, unit)).sort((a, b) => a.date.getTime() - b.date.getTime())
+
+  const round = useCallback(weight => (
+    Math.round(weight * 10) / 10 // optionally show 1 decimal place
+  ), [])
 
   return (
     <TitledPage title='Body weight' className='grid grid-cols-1 gap-6'>
-      <div className='md:flex md:justify-around'>
-        <Record initialWeight={ samples.length === 0 ? null : samples[0] } weightUnit={ weightUnit } />
-        <Trends samples={ samples } />
-      </div>
-      <History samples={ samples } />
+      <WeightContext.Provider value={{
+        weights: samples,
+        current: samples.length === 0 ? null : samples[samples.length - 1],
+        unit,
+        round,
+      }}>
+        <div className='grid grid-cols-1 md:grid-cols-2'>
+          <Record />
+          <Trends className='py-6 md:border-l'/>
+        </div>
+        <History />
+      </WeightContext.Provider>
     </TitledPage>
   )
 }
