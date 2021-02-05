@@ -1,4 +1,4 @@
-import PageTitle from '../util/PageTitle'
+import PageTitle from './PageTitle'
 
 const TitledPage = ({ title, className, children }) => (
   <>

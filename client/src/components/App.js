@@ -16,7 +16,7 @@ import Login from './account/Login'
 import Profile from './account/Profile'
 
 import TrackDashboard from './track/Dashboard'
-import Weight from './track/Weight'
+import Weight from './track/weight/Index'
 
 import NotFound from './landing/NotFound'
 

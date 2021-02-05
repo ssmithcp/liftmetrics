@@ -14,6 +14,8 @@ import MediumWidth from '../container/MediumWidth'
 import routes from '../navigation'
 import SubmitButton from '../form/SubmitButton'
 
+// TODO submit form on enter on password
+
 const SignUp = ({ isLoggedIn, register }) => {
   const [showPassword, setShowPassword] = useState(true)
 

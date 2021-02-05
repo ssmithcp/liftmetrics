@@ -55,7 +55,7 @@ const Alerts = ({ alerts, removeAlert }) => {
 
   return (
     <PageWidthContainer>
-      <div className='select-none text-center'>
+      <div className='text-center'>
         { displayedAlerts.map(a =>
           <Alert
             key={ a.id }
