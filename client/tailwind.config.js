@@ -4,6 +4,10 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    borderColor: theme => ({
+      ...theme('colors'),
+      DEFAULT: theme('colors.gray.400', 'currentColor'),
+    }),
     extend: {
       fontFamily: {
         'sans': ['"Nunito"', 'sans-serif'],

@@ -26,7 +26,7 @@ const Tile = ({ iconStyle, title, comingSoon }) => (
 
 const TileBoard = ({ title, tiles }) => {
   return (
-    <TitledPage title={ title } className='flex flex-wrap'>
+    <TitledPage title={ title } className='flex flex-wrap justify-center md:justify-start'>
       { tiles.map(tile => {
           tile.comingSoon = tile.comingSoon || false
 

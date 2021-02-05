@@ -45,7 +45,7 @@ const Weight = () => {
       }}>
         <div className='grid grid-cols-1 md:grid-cols-2'>
           <Record />
-          <Trends className='py-6 md:border-l'/>
+          <Trends className='py-6 border-t md:border-t-0 md:border-l'/>
         </div>
         <History />
       </WeightContext.Provider>
