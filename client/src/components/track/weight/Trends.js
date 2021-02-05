@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { isToday, addWeeks } from 'date-fns'
+import { isToday, addWeeks, addMonths } from 'date-fns'
 
 import WeightContext from './context'
 
@@ -38,12 +38,12 @@ const Trends = ({ className }) => {
         />
         <DeltaSummary
           description='since last week'
-          start={ addWeeks(current.date, 1) }
+          start={ addWeeks(current.date, -1) }
           end={ current.date }
         />
         <DeltaSummary
           description='since last month'
-          start={ addWeeks(current.date, 4) }
+          start={ addMonths(current.date, -1) }
           end={ current.date }
         />
       </div>

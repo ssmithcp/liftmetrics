@@ -23,7 +23,8 @@ const Weight = () => {
   let samples = [
     { value: 182, unit: 'lb', date: parse('2/5/2021', 'MM/dd/yyyy', new Date()) },
     { value: 181, unit: 'lb', date: parse('2/4/2021', 'MM/dd/yyyy', new Date()) },
-    { value: 180, unit: 'lb', date: parse('1/1/2021', 'MM/dd/yyyy', new Date()) },
+    { value: 180, unit: 'lb', date: parse('1/28/2021', 'MM/dd/yyyy', new Date()) },
+    { value: 200, unit: 'lb', date: parse('1/30/2021', 'MM/dd/yyyy', new Date()) },
     { value: 179, unit: 'lb', date: parse('12/1/2020', 'MM/dd/yyyy', new Date()) },
     { value: 178, unit: 'lb', date: parse('11/1/2020', 'MM/dd/yyyy', new Date()) },
   ]
@@ -39,6 +40,7 @@ const Weight = () => {
     <TitledPage title='Body weight' className='grid grid-cols-1 gap-6'>
       <WeightContext.Provider value={{
         weights: samples,
+        reversed: [ ...samples ].reverse(),
         current: samples.length === 0 ? null : samples[samples.length - 1],
         unit,
         round,

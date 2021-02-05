@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { IconContext } from 'react-icons'
+import _ from 'lodash'
 import { BsArrowDown, BsArrowUp} from 'react-icons/bs'
 
 import WeightContext from './context'
@@ -32,13 +33,38 @@ const weightOnDate = (weights, date) => {
     return match.value
   }
 
-  return 0
+  const index = _.sortedIndex(weights.map(w => w.date.getTime()), date)
+
+  if (index === weights.length) {
+    return weights[weights.length - 1].value
+  }
+
+  if (index === 0) { //shouldn't happen but to be complete
+    return weights[0].value
+  }
+
+  const i = weights[index]
+  const j = weights[index - 1]
+
+  // console.log(new Date(date).toLocaleString(), 'between ', new Date(i.date.getTime()).toLocaleString(), 'and', new Date(j.date.getTime()).toLocaleString())
+
+  const valueDelta = i.value - j.value
+  const dateDelta = i.date.getTime() - j.date.getTime()
+  const targetOffset = date - j.date.getTime()
+
+  // console.log('value delta', valueDelta)
+  // console.log('offset percent', targetOffset / dateDelta)
+
+  // linear interpolation
+  return j.value + ((targetOffset / dateDelta) * valueDelta)
 }
 
 const DeltaSummary = ({ description, start, end } ) => {
   const { weights, unit, round } = useContext(WeightContext)
 
+  // console.log('weight on', start.toLocaleString(), 'is', weightOnDate(weights, start.getTime()))
   const sinceLast = weightOnDate(weights, end.getTime()) - weightOnDate(weights, start.getTime())
+
   const iconStyle = 'inline-block h-6 w-6 mr-2'
 
   return (

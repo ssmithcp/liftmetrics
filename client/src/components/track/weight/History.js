@@ -5,14 +5,12 @@ import WeightContext from './context'
 import { format } from 'date-fns'
 
 const History = () => {
-  const { weights } = useContext(WeightContext)
+  const { reversed } = useContext(WeightContext)
 
 // delta since last weigh in
 // delete entry
 // change date or value
 // show time
-
-  const reversed = [ ...weights ].reverse()
 
   return (
     <>
