@@ -10,7 +10,9 @@ const auth = require('./middleware/auth')
 
 const app = express()
 
-app.use(helmet())
+app.use(helmet({
+  contentSecurityPolicy: false,
+}))
 // doesn't seem to work, still seeing powered by Express in headers :shrugs:
 app.disable('x-powered-by')
 
@@ -25,7 +27,7 @@ const urlPrefix = config.get('urlPrefix')
 // all endpoints except /user/* endpoints need to be authorized
 app.use(urlPrefix + '/user', require('./routes/api/user'))
 
-app.use(auth)
+app.use(urlPrefix, auth)
 app.use(urlPrefix + '/profile', require('./routes/api/profile'))
 app.use(urlPrefix + '/weight', require('./routes/api/weight'))
 
