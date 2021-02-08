@@ -1,11 +1,13 @@
-const sanitize = res => {
+const sanitize = result => {
   const copy = {
-    ...res.toObject()
+    ...result.toObject()
   }
 
-  delete copy._id
   delete copy.__v
   delete copy.user
+
+  copy.id = copy._id
+  delete copy._id
 
   return copy
 }

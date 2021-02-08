@@ -32,7 +32,11 @@ const Record = ({ save }) => {
       unit,
       created: Date.now(),
     })
-    .then(enableSaveButton, enableSaveButton)
+    .then(() => {
+      setWeight('')
+      enableSaveButton()
+    },
+    enableSaveButton)
   }
 
   const pluralWeight = unit + 's'

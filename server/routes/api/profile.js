@@ -3,7 +3,18 @@ const gravatar = require('gravatar')
 
 const User = require('../../models/User')
 const Profile = require('../../models/Profile')
-const sanitize = require('../../models/sanitize')
+
+const profileSanitize = res => {
+  const copy = {
+    ...res.toObject()
+  }
+
+  delete copy._id
+  delete copy.__v
+  delete copy.user
+
+  return copy
+}
 
 const getOrCreate = async userId => {
   console.log('get or create profile', userId)
@@ -32,7 +43,7 @@ const getOrCreate = async userId => {
   }
 
   return {
-    ...sanitize(profile),
+    ...profileSanitize(profile),
     firstName: user.firstName,
     lastName: user.lastName,
     lastLogin: user.lastLogin,

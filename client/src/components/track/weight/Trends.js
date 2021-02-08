@@ -12,7 +12,7 @@ const NO_CHANGE = 0.01
 const LITTLE_CHANGE_DELTA = 0.1
 
 export const round = weight => (
-  Math.round(weight * 10) / 10 // optionally show 1 decimal place
+  Math.round(weight * 100) / 100 // optionally show 1 decimal place
 )
 
 const deltaToSummary = (weightDelta, unit) => {

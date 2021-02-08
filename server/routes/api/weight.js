@@ -2,8 +2,8 @@ const router = require('express-async-router').AsyncRouter()
 const { query, validationResult } = require('express-validator')
 
 const Weight = require('../../models/Weight')
-const envelope = require('../../util/envelope')
 const sanitize = require('../../models/sanitize')
+const envelope = require('../../models/envelope')
 
 router.get('/',
   query('startDate').isDate().withMessage('Start date is not valid'),
