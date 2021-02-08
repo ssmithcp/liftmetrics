@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
+
+import { addWeeks, addDays } from 'date-fns'
 
 import NavBar from './navigation/NavBar'
 import routes from './navigation'
@@ -22,6 +24,7 @@ import NotFound from './landing/NotFound'
 
 import { logout } from '../actions/user'
 import { getProfile } from '../util/profileStorage'
+import { getWeightsFrom } from '../actions/weight'
 
 const withContainer = Page => () => (
   <PageWidthContainer className='mt-28 md:mt-24'>
@@ -31,7 +34,7 @@ const withContainer = Page => () => (
   </PageWidthContainer>
 )
 
-const App = ({ logout }) => {
+const App = ({ logout, getWeightsFrom }) => {
   useEffect(() => {
     if (window) {
       const doLogout = () => {
@@ -48,6 +51,14 @@ const App = ({ logout }) => {
       }
     }
   }, [logout])
+
+  const isLoggedIn = useSelector(state => state.profile !== null)
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      getWeightsFrom(addDays(addWeeks(Date.now(), -4), -1))
+    }
+  }, [getWeightsFrom, isLoggedIn])
 
   return (
     <div className='select-none'>
@@ -71,4 +82,4 @@ const App = ({ logout }) => {
   )
 }
 
-export default connect(null, { logout })(App)
+export default connect(null, { logout, getWeightsFrom })(App)

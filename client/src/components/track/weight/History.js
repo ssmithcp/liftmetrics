@@ -6,11 +6,13 @@ import { round } from './Trends'
 
 const History = () => {
   const unit = useSelector(s => s.profile.weightUnit)
-  const weights = useSelector(s => s.weight).map(w => normalize(w, unit)).sort((a, b) => b.created.getTime() - a.created.getTime())
+  const weights = useSelector(s => s.weight)
+    .map(w => normalize(w, unit))
+    .sort((a, b) => b.created.getTime() - a.created.getTime())
 
   return (
     <div>
-      <h2 className='text-xl mb-4'>Last 6 weeks of weigh-ins</h2>
+      <h2 className='text-xl mb-4'>Last 4 weeks of weigh-ins</h2>
       <table>
         <tbody>
           {

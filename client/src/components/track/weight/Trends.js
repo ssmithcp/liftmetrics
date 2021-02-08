@@ -100,7 +100,9 @@ const Wrapper = ({ children, className = ''}) => (
 
 const Trends = ({ className }) => {
   const unit = useSelector(s => s.profile.weightUnit)
-  const weights = useSelector(s => s.weight).map(w => normalize(w, unit)).sort((a, b) => a.created.getTime() - b.created.getTime())
+  const weights = useSelector(s => s.weight)
+    .map(w => normalize(w, unit))
+    .sort((a, b) => a.created.getTime() - b.created.getTime())
   const current = weights.length === 0 ? null : weights[weights.length - 1]
 
   if (weights.length < 2 || !isToday(current.created)) {

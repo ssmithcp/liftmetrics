@@ -1,23 +1,11 @@
-import { useEffect } from 'react'
-import { connect, useSelector } from 'react-redux'
-import { addWeeks } from 'date-fns'
+import { useSelector } from 'react-redux'
 
-import { getWeightsFrom } from '../../../actions/weight'
 import { normalize } from '../../../util/weight'
 
 import TitledPage from '../../container/TitledPage'
 import Record from './Record'
 import Trends from './Trends'
 import History from './History'
-
-// convert to common units
-// get weights up to 6 weeks in the past
-// show weight trend: * maintaining weight * trending +.5lb per week
-// show delta per weigh in
-// show number of days since weigh in
-// show trend between those samples
-// up down buttons
-// saved notification fade-in-out
 
 const Weight = ({ getWeightsFrom }) => {
   // let weights = [
@@ -29,10 +17,6 @@ const Weight = ({ getWeightsFrom }) => {
   //   { value: 179, unit: 'lb', created: parse('12/1/2020', 'MM/dd/yyyy', new Date()) },
   //   { value: 178, unit: 'lb', created: parse('11/1/2020', 'MM/dd/yyyy', new Date()) },
   // ]
-
-  useEffect(() => {
-    getWeightsFrom(addWeeks(Date.now(), -6))
-  }, [getWeightsFrom])
 
   const unit = useSelector(s => s.profile.weightUnit)
   const weights = useSelector(s => s.weight).map(w => normalize(w, unit)).sort((a, b) => a.created.getTime() - b.created.getTime())
@@ -52,4 +36,4 @@ const Weight = ({ getWeightsFrom }) => {
   )
 }
 
-export default connect(null, { getWeightsFrom })(Weight)
+export default Weight
