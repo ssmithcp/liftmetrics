@@ -15,8 +15,6 @@ const register = catchAsyncError(async (req, res) => {
 
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
-    console.log('array is')
-    console.dir(errors.array())
     return res
       .status(400)
       .json(formatErrors(errors.array()))
