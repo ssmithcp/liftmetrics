@@ -1,16 +1,13 @@
-const express = require('express')
-const router = express.Router()
+const router = require('express-async-router').AsyncRouter()
 const bcrypt = require('bcryptjs')
 const { body, validationResult } = require('express-validator')
 
-const config = require('../../config')
 const User = require('../../models/User')
 const { attachAuthToken } = require('../../middleware/auth')
 
 const { formatError, formatErrors } = require('../../util/errorFormat')
-const catchAsyncError = require('../../middleware/catchAsyncError')
 
-const register = catchAsyncError(async (req, res) => {
+const register = async (req, res) => {
   console.log('new user request', { ...req.body, password: '******' })
 
   const errors = validationResult(req)
@@ -42,7 +39,7 @@ const register = catchAsyncError(async (req, res) => {
 
   await attachAuthToken(res, user)
   res.send()
-})
+}
 
 router.post('/register',
   body('password').isLength({ min: 7, max: 50 }).withMessage('Password must be between 7 and 50 characters'),
@@ -50,7 +47,7 @@ router.post('/register',
   // first+last name is validated by mongo validators
   register)
 
-const login = catchAsyncError(async (req, res) => {
+const login = async (req, res) => {
   console.log('login request', { ...req.body, password: '******' })
 
   const { email, password } = req.body
@@ -75,7 +72,7 @@ const login = catchAsyncError(async (req, res) => {
 
   await attachAuthToken(res, user)
   res.send()
-})
+}
 
 router.post('/login', login)
 

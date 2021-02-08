@@ -1,6 +1,5 @@
-const express = require('express')
+const router = require('express-async-router').AsyncRouter()
 const gravatar = require('gravatar')
-const router = express.Router()
 
 const User = require('../../models/User')
 const Profile = require('../../models/Profile')

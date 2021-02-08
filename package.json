@@ -26,6 +26,7 @@
     "config": "^3.3.3",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "express-async-router": "^0.1.15",
     "express-validator": "^6.9.2",
     "gravatar": "^1.8.1",
     "helmet": "^4.4.1",

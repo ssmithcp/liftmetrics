@@ -1,5 +1,4 @@
-const express = require('express')
-const router = express.Router()
+const router = require('express-async-router').AsyncRouter()
 
 const Weight = require('../../models/Weight')
 const sanitize = require('../../models/sanitize')
