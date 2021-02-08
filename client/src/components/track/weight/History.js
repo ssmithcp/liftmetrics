@@ -1,10 +1,12 @@
+import { useSelector } from 'react-redux'
+
+import { normalize } from '../../../util/weight'
 import { dayTime } from '../../util/date'
+import { round } from './Trends'
 
-const History = ({ reversed }) => {
-
-// delta since last weigh in
-// delete entry
-// change date or value
+const History = () => {
+  const unit = useSelector(s => s.profile.weightUnit)
+  const weights = useSelector(s => s.weight).map(w => normalize(w, unit)).sort((a, b) => b.created.getTime() - a.created.getTime())
 
   return (
     <div>
@@ -12,10 +14,10 @@ const History = ({ reversed }) => {
       <table>
         <tbody>
           {
-            reversed.map(w => (
-              <tr key={ w.date }>
-                <td>{ `${ w.value } ${ w.unit }s`}</td>
-                <td>{ dayTime(w.date) }</td>
+            weights.map(w => (
+              <tr key={ w.created }>
+                <td>{ `${ round(w.value) }${ w.unit }s`}</td>
+                <td>{ dayTime(w.created) }</td>
               </tr>
             ))
           }

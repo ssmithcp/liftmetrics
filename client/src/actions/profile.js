@@ -18,6 +18,6 @@ export const getProfile = () => async dispatch => {
     const res = await api.get('/profile/me')
     profileUpdated(res.data)(dispatch)
   } catch (err) {
-    alertAndThrow(err)
+    alertAndThrow(err, dispatch)
   }
 }

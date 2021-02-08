@@ -1,35 +1,41 @@
 const router = require('express-async-router').AsyncRouter()
+const { query, validationResult } = require('express-validator')
 
 const Weight = require('../../models/Weight')
+const envelope = require('../../util/envelope')
 const sanitize = require('../../models/sanitize')
 
-const envelope = {
-  data: [
+router.get('/',
+  query('startDate').isDate().withMessage('Start date is not valid'),
+  query('endDate').isDate().withMessage('End date is not valid'),
+  async (req, res) => {
+    console.log('get weights with query: ')
+    console.dir(req.query)
 
-  ],
-  metadata: {
-    start: 0,
+    const filters = {
+      user: res.locals.user.id,
+      created: {},
+    }
+
+    if (req.query.startDate) {
+      filters.created['$gte'] = req.query.startDate
+    }
+    if (req.query.endDate) {
+      filters.created['$lte'] = req.query.endDate
+    }
+
+    const results = await Weight.find(filters)
+
+    res.json(envelope(results, req.query)).send()
   }
-}
-
-const get = (params) => {
-  return envelope
-}
-
-router.get('/', (req, res) => {
-  console.log('get weight with query: ')
-  console.dir(req.query)
-  res.json(get()).send()
-})
-
+)
 
 router.post('/', async (req, res) => {
-  console.log('adding weight')
   const source = req.body
-  console.dir(source)
+  console.log('adding weight', source)
 
   const newWeight = await Weight.create({
-    user: user.id,
+    user: res.locals.user.id,
     created: source.created,
     value: source.value,
     unit: source.unit,
