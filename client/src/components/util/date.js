@@ -1,3 +1,5 @@
 import { format } from 'date-fns'
 
-export const asDay = date => format(date, 'PP')
+export const day = date => format(date, 'eee LLL do ')
+
+export const dayTime = date => format(date, 'eee LLL do @ p')

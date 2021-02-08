@@ -24,7 +24,7 @@ const routes = {
     path: '/account/profile',
   },
   trackHome: {
-    title: 'Mertics',
+    title: 'Track',
     path: '/track'
   },
   trackWeight: {

@@ -1,6 +1,6 @@
 const sanitize = res => {
   const copy = {
-    ...res
+    ...res.toObject()
   }
 
   delete copy._id

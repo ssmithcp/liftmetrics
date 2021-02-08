@@ -1,15 +1,15 @@
-import { useContext } from 'react'
 import { IconContext } from 'react-icons'
 import _ from 'lodash'
-import { BsArrowDown, BsArrowUp} from 'react-icons/bs'
-
-import WeightContext from './context'
+import { BsArrowDown, BsArrowUp } from 'react-icons/bs'
 
 const NO_CHANGE = 0.01
 const LITTLE_CHANGE_DELTA = 0.1
 
-const deltaToSummary = (weightDelta, unit, round) => {
+const round = weight => (
+  Math.round(weight * 10) / 10 // optionally show 1 decimal place
+)
 
+const deltaToSummary = (weightDelta, unit) => {
   if (Math.abs(weightDelta) < NO_CHANGE) {
     return 'No change'
   }
@@ -59,12 +59,9 @@ const weightOnDate = (weights, date) => {
   return j.value + ((targetOffset / dateDelta) * valueDelta)
 }
 
-const DeltaSummary = ({ description, start, end } ) => {
-  const { weights, unit, round } = useContext(WeightContext)
-
+const DeltaSummary = ({ description, start, end, weights, unit }) => {
   // console.log('weight on', start.toLocaleString(), 'is', weightOnDate(weights, start.getTime()))
   const sinceLast = weightOnDate(weights, end.getTime()) - weightOnDate(weights, start.getTime())
-
   const iconStyle = 'inline-block h-6 w-6 mr-2'
 
   return (
@@ -82,7 +79,7 @@ const DeltaSummary = ({ description, start, end } ) => {
             </IconContext.Provider>
           )
       )}
-      <p>{ `${ deltaToSummary(sinceLast, unit, round) } ${ description }` }</p>
+      <p>{ `${ deltaToSummary(sinceLast, unit) } ${ description }` }</p>
     </div>
   )
 }

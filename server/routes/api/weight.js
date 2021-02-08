@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
+const Weight = require('../../models/Weight')
+const sanitize = require('../../models/sanitize')
+
 const envelope = {
   data: [
 
@@ -18,6 +21,22 @@ router.get('/', (req, res) => {
   console.log('get weight with query: ')
   console.dir(req.query)
   res.json(get()).send()
+})
+
+
+router.post('/', async (req, res) => {
+  console.log('adding weight')
+  const source = req.body
+  console.dir(source)
+
+  const newWeight = await Weight.create({
+    user: user.id,
+    created: source.created,
+    value: source.value,
+    unit: source.unit,
+   })
+
+  res.json(sanitize(newWeight)).send()
 })
 
 module.exports = router

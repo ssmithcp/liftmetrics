@@ -33,7 +33,7 @@ const getOrCreate = async userId => {
   }
 
   return {
-    ...sanitize(profile.toObject()),
+    ...sanitize(profile),
     firstName: user.firstName,
     lastName: user.lastName,
     lastLogin: user.lastLogin,

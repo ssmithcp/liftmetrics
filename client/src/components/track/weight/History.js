@@ -1,33 +1,27 @@
-import { useContext } from 'react'
+import { dayTime } from '../../util/date'
 
-import WeightContext from './context'
-
-import { format } from 'date-fns'
-
-const History = () => {
-  const { reversed } = useContext(WeightContext)
+const History = ({ reversed }) => {
 
 // delta since last weigh in
 // delete entry
 // change date or value
-// show time
 
   return (
-    <>
-      <h2 className='text-xl'>Last 6 weeks of weigh-ins</h2>
+    <div>
+      <h2 className='text-xl mb-4'>Last 6 weeks of weigh-ins</h2>
       <table>
         <tbody>
           {
             reversed.map(w => (
               <tr key={ w.date }>
                 <td>{ `${ w.value } ${ w.unit }s`}</td>
-                <td>{ format(w.date, 'PP') }</td>
+                <td>{ dayTime(w.date) }</td>
               </tr>
             ))
           }
         </tbody>
       </table>
-    </>
+    </div>
   )
 }
 

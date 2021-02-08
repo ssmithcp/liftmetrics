@@ -2,7 +2,6 @@ import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { parse } from 'date-fns'
 
-import WeightContext from './context'
 import { normalize } from '../../../util/weight'
 
 import TitledPage from '../../container/TitledPage'
@@ -21,6 +20,7 @@ import History from './History'
 
 const Weight = () => {
   let samples = [
+    { value: 180, unit: 'lb', date: parse('2/8/2021', 'MM/dd/yyyy', new Date()) },
     { value: 182, unit: 'lb', date: parse('2/5/2021', 'MM/dd/yyyy', new Date()) },
     { value: 80, unit: 'kg', date: parse('2/4/2021', 'MM/dd/yyyy', new Date()) },
     { value: 180, unit: 'lb', date: parse('1/28/2021', 'MM/dd/yyyy', new Date()) },
@@ -32,25 +32,22 @@ const Weight = () => {
   const unit = useSelector(s => s.profile.weightUnit)
   samples = samples.map(w => normalize(w, unit)).sort((a, b) => a.date.getTime() - b.date.getTime())
 
-  const round = useCallback(weight => (
-    Math.round(weight * 10) / 10 // optionally show 1 decimal place
-  ), [])
+  const current = samples.length === 0 ? null : samples[samples.length - 1]
+  const weights = samples
+  const reversed = [ ...samples ].reverse()
 
   return (
     <TitledPage title='Body weight' className='grid grid-cols-1 gap-6'>
-      <WeightContext.Provider value={{
-        weights: samples,
-        reversed: [ ...samples ].reverse(),
-        current: samples.length === 0 ? null : samples[samples.length - 1],
-        unit,
-        round,
-      }}>
-        <div className='grid grid-cols-1 md:grid-cols-2'>
-          <Record />
-          <Trends className='py-6 border-t md:border-t-0 md:border-l'/>
-        </div>
-        <History />
-      </WeightContext.Provider>
+      <div className='grid grid-cols-1 md:grid-cols-2'>
+        <Record current={ current } unit={ unit }/>
+        <Trends
+          weights={ weights }
+          current={ current }
+          unit={ unit }
+          className='py-6 border-t md:border-t-0 md:border-l'
+        />
+      </div>
+      <History reversed={ reversed } />
     </TitledPage>
   )
 }

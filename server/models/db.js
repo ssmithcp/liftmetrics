@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
 const config = require('../config')
-const { formatErrors } = require('../util/errorFormat')
 
 const connect = async () => {
   try {

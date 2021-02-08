@@ -1,7 +1,4 @@
-import { useContext } from 'react'
 import { isToday, addWeeks, addMonths } from 'date-fns'
-
-import WeightContext from './context'
 
 import DeltaSummary from './DeltaSummary'
 
@@ -13,9 +10,7 @@ const Wrapper = ({ children, className = ''}) => (
   </div>
 )
 
-const Trends = ({ className }) => {
-  const { weights, current } = useContext(WeightContext)
-
+const Trends = ({ className, current, weights, unit }) => {
   if (weights.length < 2 || !isToday(current.date)) {
     return (
       <Wrapper className={ className }>
@@ -35,16 +30,22 @@ const Trends = ({ className }) => {
           description='since last weigh in'
           start={ weights[weights.length - 2].date }
           end={ current.date }
+          weights={ weights }
+          unit={ unit }
         />
         <DeltaSummary
           description='since last week'
           start={ addWeeks(current.date, -1) }
           end={ current.date }
+          weights={ weights }
+          unit={ unit }
         />
         <DeltaSummary
           description='since last month'
           start={ addMonths(current.date, -1) }
           end={ current.date }
+          weights={ weights }
+          unit={ unit }
         />
       </div>
     </Wrapper>

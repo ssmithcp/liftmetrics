@@ -1,6 +1,4 @@
-import { useState, useContext } from 'react'
-
-import WeightContext from './context'
+import { useState } from 'react'
 
 import { isFloat } from 'validator'
 import Input from '../../form/Input'
@@ -8,8 +6,7 @@ import Button from '../../util/Button'
 
 // TODO change to 'Saved' when saved, maybe add a check mark to the button?
 
-const Record = () => {
-  const { current, unit } = useContext(WeightContext)
+const Record = ({ current, unit }) => {
   const [weight, setWeight] = useState(current === null ? null : current.value)
 
   const maybeSetWeight = val => {
