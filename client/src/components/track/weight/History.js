@@ -1,7 +1,10 @@
 import { useSelector } from 'react-redux'
 
+import { IconContext } from 'react-icons'
+import { VscClose } from 'react-icons/vsc'
+
 import { normalize } from '../../../util/weight'
-import { dayTime } from '../../util/date'
+import { day, dayTime } from '../../util/date'
 import { round } from './Trends'
 
 const History = () => {
@@ -13,13 +16,30 @@ const History = () => {
   return (
     <div>
       <h2 className='text-xl mb-4'>Last 4 weeks of weigh-ins</h2>
-      <table>
+      <table className='w-full'>
         <tbody>
           {
-            weights.map(w => (
-              <tr key={ w.created }>
-                <td>{ `${ round(w.value) }${ w.unit }s`}</td>
-                <td>{ dayTime(w.created) }</td>
+            weights.map((w, index) => (
+              <tr
+                key={ w.created }
+                className={ `${index % 2 === 1 ? 'bg-gray-300' : ''} py-3` }
+              >
+                <td>
+                  <IconContext.Provider
+                    value={{ className: 'text-red-500 p-3 w-12 h-12 font-bold' }}
+                  >
+                    <VscClose
+                      className={ `cursor-pointer` }
+                      title='Remove'
+                      onClick={ () => { } }
+                    />
+                  </IconContext.Provider>
+                </td>
+                <td className='py-2'>{ `${ round(w.value) }${ w.unit }s` }</td>
+                <td>
+                  <p className='md:hidden'>{ day(w.created) }</p>
+                  <p className='hidden md:block'>{ dayTime(w.created) }</p>
+                </td>
               </tr>
             ))
           }

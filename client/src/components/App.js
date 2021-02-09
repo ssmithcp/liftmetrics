@@ -4,6 +4,8 @@ import { Route, Switch } from 'react-router-dom'
 
 import { addWeeks, addDays } from 'date-fns'
 
+import ConfirmationDialog from './util/ConfirmationDialog'
+
 import NavBar from './navigation/NavBar'
 import routes from './navigation'
 import PageWidthContainer from './container/PageWidthContainer'
@@ -62,6 +64,7 @@ const App = ({ logout, getWeightsFrom }) => {
 
   return (
     <div className='select-none'>
+      <ConfirmationDialog />
       <NavBar />
       <Switch>
         <Route path={ routes.index.path } exact component={ Index } />
