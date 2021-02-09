@@ -10,7 +10,7 @@ const connect = async () => {
 			useCreateIndex: true,
 			useFindAndModify: false,
       useUnifiedTopology: true,
-      autoIndex: false,
+      autoIndex: true,
 		})
     console.log('connected to mongo db')
   } catch (e) {
