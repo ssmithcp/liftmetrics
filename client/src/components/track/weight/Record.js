@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { connect, useSelector } from 'react-redux'
+import { isFloat } from 'validator'
 
 import { save } from '../../../actions/weight'
 
-import { isFloat } from 'validator'
 import Input from '../../form/Input'
 import Button from '../../util/Button'
 
@@ -42,10 +42,7 @@ const Record = ({ save }) => {
   const pluralWeight = unit + 's'
 
   return (
-    <form
-      className='flex flex-col justify-center items-center'
-      onSubmit={ onSubmit }
-    >
+    <form onSubmit={ onSubmit }>
       <label htmlFor='weight' className='text-xl'>Today's weight</label>
       <div>
         <Input

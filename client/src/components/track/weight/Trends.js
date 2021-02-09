@@ -90,14 +90,6 @@ const DeltaSummary = ({ description, start, end, weights, unit }) => {
   )
 }
 
-const Wrapper = ({ children, className = ''}) => (
-  <div className={ `flex flex-col justify-center items-center ${ className }` }>
-    <div>
-      { children }
-    </div>
-  </div>
-)
-
 const Trends = ({ className }) => {
   const unit = useSelector(s => s.profile.weightUnit)
   const weights = useSelector(s => s.weight)
@@ -106,15 +98,11 @@ const Trends = ({ className }) => {
   const current = weights.length === 0 ? null : weights[weights.length - 1]
 
   if (weights.length < 2 || !isToday(current.created)) {
-    return (
-      <Wrapper className={ className }>
-        <p>Reccord a body weight to see recent trends</p>
-      </Wrapper>
-    )
+    return <p>Reccord a body weight to see recent trends</p>
   }
 
   return (
-    <Wrapper className={ className }>
+    <>
       <h3 className='text-xl text-center mb-4'>Trends</h3>
       <div>
         <DeltaSummary
@@ -139,7 +127,7 @@ const Trends = ({ className }) => {
           unit={ unit }
         />
       </div>
-    </Wrapper>
+    </>
   )
 }
 
