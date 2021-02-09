@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 
 import { IconContext } from 'react-icons'
-import { VscClose } from 'react-icons/vsc'
+import { BiPencil } from 'react-icons/bi'
 
 import { normalize } from '../../../util/weight'
 import { day, dayTime } from '../../util/date'
@@ -26,11 +26,11 @@ const History = () => {
               >
                 <td>
                   <IconContext.Provider
-                    value={{ className: 'text-red-500 p-3 w-12 h-12 font-bold' }}
+                    value={{ className: 'text-green-700 p-3 w-12 h-12' }}
                   >
-                    <VscClose
+                    <BiPencil
                       className={ `cursor-pointer` }
-                      title='Remove'
+                      title='Edit'
                       onClick={ () => { } }
                     />
                   </IconContext.Provider>

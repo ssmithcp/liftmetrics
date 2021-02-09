@@ -1,7 +1,10 @@
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
+import { IconContext } from 'react-icons'
+
 import routes from './index'
+import Icon from './Icon'
 
 const NotLoggedIn = [
   routes.signUp,
@@ -12,6 +15,7 @@ const NotLoggedIn = [
 const LoggedIn = [
   routes.home,
   routes.trackHome,
+  routes.analyzeHome,
 ]
 
 const NavLinks = ({ profile }) => {
@@ -23,7 +27,12 @@ const NavLinks = ({ profile }) => {
         { navItems.map(item =>
           <li key={ item.path }>
             <NavLink exact to={ item.path } className='block p-3 text-lg hover:text-primary md:py-6' activeClassName='current'>
-              { item.title }
+              <IconContext.Provider
+                value={{ className: 'text-gray-700 p-3 w-12 h-12 md:hidden' }}
+              >
+                <Icon name={ item } />
+              </IconContext.Provider>
+              <p className='hidden md:block'>{ item.title }</p>
             </NavLink>
           </li>
         )}
@@ -34,7 +43,7 @@ const NavLinks = ({ profile }) => {
                 src={ profile.avatar }
                 title={ routes.profile.title }
                 alt='avatar'
-                className='ml-3 block w-11 h-11 rounded-full border-2 border-transparent hover:border-blue-400'
+                className='ml-3 block w-10 h-10 rounded-full border-2 border-transparent hover:border-blue-400 md:w-11 md:h-11'
               />
             </NavLink>
           </li>

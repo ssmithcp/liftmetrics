@@ -58,7 +58,11 @@ const routes = {
   trackGoal: {
     title: 'Goal',
     path: '/track/goal',
-  }
+  },
+  analyzeHome: {
+    title: 'Analyze',
+    path: '/analyze'
+  },
 }
 
 export default routes

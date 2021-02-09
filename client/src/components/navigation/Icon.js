@@ -5,6 +5,8 @@ import { GiChickenLeg, GiBiceps } from 'react-icons/gi'
 import { IoBarbellSharp } from 'react-icons/io5'
 import { CgPill } from 'react-icons/cg'
 import { AiOutlineTrophy, AiOutlineQuestionCircle, AiOutlineHome } from 'react-icons/ai'
+import { RiPencilRuler2Line } from 'react-icons/ri'
+import { BsGraphUp } from 'react-icons/bs'
 
 const Icon = ({ name }) => {
   // convenience if a route is passed in
@@ -16,6 +18,10 @@ const Icon = ({ name }) => {
   switch (name) {
     case routes.home.title.toLowerCase():
       return <AiOutlineHome />
+    case routes.trackHome.title.toLowerCase():
+      return <RiPencilRuler2Line />
+    case routes.analyzeHome.title.toLowerCase():
+      return <BsGraphUp />
     case routes.trackWeight.title.toLowerCase():
       return <FaWeight />
     case routes.trackFood.title.toLowerCase():

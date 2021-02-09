@@ -29,7 +29,7 @@ import { getProfile } from '../util/profileStorage'
 import { getWeightsFrom } from '../actions/weight'
 
 const withContainer = Page => () => (
-  <PageWidthContainer className='mt-28 md:mt-24'>
+  <PageWidthContainer className='mt-24'>
     <main>
       <Page />
     </main>
