@@ -4,7 +4,8 @@ const validator = require('./validator')
 
 const ProfileSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
   },
   weightUnit: {
     type: String,
@@ -20,5 +21,7 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
   },
 })
+
+ProfileSchema.index({ user: 1 })
 
 module.exports = mongoose.model('profile', ProfileSchema)

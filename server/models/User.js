@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const validator = require('validator')
 const validate = require('./validator')
 
 const availableRoles = [ 'admin', 'user', 'free', 'demo' ]
@@ -18,7 +19,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    validate: validate.namedLength('Email', 7, 120),
+    validate: [
+      validator.isEmail,
+      validate.namedLength('Email', 7, 120),
+    ]
   },
   password: {
     type: String,
@@ -42,5 +46,7 @@ const UserSchema = new mongoose.Schema({
     validate: validate.namedEnumList('role', availableRoles),
   }
 })
+
+UserSchema.index({ email: 1 })
 
 module.exports = mongoose.model('user', UserSchema)

@@ -4,6 +4,7 @@ const validator = require('./validator')
 const BodyWeightSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
   },
   created: {
     type: Date,
