@@ -47,6 +47,7 @@ const Record = ({ save }) => {
       <div>
         <Input
           id='weight'
+          inputMode='numeric'
           placeholder='180'
           name='weight'
           value={ weight }

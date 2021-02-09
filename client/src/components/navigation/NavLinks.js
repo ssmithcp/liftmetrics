@@ -27,7 +27,7 @@ const NavLinks = ({ profile }) => {
       <ul className='flex items-center'>
         { navItems.map(item =>
           <li key={ item.path }>
-            <NavLink exact to={ item.path } className='block p-3 text-lg hover:text-primary md:py-6' activeClassName='current'>
+            <NavLink exact to={ item.path } className='block p-3 text-lg hover:text-primary md:py-6'>
               { isLoggedIn && (
                 <>
                 <IconContext.Provider value={{ className: 'text-gray-800 p-3 w-14 h-14 mx-2 md:hidden' }}>
@@ -42,7 +42,7 @@ const NavLinks = ({ profile }) => {
         )}
         { isLoggedIn && profile.avatar && (
           <li key='profile avatar'>
-            <NavLink exact to={ routes.profile.path } activeClassName='current'>
+            <NavLink exact to={ routes.profile.path }>
               <img
                 src={ profile.avatar }
                 title={ routes.profile.title }
