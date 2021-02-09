@@ -63,6 +63,14 @@ const routes = {
     title: 'Analyze',
     path: '/analyze'
   },
+  analyzeWeekly: {
+    title: 'Weekly summary',
+    path: '/analyze/weekly'
+  },
+  analyzeGraph: {
+    title: 'Progress graph',
+    path: '/analyze/graph'
+  },
 }
 
 export default routes

@@ -11,9 +11,7 @@ const tiles = [
     ...routes.trackSleep,
     comingSoon: true,
   },
-  {
-    ...routes.trackWeight,
-  },
+  routes.trackWeight,
   {
     ...routes.trackWorkout,
     comingSoon: true,

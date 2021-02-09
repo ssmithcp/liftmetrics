@@ -22,6 +22,8 @@ import Profile from './account/Profile'
 import TrackDashboard from './track/Dashboard'
 import Weight from './track/weight/Index'
 
+import AnalyzeDashboard from './analyze/Dashboard'
+
 import NotFound from './landing/NotFound'
 
 import { logout } from '../actions/user'
@@ -78,6 +80,8 @@ const App = ({ logout, getWeightsFrom }) => {
 
         <PrivateRoute path={ routes.trackHome.path } exact render={ withContainer(TrackDashboard) } />
         <PrivateRoute path={ routes.trackWeight.path } exact render={ withContainer(Weight) } />
+
+        <PrivateRoute path={ routes.analyzeHome.path } exact render={ withContainer(AnalyzeDashboard) } />
 
         <Route component={ NotFound } />
       </Switch>

@@ -7,6 +7,7 @@ import { CgPill } from 'react-icons/cg'
 import { AiOutlineTrophy, AiOutlineQuestionCircle, AiOutlineHome } from 'react-icons/ai'
 import { RiPencilRuler2Line } from 'react-icons/ri'
 import { BsGraphUp } from 'react-icons/bs'
+import { IoCalendarOutline } from 'react-icons/io5'
 
 const Icon = ({ name }) => {
   // convenience if a route is passed in
@@ -20,8 +21,6 @@ const Icon = ({ name }) => {
       return <AiOutlineHome />
     case routes.trackHome.title.toLowerCase():
       return <RiPencilRuler2Line />
-    case routes.analyzeHome.title.toLowerCase():
-      return <BsGraphUp />
     case routes.trackWeight.title.toLowerCase():
       return <FaWeight />
     case routes.trackFood.title.toLowerCase():
@@ -38,6 +37,11 @@ const Icon = ({ name }) => {
       return <FaRegStickyNote />
     case routes.trackGoal.title.toLowerCase():
       return <AiOutlineTrophy />
+    case routes.analyzeGraph.title.toLowerCase():
+    case routes.analyzeHome.title.toLowerCase():
+      return <BsGraphUp />
+    case routes.analyzeWeekly.title.toLowerCase():
+      return <IoCalendarOutline />
     default:
       return <AiOutlineQuestionCircle />
   }
