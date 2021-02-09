@@ -1,8 +1,10 @@
 import { useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 import { IconContext } from 'react-icons'
 import { BiPencil } from 'react-icons/bi'
 
+import routes from '../../navigation'
 import { normalize } from '../../../util/weight'
 import { day, dayTime } from '../../util/date'
 import { round } from './Trends'
@@ -25,15 +27,17 @@ const History = () => {
                 className={ `${index % 2 === 1 ? 'bg-gray-300' : ''} py-3` }
               >
                 <td>
-                  <IconContext.Provider
-                    value={{ className: 'text-green-700 p-3 w-12 h-12' }}
-                  >
-                    <BiPencil
-                      className={ `cursor-pointer` }
-                      title='Edit'
-                      onClick={ () => { } }
-                    />
-                  </IconContext.Provider>
+                <NavLink exact to={ routes.trackEditWeight.toPath(w.id) }>
+                    <IconContext.Provider
+                      value={{ className: 'text-green-700 p-3 w-12 h-12' }}
+                    >
+                      <BiPencil
+                        className={ `cursor-pointer` }
+                        title='Edit'
+                        onClick={ () => { } }
+                      />
+                    </IconContext.Provider>
+                  </NavLink>
                 </td>
                 <td className='py-2'>{ `${ round(w.value) }${ w.unit }s` }</td>
                 <td>
