@@ -12,10 +12,7 @@ const tiles = [
     comingSoon: true,
   },
   routes.trackWeight,
-  {
-    ...routes.trackWorkout,
-    comingSoon: true,
-  },
+  routes.trackWorkout,
   {
     ...routes.trackSupplement,
     comingSoon: true,

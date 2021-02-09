@@ -7,7 +7,7 @@ import dumbell from '../images/dumbell.svg'
 
 const Logo = ({ className }) => (
   <NavLink to={ routes.index.path } className={ `flex items-center ${className || ''}` }>
-    <img src={ dumbell } alt='dumbell' className='w-10 mr-5 md:w-10 md:mr-2 md:p-0'/>
+    <img src={ dumbell } alt='dumbell' className='w-10 mr-3 mt-1 md:w-10 md:mr-2 md:mt-0'/>
     <div
       className='relative hidden md:block'
       title={ config.versionTitle }

@@ -30,7 +30,7 @@ const NavLinks = ({ profile }) => {
             <NavLink exact to={ item.path } className='block p-3 text-lg hover:text-primary md:py-6'>
               { isLoggedIn && (
                 <>
-                <IconContext.Provider value={{ className: 'text-gray-800 p-3 w-14 h-14 mx-2 md:hidden' }}>
+                <IconContext.Provider value={{ className: 'text-gray-600 p-2 w-12 h-12 md:hidden' }}>
                   <Icon name={ item } />
                 </IconContext.Provider>
                 <p className='hidden md:block'>{ item.title }</p>
@@ -47,7 +47,7 @@ const NavLinks = ({ profile }) => {
                 src={ profile.avatar }
                 title={ routes.profile.title }
                 alt='avatar'
-                className='ml-5 block w-12 h-12 rounded-full border-2 border-transparent hover:border-blue-400 md:ml-3 md:w-11 md:h-11'
+                className='ml-3 block w-12 h-12 rounded-full border-2 border-transparent hover:border-blue-400 md:w-11 md:h-11'
               />
             </NavLink>
           </li>

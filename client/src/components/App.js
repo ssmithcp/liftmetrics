@@ -22,6 +22,7 @@ import Profile from './account/Profile'
 import TrackDashboard from './track/Dashboard'
 import Weight from './track/weight/Index'
 import EditWeight from './track/weight/EditWeight'
+import Workout from './track/workout/Index'
 
 import AnalyzeDashboard from './analyze/Dashboard'
 
@@ -32,7 +33,7 @@ import { getProfile } from '../util/profileStorage'
 import { getWeightsFrom } from '../actions/weight'
 
 const withContainer = Page => props => (
-  <PageWidthContainer className='mt-24'>
+  <PageWidthContainer className='mt-20 md:mt-24'>
     <main>
       <Page { ...props } />
     </main>
@@ -82,6 +83,7 @@ const App = ({ logout, getWeightsFrom }) => {
         <PrivateRoute path={ routes.trackHome.path } exact render={ withContainer(TrackDashboard) } />
         <PrivateRoute path={ routes.trackWeight.path } exact render={ withContainer(Weight) } />
         <PrivateRoute path={ routes.trackEditWeight.path } render={ withContainer(EditWeight) } />
+        <PrivateRoute path={ routes.trackWorkout.path } render={ withContainer(Workout) } />
 
         <PrivateRoute path={ routes.analyzeHome.path } exact render={ withContainer(AnalyzeDashboard) } />
 
