@@ -19,7 +19,8 @@ const LoggedIn = [
 ]
 
 const NavLinks = ({ profile }) => {
-  const navItems = profile !== null ? LoggedIn : NotLoggedIn
+  const isLoggedIn = profile !== null
+  const navItems = isLoggedIn ? LoggedIn : NotLoggedIn
 
   return (
     <nav>
@@ -27,16 +28,19 @@ const NavLinks = ({ profile }) => {
         { navItems.map(item =>
           <li key={ item.path }>
             <NavLink exact to={ item.path } className='block p-3 text-lg hover:text-primary md:py-6' activeClassName='current'>
-              <IconContext.Provider
-                value={{ className: 'text-gray-700 p-3 w-14 h-14 mx-2 md:hidden' }}
-              >
-                <Icon name={ item } />
-              </IconContext.Provider>
-              <p className='hidden md:block'>{ item.title }</p>
+              { isLoggedIn && (
+                <>
+                <IconContext.Provider value={{ className: 'text-gray-800 p-3 w-14 h-14 mx-2 md:hidden' }}>
+                  <Icon name={ item } />
+                </IconContext.Provider>
+                <p className='hidden md:block'>{ item.title }</p>
+                </>
+              )}
+              { !isLoggedIn && <p>{ item.title }</p>}
             </NavLink>
           </li>
         )}
-        { profile !== null && profile.avatar && (
+        { isLoggedIn && profile.avatar && (
           <li key='profile avatar'>
             <NavLink exact to={ routes.profile.path } activeClassName='current'>
               <img
