@@ -41,7 +41,7 @@ const Record = ({ save }) => {
         <DecimalInput
           name='weight'
           placeholder='180'
-          value={ weight}
+          value={ weight }
           setValue={ setWeight }
           className='w-24'
         />
