@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { connect, useSelector } from 'react-redux'
-import { isFloat } from 'validator'
 
 import { save } from '../../../actions/weight'
 
-import Input from '../../form/Input'
+import DecimalInput from '../../form/DecimalInput'
 import Button from '../../util/Button'
 
 // TODO change to 'Saved' when saved, maybe add a check mark to the button?
@@ -14,12 +13,6 @@ const Record = ({ save }) => {
 
   const [weight, setWeight] = useState('')
   const [saveEnabled, setSaveEnabled] = useState(true)
-
-  const maybeSetWeight = val => {
-    if (val === '' || isFloat(val)) {
-      setWeight(val)
-    }
-  }
 
   const onSubmit = e => {
     e.preventDefault()
@@ -42,16 +35,15 @@ const Record = ({ save }) => {
   const pluralWeight = unit + 's'
 
   return (
-    <form onSubmit={ onSubmit }>
+    <form onSubmit={ onSubmit } className='text-center'>
       <label htmlFor='weight' className='text-xl'>Today's weight</label>
       <div>
-        <Input
-          id='weight'
-          placeholder='180'
+        <DecimalInput
           name='weight'
-          value={ weight }
-          onChange={ e => maybeSetWeight(e.target.value) }
-          className='w-24 text-center'
+          placeholder='180'
+          value={ weight}
+          setValue={ setWeight }
+          className='w-24'
         />
         <p className='ml-2 inline'>{ `${ pluralWeight }` }</p>
       </div>
