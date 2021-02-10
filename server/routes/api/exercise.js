@@ -2,29 +2,32 @@ const router = require('express-async-router').AsyncRouter()
 
 const returnCollection = require('../../util/returnCollection')
 
-const Weight = require('../../models/Weight')
+const Exercise = require('../../models/Exercise')
 const sanitize = require('../../models/sanitize')
 
 router.get('/',
   returnCollection.validate,
   async (req, res) => {
-    console.log('get weights with query:', req.query)
-    await returnCollection(Weight, req, res)
+    console.log('get exercises with query:', req.query)
+    await returnCollection(Exercise, req, res)
   }
 )
 
 router.post('/', async (req, res) => {
   const source = req.body
-  console.log('adding weight', source)
+  console.log('adding exercise', source)
 
-  const newWeight = await Weight.create({
+  const newExercise = await Exercise.create({
     user: res.locals.user.id,
-    created: source.created,
+    movement: source.movement,
+    sets: source.sets,
+    reps: source.reps,
     value: source.value,
     unit: source.unit,
+    note: source.note,
   })
 
-  res.json(sanitize(newWeight)).send()
+  res.json(sanitize(newExercise)).send()
 })
 
 module.exports = router

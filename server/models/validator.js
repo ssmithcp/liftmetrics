@@ -31,7 +31,7 @@ const isWeightUnit = () => namedEnum('Weight', units.weight)
 const isLengthUnit = () => namedEnum('Length', units.length)
 
 const floatInRange = (name, min, max) => ({
-  validator: v => validate.isFloat(v, min, max),
+  validator: v => validate.isFloat(v.toString(), min, max),
   message: `${ name } must be a decimal between ${ min } and ${ max }`,
 })
 
@@ -40,7 +40,7 @@ const weightInRange = () => floatInRange('Weight', 0.0, 5000.0)
 const lengthInRange = () => floatInRange('Length', 0.0, 5000.0)
 
 const intInRange = (name, min, max) => ({
-  validator: v => validate.isInt(v, min, max),
+  validator: v => validate.isInt(v.toString(), { min,  max }),
   message: `${ name } must be a whole number between ${ min } and ${ max }`,
 })
 
