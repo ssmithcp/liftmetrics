@@ -15,22 +15,22 @@ const MovementSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    validator: validator.alphaString('Name', 1, 100),
+    validate: validator.namedLength('Name', 1, 100),
   },
   type: {
     type: String,
     required: true,
-    validator: validator.namedEnum('Type', types),
+    validate: validator.namedEnum('Type', types),
   },
   targetedMuscles: {
     type: [String],
     default: [ ],
-    validator: validator.freeformArray('Targeted muscle', 25, 1, 100),
+    validate: validator.freeformArray('Targeted muscle', 25, 1, 100),
   },
   modifiers: {
     type: [String],
     default: [ ],
-    validator: validator.freeformArray('Modifier', 25, 1, 100),
+    validate: validator.freeformArray('Modifier', 25, 1, 100),
   },
 })
 

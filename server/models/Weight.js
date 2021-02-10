@@ -13,12 +13,12 @@ const BodyWeightSchema = new mongoose.Schema({
   value: {
     type: Number,
     required: true,
-    validator: validator.weightInRange,
+    validate: validator.weightInRange,
   },
   unit: {
     type: String,
     required: true,
-    validator: validator.isWeightUnit,
+    validate: validator.isWeightUnit,
   },
 })
 

@@ -12,7 +12,7 @@ const MeasurementDefinitionSchema = new mongoose.Schema({
   name: {
     type: Number,
     required: true,
-    validator: validator.namedLength('Name', 1, 512),
+    validate: validator.namedLength('Name', 1, 512),
   },
 })
 

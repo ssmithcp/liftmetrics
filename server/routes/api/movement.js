@@ -1,6 +1,7 @@
 const router = require('express-async-router').AsyncRouter()
 
 const Movement = require('../../models/Movement')
+const sanitize = require('../../models/sanitize')
 const envelope = require('../../models/envelope')
 
 router.get('/', async (req, res) => {
@@ -26,6 +27,21 @@ router.get('/', async (req, res) => {
   }
 
   res.json(envelope(movements, req.query)).send()
+})
+
+router.post('/', async (req, res) => {
+  const source = req.body
+  console.log('adding movement', source)
+
+  const newWeight = await Movement.create({
+    user: res.locals.user.id,
+    name: source.name,
+    type: source.type,
+    targetedMuscles: source.targetedMuscles,
+    modifiers: source.modifiers,
+  })
+
+  res.json(sanitize(newWeight)).send()
 })
 
 module.exports = router

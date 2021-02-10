@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
     created: source.created,
     value: source.value,
     unit: source.unit,
-   })
+  })
 
   res.json(sanitize(newWeight)).send()
 })

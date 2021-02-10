@@ -18,17 +18,17 @@ const MeasurementSchema = new mongoose.Schema({
   value: {
     type: Number,
     required: true,
-    validator: validator.lengthInRange,
+    validate: validator.lengthInRange,
   },
   unit: {
     type: String,
     required: true,
-    validator: validator.isLengthUnit,
+    validate: validator.isLengthUnit,
   },
   side: {
     type: String,
     required: true,
-    validator: validator.namedEnum('Side', side),
+    validate: validator.namedEnum('Side', side),
   },
   flexed: {
     type: Boolean,
@@ -37,7 +37,7 @@ const MeasurementSchema = new mongoose.Schema({
   },
   note: {
     type: String,
-    validator: validator.namedLength('note', 1, 1024)
+    validate: validator.namedLength('note', 1, 1024)
   },
 })
 

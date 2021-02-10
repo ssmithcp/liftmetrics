@@ -17,26 +17,26 @@ const ExerciseSchema = new mongoose.Schema({
   sets: {
     type: Number,
     required: true,
-    validator: validator.intInRange('Sets', 1, 1000)
+    validate: validator.intInRange('Sets', 1, 1000)
   },
   reps: {
     type: Number,
     required: true,
-    validator: validator.intInRange('Reps', 1, 1000)
+    validate: validator.intInRange('Reps', 1, 1000)
   },
   value: {
     type: Number,
     required: true,
-    validator: validator.weightInRange,
+    validate: validator.weightInRange,
   },
   unit: {
     type: String,
     required: true,
-    validator: validator.isWeightUnit,
+    validate: validator.isWeightUnit,
   },
   note: {
     type: String,
-    validator: validator.namedLength('note', 1, 1024)
+    validate: validator.namedLength('note', 1, 1024)
   },
 })
 
