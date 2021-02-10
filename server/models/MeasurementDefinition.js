@@ -19,3 +19,29 @@ const MeasurementDefinitionSchema = new mongoose.Schema({
 MeasurementDefinitionSchema.index({ user: 1 })
 
 module.exports = mongoose.model('measurementDefinition', MeasurementDefinitionSchema)
+
+const measurementPreloads = [
+  {
+    name: 'Waist',
+  },
+  {
+    name: 'Bicep',
+  },
+  {
+    name: 'Thigh',
+  },
+  {
+    name: 'Calf',
+  },
+  {
+    name: 'Glutes',
+  },
+  {
+    name: 'Chest',
+  },
+  {
+    name: 'Forearm'
+  },
+]
+
+module.exports.preloads = measurementPreloads

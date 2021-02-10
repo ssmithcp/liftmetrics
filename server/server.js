@@ -30,6 +30,7 @@ app.use(urlPrefix + '/user', require('./routes/api/user'))
 app.use(urlPrefix, auth)
 app.use(urlPrefix + '/profile', require('./routes/api/profile'))
 app.use(urlPrefix + '/weight', require('./routes/api/weight'))
+app.use(urlPrefix + '/movement', require('./routes/api/movement'))
 
 if (!config.get('isDev')) {
   app.use(express.static(path.resolve(__dirname, '..', 'client', 'build')))
