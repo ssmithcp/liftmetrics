@@ -19,12 +19,7 @@ router.post('/', async (req, res) => {
 
   const newExercise = await Exercise.create({
     user: res.locals.user.id,
-    movement: source.movement,
-    sets: source.sets,
-    reps: source.reps,
-    value: source.value,
-    unit: source.unit,
-    note: source.note,
+    ...source,
   })
 
   res.json(sanitize(newExercise)).send()

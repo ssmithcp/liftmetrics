@@ -19,9 +19,7 @@ router.post('/', async (req, res) => {
 
   const newWeight = await Weight.create({
     user: res.locals.user.id,
-    created: source.created,
-    value: source.value,
-    unit: source.unit,
+    ...source,
   })
 
   res.json(sanitize(newWeight)).send()

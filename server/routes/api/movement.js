@@ -35,10 +35,7 @@ router.post('/', async (req, res) => {
 
   const newWeight = await Movement.create({
     user: res.locals.user.id,
-    name: source.name,
-    type: source.type,
-    targetedMuscles: source.targetedMuscles,
-    modifiers: source.modifiers,
+    ...source,
   })
 
   res.json(sanitize(newWeight)).send()
