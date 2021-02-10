@@ -14,7 +14,7 @@ const DecimalInput = ({ name, placeholder, value, setValue, className }) => {
     <Input
       id={ name }
       placeholder={ placeholder }
-      inputmode='decimal' // to get an iOS decimal keyboard on mobile
+      inputMode='decimal' // to get an iOS decimal keyboard on mobile
       name={ name }
       value={ value }
       onChange={ e => maybeSetValue(e.target.value) }
