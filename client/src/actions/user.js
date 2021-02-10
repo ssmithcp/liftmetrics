@@ -3,6 +3,7 @@ import api from '../util/api'
 import { profileUpdated } from './profile'
 
 import { alertAndThrow } from './alert'
+import { RESET } from '../reducers/shared'
 
 export const register = formData => async dispatch => {
   try {
@@ -30,6 +31,9 @@ export const logout = () => async dispatch => {
   try {
     await api.get('/user/logout')
     profileUpdated(null)(dispatch)
+    dispatch({
+      type: RESET,
+    })
   } catch (err) {
     alertAndThrow(err, dispatch)
   }

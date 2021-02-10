@@ -1,5 +1,7 @@
 import _ from 'lodash'
 
+import { RESET } from './shared'
+
 export const ADD_WEIGHTS = 'ADD_WEIGHTS'
 export const ADD_WEIGHT = 'ADD_WEIGHT'
 export const DELETE_WEIGHT = 'DELETE_WEIGHT'
@@ -13,6 +15,7 @@ function weight(state = [], action) {
       return _.uniqBy(state.concat(action.payload), w => w.id)
     case DELETE_WEIGHT:
       return state.filter(w => w.id !== action.id)
+    case RESET:
     case CLEAR_WEIGHTS:
       return []
     default:

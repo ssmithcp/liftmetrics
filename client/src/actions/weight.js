@@ -1,12 +1,8 @@
 import api from '../util/api'
 import { alertAndThrow } from './alert'
+import { defaultRange } from './shared'
 
 import { ADD_WEIGHT, ADD_WEIGHTS } from '../reducers/weight'
-
-const createdToDate = w => ({
-  ...w,
-  created: new Date(w.created)
-})
 
 export const save = ({ value, unit, created }) => async dispatch => {
   try {
@@ -17,7 +13,7 @@ export const save = ({ value, unit, created }) => async dispatch => {
     })
     dispatch({
       type: ADD_WEIGHT,
-      payload: createdToDate(res.data),
+      payload: res.data,
     })
   } catch (err) {
     alertAndThrow(err, dispatch)
@@ -27,13 +23,14 @@ export const save = ({ value, unit, created }) => async dispatch => {
 export const getWeightsFrom = (startDate) => async dispatch => {
   try {
     const res = await api.get('/weight', { params: { startDate } })
-    const weights = res.data.data.map(createdToDate)
 
     dispatch({
       type: ADD_WEIGHTS,
-      payload: weights,
+      payload: res.data.data,
     })
   } catch (err) {
     alertAndThrow(err, dispatch)
   }
 }
+
+export const getWeights = () => getWeightsFrom(defaultRange())

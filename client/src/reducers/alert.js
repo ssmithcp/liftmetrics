@@ -1,3 +1,5 @@
+import { RESET } from './shared'
+
 import { SET_ALERT, REMOVE_ALERT, CLEAR_ALERTS } from '../actions/alert'
 
 function alert(state = [], action) {
@@ -6,6 +8,7 @@ function alert(state = [], action) {
       return [...state, action.payload]
     case REMOVE_ALERT:
       return state.filter(alert => alert.id !== action.id)
+    case RESET:
     case CLEAR_ALERTS:
       return []
     default:
