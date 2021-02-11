@@ -5,6 +5,7 @@ const ExerciseSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users',
+    required: true,
   },
   created: {
     type: Date,
@@ -13,6 +14,7 @@ const ExerciseSchema = new mongoose.Schema({
   movement: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'movement',
+    required: true,
   },
   sets: {
     type: Number,

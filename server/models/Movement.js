@@ -7,6 +7,7 @@ const MovementSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users',
+    required: true,
   },
   created: {
     type: Date,
@@ -48,7 +49,7 @@ const movementPreloads = [
     name: 'bench',
     type: 'primary',
     targetedMuscles: [ 'chest', 'tricep' ],
-    modifiers: [ 'paused' ]
+    modifiers: [ 'pause' ]
   },
   {
     name: 'TNG bench',

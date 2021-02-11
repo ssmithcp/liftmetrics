@@ -4,6 +4,7 @@ const validator = require('./validator')
 const MeasurementDefinitionSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
+    required: true,
   },
   created: {
     type: Date,

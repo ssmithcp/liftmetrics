@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { connect, useSelector } from 'react-redux'
 
-import { getMovements } from '../../../actions/movement'
 import { save } from '../../../actions/exercise'
 
 import DecimalInput from '../../form/DecimalInput'
@@ -23,6 +22,12 @@ const AddExercise = ({ save }) => {
       setMovement(movements[0].id)
     }
   }, [movements, movement])
+
+  const sortedMovements = useMemo(() =>
+    Object.keys(movements)
+      .map(k => movements[k])
+      .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
+  , [movements])
 
   const onSubmit = e => {
     e.preventDefault()
@@ -53,10 +58,9 @@ const AddExercise = ({ save }) => {
           value={ movement }
           onChange={ e => setMovement(e.target.value) }
         >
-          {/* // XXX do something to make iteration order predicatble here */}
-          { Object.keys(movements).map(k =>
-            <option key={ k } value={ k }>
-              { movements[k].name }
+          { sortedMovements.map(m =>
+            <option key={ m.id } value={ m.id }>
+              { movements[m.id].name }
             </option>
           )}
         </select>

@@ -6,6 +6,7 @@ const side = [ 'left', 'right', 'N/A' ]
 const MeasurementSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
+    required: true,
   },
   created: {
     type: Date,
@@ -14,6 +15,7 @@ const MeasurementSchema = new mongoose.Schema({
   definition: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'measurementDefinition',
+    required: true,
   },
   value: {
     type: Number,
