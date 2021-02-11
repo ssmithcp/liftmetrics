@@ -26,8 +26,7 @@ const History = ({ getExercises }) => {
                 key={ e.created }
                 className={ `${index % 2 === 1 ? 'bg-gray-300' : ''} py-3` }
               >
-                {/* // there is a race here between movement and exercise being defined */}
-                <td>{ movements.find(m => m.id === e.movement).name || 'unknown' }</td>
+                <td>{ (movements[e.movement] && movements[e.movement].name)  || 'unknown' }</td>
                 <td>
                   <p>{ `${ e.sets } x ${ e.reps } x ${ e.value }${ e.unit }s = ${ e.sets * e.reps * e.value }${ e.unit }s` }</p>
                 </td>

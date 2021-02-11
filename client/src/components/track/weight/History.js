@@ -6,8 +6,8 @@ import { BiPencil } from 'react-icons/bi'
 
 import routes from '../../navigation'
 import { normalize } from '../../../util/weight'
-import { day, dayTime } from '../../util/date'
 import { round } from './Trends'
+import ResponsiveDate from '../ResponsiveDate'
 
 const History = () => {
   const unit = useSelector(s => s.profile.weightUnit)
@@ -24,7 +24,7 @@ const History = () => {
             weights.map((w, index) => (
               <tr
                 key={ w.created }
-                className={ `${index % 2 === 1 ? 'bg-gray-300' : ''} py-3` }
+                className={ `${(weights.length - index) % 2 === 1 ? 'bg-gray-300' : ''} py-3` }
               >
                 <td>
                 <NavLink exact to={ routes.trackEditWeight.toPath(w.id) }>
@@ -41,8 +41,7 @@ const History = () => {
                 </td>
                 <td className='py-2'>{ `${ round(w.value) }${ w.unit }s` }</td>
                 <td>
-                  <p className='md:hidden'>{ day(w.created) }</p>
-                  <p className='hidden md:block'>{ dayTime(w.created) }</p>
+                  <ResponsiveDate date={ w.created } />
                 </td>
               </tr>
             ))

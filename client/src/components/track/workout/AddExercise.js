@@ -7,7 +7,7 @@ import { save } from '../../../actions/exercise'
 import DecimalInput from '../../form/DecimalInput'
 import Button from '../../util/Button'
 
-const AddExercise = ({ getMovements, save }) => {
+const AddExercise = ({ save }) => {
   const weightUnit = useSelector(s => s.profile.weightUnit)
   const movements = useSelector(s => s.movement)
 
@@ -19,12 +19,10 @@ const AddExercise = ({ getMovements, save }) => {
   const [movement, setMovement] = useState('')
 
   useEffect(() => {
-    if (movements.length > 0) {
+    if (movement === '' && movements.length > 0) {
       setMovement(movements[0].id)
     }
-  }, [movements])
-
-  useEffect(getMovements, [getMovements])
+  }, [movements, movement])
 
   const onSubmit = e => {
     e.preventDefault()
@@ -55,9 +53,10 @@ const AddExercise = ({ getMovements, save }) => {
           value={ movement }
           onChange={ e => setMovement(e.target.value) }
         >
-          { movements.map(m =>
-            <option key={ m.id } value={ m.id }>
-              { m.name }
+          {/* // XXX do something to make iteration order predicatble here */}
+          { Object.keys(movements).map(k =>
+            <option key={ k } value={ k }>
+              { movements[k].name }
             </option>
           )}
         </select>
@@ -102,4 +101,4 @@ const AddExercise = ({ getMovements, save }) => {
   )
 }
 
-export default connect(null, { getMovements, save })(AddExercise)
+export default connect(null, { save })(AddExercise)
