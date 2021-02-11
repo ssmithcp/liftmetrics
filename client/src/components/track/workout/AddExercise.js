@@ -50,6 +50,7 @@ const AddExercise = ({ save }) => {
 
   return (
     <form className='flex flex-col items-center'>
+      <label htmlFor='weight' className='text-xl'>Record exercise</label>
       <div>
         <label htmlFor='movement' className='text-lg mr-4'>Movement</label>
         <select

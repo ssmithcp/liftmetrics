@@ -34,24 +34,24 @@ const deltaToSummary = (weightDelta, unit) => {
   return `Lost ${ Math.abs(round(weightDelta)) }${ unitDisplay }`
 }
 
-const weightOnDate = (weights, date) => {
-  const match = weights.find(w => w.created.getTime() === date)
+const valueOnDate = (values, date) => {
+  const match = values.find(w => w.created.getTime() === date)
   if (match) {
     return match.value
   }
 
-  const index = _.sortedIndex(weights.map(w => w.created.getTime()), date)
+  const index = _.sortedIndex(values.map(w => w.created.getTime()), date)
 
-  if (index === weights.length) {
-    return weights[weights.length - 1].value
+  if (index === values.length) {
+    return values[values.length - 1].value
   }
 
   if (index === 0) { //shouldn't happen but to be complete
-    return weights[0].value
+    return values[0].value
   }
 
-  const i = weights[index]
-  const j = weights[index - 1]
+  const i = values[index]
+  const j = values[index - 1]
 
   // console.log(new Date(date).toLocaleString(), 'between ', new Date(i.date.getTime()).toLocaleString(), 'and', new Date(j.date.getTime()).toLocaleString())
 
@@ -68,7 +68,7 @@ const weightOnDate = (weights, date) => {
 
 const DeltaSummary = ({ description, start, end, weights, unit }) => {
   // console.log('weight on', start.toLocaleString(), 'is', weightOnDate(weights, start.getTime()))
-  const sinceLast = weightOnDate(weights, end.getTime()) - weightOnDate(weights, start.getTime())
+  const sinceLast = valueOnDate(weights, end.getTime()) - valueOnDate(weights, start.getTime())
   const iconStyle = 'inline-block h-6 w-6 mr-2'
 
   return (
