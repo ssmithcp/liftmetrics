@@ -4,9 +4,7 @@ import { connect, useSelector } from 'react-redux'
 import { save } from '../../../actions/weight'
 
 import DecimalInput from '../../form/DecimalInput'
-import SaveButtonFactory from '../../util/SaveButtonFactory'
-
-// TODO change to 'Saved' when saved, maybe add a check mark to the button?
+import SaveButton from '../../util/SaveButtonFactory'
 
 const Record = ({ save }) => {
   const unit = useSelector(s => s.profile.weightUnit)
@@ -21,12 +19,10 @@ const Record = ({ save }) => {
     .then(() => setWeight(''))
   )
 
-  const { doSave, SaveButton } = SaveButtonFactory(onSubmit)
-
   const pluralWeight = unit + 's'
 
   return (
-    <form onSubmit={ doSave } className='text-center'>
+    <form className='text-center'>
       <label htmlFor='weight' className='text-xl'>Today's weight</label>
       <div>
         <DecimalInput
@@ -39,6 +35,7 @@ const Record = ({ save }) => {
         <p className='ml-2 inline'>{ `${ pluralWeight }` }</p>
       </div>
       <SaveButton
+        doSave={ onSubmit }
         disabled={ weight === '' }
         tabIndex='0'
       />
