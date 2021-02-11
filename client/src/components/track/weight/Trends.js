@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import _ from 'lodash'
 
@@ -92,9 +93,14 @@ const DeltaSummary = ({ description, start, end, weights, unit }) => {
 
 const Trends = ({ className }) => {
   const unit = useSelector(s => s.profile.weightUnit)
-  const weights = useSelector(s => s.weight)
-    .map(w => normalize(w, unit))
-    .sort((a, b) => a.created.getTime() - b.created.getTime())
+  const unsortedWeights = useSelector(s => s.weight)
+
+  const weights = useMemo(() =>
+    unsortedWeights
+      .map(w => normalize(w, unit))
+      .sort((a, b) => a.created.getTime() - b.created.getTime()),
+    [unsortedWeights, unit])
+
   const current = weights.length === 0 ? null : weights[weights.length - 1]
 
   if (weights.length < 2 || !isToday(current.created)) {
