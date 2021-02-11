@@ -7,7 +7,7 @@ export const style =
 
 const Button = ({ className, children, ...rest }) => (
   <button
-    className={ style + (className || '') }
+    className={ `${ style } ${ (className || '') }` }
     { ... rest }
   >
     { children }

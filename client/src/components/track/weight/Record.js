@@ -4,13 +4,13 @@ import { connect, useSelector } from 'react-redux'
 import { save } from '../../../actions/weight'
 
 import DecimalInput from '../../form/DecimalInput'
-import SaveButton from '../../util/SaveButtonFactory'
+import SaveButton from '../../util/SaveButton'
 
 const Record = ({ save }) => {
   const unit = useSelector(s => s.profile.weightUnit)
   const [weight, setWeight] = useState('')
 
-  const onSubmit = () => (
+  const submit = () => (
     save({
       value: weight,
       unit,
@@ -35,7 +35,7 @@ const Record = ({ save }) => {
         <p className='ml-2 inline'>{ `${ pluralWeight }` }</p>
       </div>
       <SaveButton
-        doSave={ onSubmit }
+        doSave={ submit }
         disabled={ weight === '' }
         tabIndex='0'
       />

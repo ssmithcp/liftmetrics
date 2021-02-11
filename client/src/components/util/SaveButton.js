@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react'
 
 import Button from './Button'
+import Spinner from './Spinner'
 
-const SaveButton = ({ doSave, disabled, ...rest }) => {
+const SaveButton = ({ doSave, disabled, className, ...rest }) => {
   const [saveEnabled, setSaveEnabled] = useState(true)
   const [displayedState, setDisplayedState] = useState('save')
 
@@ -60,17 +61,23 @@ const SaveButton = ({ doSave, disabled, ...rest }) => {
   return (
     <Button
       { ...rest }
+      className='px-10'
       disabled={ disabled || !saveEnabled }
       onClick={ onClick }
     >
-      { displayedState === 'save' && <p>Save</p> }
-      { displayedState === 'saving' && (
-        <p>Saving...</p>
-      )}
-      { displayedState === 'saved' && (
-        <p>Saved!</p>
-      )}
-      { displayedState === 'timedout' && <p>Save timed out, try again later!</p> }
+      <div className='flex justify-center'>
+        { displayedState === 'save' && <p>Save </p>}
+        { displayedState === 'saving' && (
+          <>
+            <p>Saving</p>
+            <Spinner className='fixed transform translate-x-11' />
+          </>
+        )}
+        { displayedState === 'saved' && (
+          <p>Saved!</p>
+        )}
+        { displayedState === 'timedout' && <p>Save timed out, try again later!</p> }
+      </div>
     </Button>
   )
 }
