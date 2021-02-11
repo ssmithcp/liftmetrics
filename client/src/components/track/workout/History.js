@@ -15,7 +15,6 @@ const History = ({ getExercises }) => {
     .map(w => normalize(w, unit))
     .sort((a, b) => b.created.getTime() - a.created.getTime())
 
-
   return (
     <div>
       <h2 className='text-xl mb-4'>Recent workouts</h2>

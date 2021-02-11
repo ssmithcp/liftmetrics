@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { connect, useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 
 import ConfirmationDialog from './util/ConfirmationDialog'
@@ -28,7 +28,6 @@ import NotFound from './landing/NotFound'
 
 import { logout } from '../actions/user'
 import { getProfile } from '../util/profileStorage'
-import { getWeights } from '../actions/weight'
 
 const withContainer = Page => props => (
   <PageWidthContainer className='mt-20 md:mt-24'>
@@ -38,7 +37,7 @@ const withContainer = Page => props => (
   </PageWidthContainer>
 )
 
-const App = ({ logout, getWeights }) => {
+const App = ({ logout }) => {
   useEffect(() => {
     if (window) {
       const doLogout = () => {
@@ -55,14 +54,6 @@ const App = ({ logout, getWeights }) => {
       }
     }
   }, [logout])
-
-  const isLoggedIn = useSelector(state => state.profile !== null)
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      getWeights()
-    }
-  }, [getWeights, isLoggedIn])
 
   return (
     <div className='select-none'>
@@ -91,4 +82,4 @@ const App = ({ logout, getWeights }) => {
   )
 }
 
-export default connect(null, { logout, getWeights })(App)
+export default connect(null, { logout })(App)
