@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { isFloat } from 'validator'
 
 import Input from './Input'

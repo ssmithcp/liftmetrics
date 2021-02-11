@@ -4,38 +4,29 @@ import { connect, useSelector } from 'react-redux'
 import { save } from '../../../actions/weight'
 
 import DecimalInput from '../../form/DecimalInput'
-import Button from '../../util/Button'
+import SaveButtonFactory from '../../util/SaveButtonFactory'
 
 // TODO change to 'Saved' when saved, maybe add a check mark to the button?
 
 const Record = ({ save }) => {
   const unit = useSelector(s => s.profile.weightUnit)
-
   const [weight, setWeight] = useState('')
-  const [saveEnabled, setSaveEnabled] = useState(true)
 
-  const onSubmit = e => {
-    e.preventDefault()
-    setSaveEnabled(false)
-
-    const enableSaveButton = () => setSaveEnabled(true)
-
+  const onSubmit = () => (
     save({
       value: weight,
       unit,
       created: Date.now(),
     })
-    .then(() => {
-      setWeight('')
-      enableSaveButton()
-    },
-    enableSaveButton)
-  }
+    .then(() => setWeight(''))
+  )
+
+  const { doSave, SaveButton } = SaveButtonFactory(onSubmit)
 
   const pluralWeight = unit + 's'
 
   return (
-    <form onSubmit={ onSubmit } className='text-center'>
+    <form onSubmit={ doSave } className='text-center'>
       <label htmlFor='weight' className='text-xl'>Today's weight</label>
       <div>
         <DecimalInput
@@ -47,13 +38,10 @@ const Record = ({ save }) => {
         />
         <p className='ml-2 inline'>{ `${ pluralWeight }` }</p>
       </div>
-      <Button
-        disabled={ weight === '' || !saveEnabled }
+      <SaveButton
+        disabled={ weight === '' }
         tabIndex='0'
-        onClick={ onSubmit }
-      >
-        Save
-      </Button>
+      />
     </form>
   )
 }
