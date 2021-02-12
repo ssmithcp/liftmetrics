@@ -4,6 +4,7 @@ import Button from './Button'
 import Spinner from './Spinner'
 
 // TODO handle timer callbacks nicely when we navigate away from page before they fire
+// TODO don't show 'Saved!' when xhr comes back with a validation error
 
 const SaveButton = ({ doSave, disabled, className, ...rest }) => {
   const [saveEnabled, setSaveEnabled] = useState(true)
@@ -68,16 +69,14 @@ const SaveButton = ({ doSave, disabled, className, ...rest }) => {
       onClick={ onClick }
     >
       <div className='flex justify-center'>
-        { displayedState === 'save' && <p>Save </p>}
+        { displayedState === 'save' && <p>Save </p> }
         { displayedState === 'saving' && (
           <>
             <p>Saving</p>
             <Spinner className='fixed transform translate-x-11' />
           </>
         )}
-        { displayedState === 'saved' && (
-          <p>Saved!</p>
-        )}
+        { displayedState === 'saved' && <p>Saved!</p> }
         { displayedState === 'timedout' && <p>Save timed out, try again later!</p> }
       </div>
     </Button>
