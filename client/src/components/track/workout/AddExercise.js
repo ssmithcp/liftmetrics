@@ -10,8 +10,6 @@ const AddExercise = ({ save }) => {
   const weightUnit = useSelector(s => s.profile.weightUnit)
   const movements = useSelector(s => s.movement)
 
-  const [saveEnabled, setSaveEnabled] = useState(false)
-
   const [sets, setSets] = useState('')
   const [reps, setReps] = useState('')
   const [weight, setWeight] = useState('')
@@ -48,22 +46,23 @@ const AddExercise = ({ save }) => {
 
   return (
     <form className='flex flex-col items-center'>
-      <label htmlFor='weight' className='text-xl'>Record exercise</label>
-      <div>
-        <label htmlFor='movement' className='text-lg mr-4'>Movement</label>
-        <select
-          id='movement'
-          name='movement'
-          value={ movement }
-          onChange={ e => setMovement(e.target.value) }
-        >
-          { sortedMovements.map(m =>
-            <option key={ m.id } value={ m.id }>
-              { movements[m.id].name }
-            </option>
-          )}
-        </select>
-      </div>
+      <h1 className='text-xl mb-4'>Record exercise</h1>
+      <select
+        id='movement'
+        name='movement'
+        value={ movement }
+        onChange={ e => setMovement(e.target.value) }
+        className='text-xl'
+      >
+        { sortedMovements.map(m =>
+          <option key={ m.id } value={ m.id }>
+            { movements[m.id].name.length <= 34
+              ? movements[m.id].name
+              : movements[m.id].name.substring(0, 31) + '...'
+            }
+          </option>
+        )}
+      </select>
       <div>
         <label htmlFor='sets' className='text-lg'>Sets</label>
         <DecimalInput
