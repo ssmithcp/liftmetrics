@@ -4,7 +4,7 @@ import { connect, useSelector } from 'react-redux'
 import { save } from '../../../actions/exercise'
 
 import DecimalInput from '../../form/DecimalInput'
-import Button from '../../util/Button'
+import SaveButton from '../../util/SaveButton'
 
 const AddExercise = ({ save }) => {
   const weightUnit = useSelector(s => s.profile.weightUnit)
@@ -17,34 +17,32 @@ const AddExercise = ({ save }) => {
   const [weight, setWeight] = useState('')
   const [movement, setMovement] = useState('')
 
-  useEffect(() => {
-    if (movement === '' && movements.length > 0) {
-      setMovement(movements[0].id)
-    }
-  }, [movements, movement])
-
   const sortedMovements = useMemo(() =>
     Object.keys(movements)
       .map(k => movements[k])
       .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
   , [movements])
 
-  const onSubmit = e => {
-    e.preventDefault()
+  useEffect(() => {
+    if (movement === '' && sortedMovements.length > 0) {
+      setMovement(sortedMovements[0].id)
+    }
+  }, [sortedMovements, movement])
 
+  const onSubmit = () => (
     save({
       movement,
       sets,
       reps,
       value: weight,
       unit: weightUnit,
+    }).then(() => {
+      setMovement(sortedMovements[0].id)
+      setSets('')
+      setReps('')
+      setWeight('')
     })
-
-    setMovement(movements[0].id)
-    setSets('')
-    setReps('')
-    setWeight('')
-  }
+  )
 
   const pluralWeight = weightUnit + 's'
 
@@ -95,13 +93,11 @@ const AddExercise = ({ save }) => {
         <p className='ml-2 inline'>{ `${ pluralWeight }` }</p>
       </div>
       <input type='hidden' name='unit' value={ weightUnit } />
-      <Button
-        disabled={ movement === '' || sets === '' || reps === '' || weight === '' }
+      <SaveButton
+        doSave={ onSubmit }
         tabIndex='0'
-        onClick={ onSubmit }
-      >
-        Save
-      </Button>
+        disabled={ movement === '' || sets === '' || reps === '' || weight === '' }
+      />
     </form>
   )
 }
