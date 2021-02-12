@@ -33,6 +33,8 @@ app.use(urlPrefix + '/weight', require('./routes/api/weight'))
 app.use(urlPrefix + '/movement', require('./routes/api/movement'))
 app.use(urlPrefix + '/exercise', require('./routes/api/exercise'))
 
+/* global __dirname, process */
+
 if (!config.get('isDev')) {
   app.use(express.static(path.resolve(__dirname, '..', 'client', 'build')))
   app.get('*', (req, res) => {
@@ -42,7 +44,7 @@ if (!config.get('isDev')) {
 
 app.use(db.validationError)
 
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
   console.error('uncaught error:', err)
   res.status(500).send('internal error')
 })

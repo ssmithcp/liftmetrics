@@ -1,45 +1,58 @@
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { format } from 'date-fns'
 
 import { logout } from '../../actions/user'
 
 import BigButton from '../util/BigButton'
 import TitledPage from '../container/TitledPage'
+import { dayTime } from '../util/date'
 
-const formatKey = key => {
-  const parts = key.split(/(?=[A-Z])/).map(p => p.toLowerCase())
 
-  const first = parts[0]
-  parts[0] = first[0].toUpperCase() + first.substring(1)
+const UpdatingOptions = ({ current, options }) => {
 
-  return parts.join(' ')
-}
-
-const Entry = ({ k, value }) => (
-  <>
-    <p>{ formatKey(k) }</p>
-    <p>{ value }</p>
-  </>
-)
-
-const Profile = ({ profile, profileOptions, logout }) => {
   return (
-    <TitledPage title={ `Profile for ${ profile.firstName } ${ profile.lastName[0].toUpperCase() }` }>
-      <div className='my-6 text-lg grid gap-2 grid-cols-profile'>
-        { [ 'firstName', 'lastName', 'weightUnit', 'lengthUnit' ].map(k =>
-            <Entry key={ k } k={ k } value={ profile[k] } options={ profileOptions[k] } />
+    <div>
+      <select
+        className='w-52'
+        value={ current }
+      >
+        { options.map(o =>
+          <option key={ o } value={ o }>
+            { o }
+          </option>
         )}
-        <p>Last login</p>
-        <p>{ format(new Date(profile.lastLogin), 'PPpp') }</p>
-      </div>
-
-      <BigButton onClick={ logout }>
-        Logout!
-      </BigButton>
-    </TitledPage>
+      </select>
+    </div>
   )
 }
+
+const Profile = ({ profile, profileOptions, logout }) => {
+  return <TitledPage title={ `Profile for ${ profile.firstName } ${ profile.lastName[0].toUpperCase() }` }>
+    <div className='my-6 text-lg grid gap-2 grid-cols-profile'>
+      <p>First name</p>
+      <p>{ profile.firstName }</p>
+      <p>Last name</p>
+      <p>{ profile.lastName }</p>
+      <p>Weight unit</p>
+      <UpdatingOptions
+        current={ profile.weightUnit }
+        options={ profileOptions.weightUnits }
+      />
+      <p>Length unit</p>
+      <UpdatingOptions
+        current={ profile.lengthUnit }
+        options={ profileOptions.lengthUnits }
+      />
+      <p>Last login</p>
+      <p>{ dayTime(profile.lastLogin) }</p>
+    </div>
+
+    <BigButton onClick={ logout }>
+      Logout!
+    </BigButton>
+  </TitledPage>
+}
+
 
 const mapStateToProps = state => ({
   profile: _.omit(

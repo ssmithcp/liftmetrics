@@ -12,14 +12,17 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
     default: 'lb',
     validate: validator.isWeightUnit,
+    required: true,
   },
   lengthUnit: {
     type: String,
     default: 'in',
     validate: validator.isLengthUnit,
+    required: true,
   },
   avatar: {
     type: String,
+    required: true,
   },
 })
 

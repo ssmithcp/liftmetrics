@@ -11,7 +11,11 @@ export const setProfile = profile => {
 export const getProfile = () => {
   const profile = localStorage.getItem(PROFILE_KEY)
   if (profile) {
-    return JSON.parse(profile)
+    const profileObj = JSON.parse(profile)
+    return {
+      ...profileObj,
+      lastLogin: new Date(profileObj.lastLogin)
+    }
   }
   return null
 }
