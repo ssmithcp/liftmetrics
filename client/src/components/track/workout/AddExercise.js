@@ -56,9 +56,9 @@ const AddExercise = ({ save }) => {
       >
         { sortedMovements.map(m =>
           <option key={ m.id } value={ m.id }>
-            { movements[m.id].name.length <= 34
-              ? movements[m.id].name
-              : movements[m.id].name.substring(0, 31) + '...'
+            { m.name.length <= 34
+              ? m.name
+              : m.name.substring(0, 31) + '...'
             }
           </option>
         )}

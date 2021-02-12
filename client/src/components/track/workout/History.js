@@ -1,19 +1,19 @@
-import { useEffect } from 'react'
-import { useSelector, connect } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { startOfDay, isToday } from 'date-fns'
 
-import { getExercises } from '../../../actions/exercise'
 import { normalize } from '../../../util/weight'
 
 import { day, dayTime } from '../../util/date'
 
-const History = ({ getExercises }) => {
-  useEffect(getExercises, [getExercises])
-
+const History = () => {
   const movements = useSelector(s => s.movement)
   const unit = useSelector(s => s.profile.weightUnit)
+
   const exercises = useSelector(s => s.exercise)
     .map(w => normalize(w, unit))
     .sort((a, b) => b.created.getTime() - a.created.getTime())
+
+  console.log(exercises)
 
   return (
     <div>
@@ -43,4 +43,4 @@ const History = ({ getExercises }) => {
   )
 }
 
-export default connect(null, { getExercises })(History)
+export default History
