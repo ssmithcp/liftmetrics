@@ -3,6 +3,8 @@ import { useState, useRef } from 'react'
 import Button from './Button'
 import Spinner from './Spinner'
 
+// TODO handle timer callbacks nicely when we navigate away from page before they fire
+
 const SaveButton = ({ doSave, disabled, className, ...rest }) => {
   const [saveEnabled, setSaveEnabled] = useState(true)
   const [displayedState, setDisplayedState] = useState('save')

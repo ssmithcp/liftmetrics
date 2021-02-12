@@ -25,7 +25,7 @@ const Icon = ({ name }) => {
       return <FaWeight />
     case routes.trackFood.title.toLowerCase():
       return <GiChickenLeg />
-    case routes.trackWorkout.title.toLowerCase():
+    case routes.trackExercise.title.toLowerCase():
       return <IoBarbellSharp />
     case routes.trackSleep.title.toLowerCase():
       return <FaBed />

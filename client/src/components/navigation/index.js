@@ -40,9 +40,14 @@ const routes = {
     title: 'Food',
     path: '/track/food',
   },
-  trackWorkout: {
+  trackExercise: {
     title: 'Workout',
-    path: '/track/workout',
+    path: '/track/exercise',
+  },
+  trackEditExercise: {
+    title: 'Edit exercise',
+    path: '/track/exercise/:id',
+    toPath: id => `/track/exercise/${ id }`
   },
   trackSleep: {
     title: 'Sleep',
