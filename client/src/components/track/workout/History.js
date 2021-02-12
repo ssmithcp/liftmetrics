@@ -22,7 +22,7 @@ const DayOfExercise = ({ day: d, movements }) => (
           index={ index }
           className='p-2 flex justify-between md:grid md:grid-cols-2 '
         >
-          <div className='flex items-center'>
+          <div className='flex items-center -ml-2 md:ml-0'>
             <EditPencil />
             { (movements[e.movement] && movements[e.movement].name)  || 'unknown' }
           </div>

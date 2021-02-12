@@ -25,16 +25,18 @@ const History = () => {
       <h2 className='text-xl mb-4'>Recent weigh-ins</h2>
       <div>
         { reversed.map((w, index) => (
-            <StripedRow index={ weights.length - index }>
+            <StripedRow
+              key={ w.created }
+              index={ weights.length - index }
+            >
               <NavLink
                 exact
                 to={ routes.trackEditWeight.toPath(w.id) }
-                key={ w.created }
-                className={ `p-2 flex items-center` }
+                className='p-2 pr-5 flex items-center justify-between md:justify-evenly'
               >
-                <div className='w-52 mx-4 md:mx-8 flex items-center'>
+                <div className='w-52 md:px-8 flex items-center'>
                   <EditPencil />
-                  <p className='pl-4'>{ `${ round(w.value) }${ w.unit }s` }</p>
+                  <p className='md:pl-4'>{ `${ round(w.value) }${ w.unit }s` }</p>
                 </div>
                 <ResponsiveDate date={ w.created } />
               </NavLink>
