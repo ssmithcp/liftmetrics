@@ -8,27 +8,31 @@ import { normalize } from '../../../util/weight'
 import StripedRow from '../StripedRow'
 import EditPencil from '../EditPencil'
 
-// show commas in total
-// link to 'edit exercise' page on click
+const withCommas = num => num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
 const DayOfExercise = ({ day: d, movements }) => (
   <div className='mb-8'>
-    <h3 className='mb-2 text-xl'>
-      { isToday(d.day) ? 'Today\'s workout'  : `Workout on ${ day(d.day) }` }
-    </h3>
+    <div className='flex items-center justify-between md:grid md:grid-cols-2'>
+      <h3 className='mb-2 text-xl'>
+        { isToday(d.day) ? 'Today\'s workout'  : `Workout on ${ day(d.day) }` }
+      </h3>
+      <p className='text-right md:text-left'>
+        { `Total volume: ${ withCommas(d.data.reduce((i, e) => i + (e.sets * e.reps * e.value), 0)) }${ d.data[0].unit }s` }
+      </p>
+    </div>
     { d.data.map((e, index) => (
         <StripedRow
           key={ e.created.getTime() }
           index={ index }
-          className='p-2 flex justify-between md:grid md:grid-cols-2 '
+          className='p-2 flex justify-between md:grid md:grid-cols-2'
         >
-          <div className='flex items-center -ml-2 md:ml-0'>
+          <div className='flex items-center -ml-3 md:ml-0'>
             <EditPencil />
             { (movements[e.movement] && movements[e.movement].name)  || 'unknown' }
           </div>
           <div className='flex items-center text-right md:text-left'>
             <p className='inline'>{ `${ e.sets } x ${ e.reps } x ${ e.value }${ e.unit }s` }</p>
-            <p className='hidden md:inline'>&nbsp;{ `= ${ e.sets * e.reps * e.value }${ e.unit }s` }</p>
+            <p className='hidden md:inline'>&nbsp;{ `= ${ withCommas(e.sets * e.reps * e.value) }${ e.unit }s` }</p>
           </div>
         </StripedRow>
     ))}
