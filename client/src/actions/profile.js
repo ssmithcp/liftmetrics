@@ -21,3 +21,12 @@ export const getProfile = () => async dispatch => {
     alertAndThrow(err, dispatch)
   }
 }
+
+export const update = ({ weightUnit, lengthUnit }) => async dispatch => {
+  try {
+    const res = await api.put('/profile/me', { weightUnit, lengthUnit })
+    profileUpdated(res.data)(dispatch)
+  } catch (err) {
+    alertAndThrow(err, dispatch)
+  }
+}

@@ -62,7 +62,7 @@ router.get('/me', async (req, res) => {
   res.json(profile).send()
 })
 
-router.put('/', async (req, res) => {
+router.put('/me', async (req, res) => {
   const source = req.body
   const userId = res.locals.user.id
   console.log('updating profile', source)

@@ -1,20 +1,31 @@
+import { useState } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import { IconContext } from 'react-icons'
+import { GoCheck } from 'react-icons/go'
 
+import { update } from '../../actions/profile'
 import { logout } from '../../actions/user'
 
 import BigButton from '../util/BigButton'
 import TitledPage from '../container/TitledPage'
 import { dayTime } from '../util/date'
 
+const UpdatingOptions = ({ current, options, doUpdate }) => {
+  const [showSaved, setShowSaved] = useState(false)
 
-const UpdatingOptions = ({ current, options }) => {
+  const savedNotification = () => {
+    setShowSaved(true)
+    // TODO handle case where we navigate away from profile before this fires
+    setTimeout(() => setShowSaved(false), 5000)
+  }
 
   return (
-    <div>
+    <div className='flex'>
       <select
         className='w-52'
         value={ current }
+        onChange={ e => doUpdate(e.target.value).then(savedNotification) }
       >
         { options.map(o =>
           <option key={ o } value={ o }>
@@ -22,11 +33,19 @@ const UpdatingOptions = ({ current, options }) => {
           </option>
         )}
       </select>
+      { showSaved && (
+        <div className='flex'>
+          <IconContext.Provider value={{ className: 'text-green-700 ml-3 mr-1 w-6 h-6' }}>
+            <GoCheck />
+          </IconContext.Provider>
+          <p>Saved!</p>
+        </div>
+      )}
     </div>
   )
 }
 
-const Profile = ({ profile, profileOptions, logout }) => {
+const Profile = ({ profile, profileOptions, update, logout }) => {
   return <TitledPage title={ `Profile for ${ profile.firstName } ${ profile.lastName[0].toUpperCase() }` }>
     <div className='my-6 text-lg grid gap-2 grid-cols-profile'>
       <p>First name</p>
@@ -35,11 +54,13 @@ const Profile = ({ profile, profileOptions, logout }) => {
       <p>{ profile.lastName }</p>
       <p>Weight unit</p>
       <UpdatingOptions
+        doUpdate={ val => update({ weightUnit: val }) }
         current={ profile.weightUnit }
         options={ profileOptions.weightUnits }
       />
       <p>Length unit</p>
       <UpdatingOptions
+        doUpdate={ val => update({ lengthUnit: val }) }
         current={ profile.lengthUnit }
         options={ profileOptions.lengthUnits }
       />
@@ -68,4 +89,4 @@ const mapStateToProps = state => ({
   )
 })
 
-export default connect(mapStateToProps, { logout })(Profile)
+export default connect(mapStateToProps, { update, logout })(Profile)
