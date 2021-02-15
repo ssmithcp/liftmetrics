@@ -1,13 +1,11 @@
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 
 import routes from '../../navigation'
 import { normalize } from '../../../util/weight'
 
+import TitledHistory from '../TitledHistory'
 import ResponsiveDate from '../ResponsiveDate'
-import EditPencil from '../EditPencil'
-import StripedRow from '../StripedRow'
 import WeightDisplay from '../WeightDisplay'
 
 const History = () => {
@@ -22,31 +20,13 @@ const History = () => {
   )
 
   return (
-    <div>
-      <h2 className='text-xl mb-4'>Recent weigh-ins</h2>
-      <div>
-        { reversed.map((w, index) => (
-            <StripedRow
-              key={ w.created }
-              index={ weights.length - index }
-            >
-              <NavLink
-                exact
-                to={ routes.trackEditWeight.toPath(w.id) }
-                className='p-2 pr-5 flex items-center justify-between md:justify-evenly'
-              >
-                <div className='w-52 md:px-8 flex items-center'>
-                  <EditPencil />
-                  <p className='md:pl-4'>
-                    <WeightDisplay value={ w.value } />
-                  </p>
-                </div>
-                <ResponsiveDate date={ w.created } />
-              </NavLink>
-            </StripedRow>
-        ))}
-      </div>
-    </div>
+    <TitledHistory
+      title='Recent weigh-ins'
+      rowData={ reversed }
+      toPath={ w => routes.trackEditWeight.toPath(w.id) }
+      renderName={ w => <WeightDisplay value={ w.value } /> }
+      renderDescription={ w => <ResponsiveDate date={ w.created } /> }
+    />
   )
 }
 
