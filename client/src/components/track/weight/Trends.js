@@ -4,6 +4,7 @@ import _ from 'lodash'
 
 import { isToday, addWeeks, addMonths } from 'date-fns'
 
+import { format } from '../WeightDisplay'
 import { normalize } from '../../../util/weight'
 
 import { IconContext } from 'react-icons'
@@ -29,9 +30,9 @@ const deltaToSummary = (weightDelta, unit) => {
     : unit
 
   if (weightDelta > 0) {
-    return `Gained ${ round(weightDelta) }${ unitDisplay }`
+    return `Gained ${ format(weightDelta, unitDisplay) }`
   }
-  return `Lost ${ Math.abs(round(weightDelta)) }${ unitDisplay }`
+  return `Lost ${ format(Math.abs(weightDelta), unitDisplay) }`
 }
 
 const valueOnDate = (values, date) => {

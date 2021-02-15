@@ -4,10 +4,11 @@ import { NavLink } from 'react-router-dom'
 
 import routes from '../../navigation'
 import { normalize } from '../../../util/weight'
-import { round } from './Trends'
+
 import ResponsiveDate from '../ResponsiveDate'
 import EditPencil from '../EditPencil'
 import StripedRow from '../StripedRow'
+import WeightDisplay from '../WeightDisplay'
 
 const History = () => {
   const unit = useSelector(s => s.profile.weightUnit)
@@ -36,7 +37,9 @@ const History = () => {
               >
                 <div className='w-52 md:px-8 flex items-center'>
                   <EditPencil />
-                  <p className='md:pl-4'>{ `${ round(w.value) }${ w.unit }s` }</p>
+                  <p className='md:pl-4'>
+                    <WeightDisplay value={ w.value } />
+                  </p>
                 </div>
                 <ResponsiveDate date={ w.created } />
               </NavLink>

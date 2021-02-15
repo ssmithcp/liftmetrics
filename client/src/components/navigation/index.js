@@ -61,6 +61,11 @@ const routes = {
     title: 'Measurement',
     path: '/track/measurement',
   },
+  trackEditMeasurement: {
+    title: 'Edit measurement',
+    path: '/track/measurement/:id',
+    toPath: id => `/track/measurement/${ id }`
+  },
   trackNote: {
     title: 'Note',
     path: '/track/note',
