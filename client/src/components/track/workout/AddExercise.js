@@ -5,6 +5,7 @@ import { save } from '../../../actions/exercise'
 
 import DecimalInput from '../../form/DecimalInput'
 import SaveButton from '../../util/SaveButton'
+import ResponsiveSelect from '../ResponsiveSelect'
 
 const AddExercise = ({ save }) => {
   const weightUnit = useSelector(s => s.profile.weightUnit)
@@ -47,22 +48,12 @@ const AddExercise = ({ save }) => {
   return (
     <form className='flex flex-col items-center'>
       <h1 className='text-xl mb-4'>Record exercise</h1>
-      <select
-        id='movement'
+      <ResponsiveSelect
         name='movement'
         value={ movement }
-        onChange={ e => setMovement(e.target.value) }
-        className='text-xl'
-      >
-        { sortedMovements.map(m =>
-          <option key={ m.id } value={ m.id }>
-            { m.name.length <= 34
-              ? m.name
-              : m.name.substring(0, 31) + '...'
-            }
-          </option>
-        )}
-      </select>
+        setValue={ setMovement }
+        values={ sortedMovements }
+      />
       <div>
         <label htmlFor='sets' className='text-lg'>Sets</label>
         <DecimalInput

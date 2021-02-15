@@ -5,6 +5,7 @@ import { save } from '../../../actions/measurement'
 
 import DecimalInput from '../../form/DecimalInput'
 import SaveButton from '../../util/SaveButton'
+import ResponsiveSelect from '../ResponsiveSelect'
 
 const AddMeasurement = ({ save }) => {
   const lengthUnit = useSelector(s => s.profile.lengthUnit)
@@ -47,22 +48,12 @@ const AddMeasurement = ({ save }) => {
   return (
     <form className='flex flex-col items-center'>
       <h1 className='text-xl mb-4'>Record measurement</h1>
-      <select
-        id='site'
+      <ResponsiveSelect
         name='site'
         value={ site }
-        onChange={ e => setSite(e.target.value) }
-        className='text-xl'
-      >
-        { sortedSites.map(m =>
-          <option key={ m.id } value={ m.id }>
-            { m.name.length <= 34
-              ? m.name
-              : m.name.substring(0, 31) + '...'
-            }
-          </option>
-        )}
-      </select>
+        setValue={ setSite }
+        values={ sortedSites }
+      />
       <div>
         <DecimalInput
           name='length'
