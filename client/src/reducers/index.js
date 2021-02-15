@@ -5,6 +5,7 @@ import profile from './profile'
 import weight from './weight'
 import movement from './movement'
 import exercise from './exercise'
+import measurementSite from './measurementSite'
 
 export default combineReducers({
   alert,
@@ -12,4 +13,5 @@ export default combineReducers({
   weight,
   movement,
   exercise,
+  measurementSite,
 })
