@@ -67,7 +67,7 @@ const AddMeasurement = ({ save }) => {
       </div>
       <div className='flex items-center text-xl mt-5'>
         <p>Flexed</p>
-        <input type='checkbox' name='flexed' className='ml-4' onChange={ e => setFlexed(e.target.checked)} />
+        <input type='checkbox' name='flexed' className='ml-3' onChange={ e => setFlexed(e.target.checked)} />
       </div>
       <div>
         <DecimalInput

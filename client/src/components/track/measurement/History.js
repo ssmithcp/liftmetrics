@@ -24,7 +24,7 @@ const History = () => {
       title='Recent measurements'
       rowData={ reversed }
       toPath={ m => routes.trackEditMeasurement.toPath(m.id) }
-      renderName={ m => `${ m.value }${ m.unit } ${ sites[m.site].name } ${ m.side !== 'N/A' ? m.side : '' }${ m.flexed ? ' flexed' : '' }` }
+      renderName={ m => `${ sites[m.site].name } ${ m.side !== 'N/A' ? m.side : '' }${ m.flexed ? ' flexed' : '' } - ${ m.value }${ m.unit }` }
       renderDescription={ m => <ResponsiveDate date={ m.created } /> }
     />
   )
