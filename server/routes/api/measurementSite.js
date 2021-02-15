@@ -6,27 +6,27 @@ const envelope = require('../../models/envelope')
 
 router.get('/site', async (req, res) => {
   const userId = res.locals.user.id
-  let definitions = await MeasurementSite.find({ user: userId })
+  let sites = await MeasurementSite.find({ user: userId })
 
-  if (definitions.length === 0) {
+  if (sites.length === 0) {
     const session = await MeasurementSite.startSession()
 
     await session.withTransaction(async () => {
-      definitions = await MeasurementSite.find({ user: userId })
+      sites = await MeasurementSite.find({ user: userId })
 
-      if (definitions.length === 0) {
+      if (sites.length === 0) {
         const promises = MeasurementSite.preloads.map(m => MeasurementSite.create({
           user: userId,
           ...m,
         }))
 
         await Promise.all(promises)
-        definitions = await MeasurementSite.find({ user: userId })
+        sites = await MeasurementSite.find({ user: userId })
       }
     })
   }
 
-  res.json(envelope(definitions, req.query))
+  res.json(envelope(sites, req.query))
 })
 
 router.post('/site', async (req, res) => {

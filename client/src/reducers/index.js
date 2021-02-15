@@ -6,6 +6,7 @@ import weight from './weight'
 import movement from './movement'
 import exercise from './exercise'
 import measurementSite from './measurementSite'
+import measurement from './measurement'
 
 export default combineReducers({
   alert,
@@ -14,4 +15,5 @@ export default combineReducers({
   movement,
   exercise,
   measurementSite,
+  measurement,
 })

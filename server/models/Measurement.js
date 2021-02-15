@@ -12,7 +12,7 @@ const MeasurementSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  definition: {
+  site: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'measurementSite',
     required: true,

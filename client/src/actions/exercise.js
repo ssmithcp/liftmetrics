@@ -4,7 +4,7 @@ import { defaultRange } from './shared'
 
 import { ADD_EXERCISE, ADD_EXERCISES } from '../reducers/exercise'
 
-export const save = ({ movement, sets, reps, value, unit }) => async dispatch => {
+export const save = ({ movement, sets, reps, value, unit, note }) => async dispatch => {
   try {
     const res = await api.post('/exercise', {
       movement,
@@ -12,6 +12,7 @@ export const save = ({ movement, sets, reps, value, unit }) => async dispatch =>
       reps,
       value,
       unit,
+      note,
     })
     dispatch({
       type: ADD_EXERCISE,
