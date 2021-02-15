@@ -5,7 +5,7 @@ import StripedRow from './StripedRow'
 
 const TitledHistory = ({ title, rowData, toPath, renderName, renderDescription }) => (
   <div>
-    <h2 className='text-xl mb-4'>{ title }</h2>
+    { title && <h2 className='text-xl mb-4'>{ title }</h2> }
     <div>
       { rowData.map((e, index) => (
           <StripedRow

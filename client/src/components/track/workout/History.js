@@ -1,15 +1,13 @@
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { startOfDay, isToday } from 'date-fns'
-import { NavLink } from 'react-router-dom'
 
 import routes from '../../navigation'
 import { day } from '../../util/date'
 import { normalize } from '../../../util/weight'
 
 import { format } from '../WeightDisplay'
-import StripedRow from '../StripedRow'
-import EditPencil from '../EditPencil'
+import TitledHistory from '../TitledHistory'
 
 const DayOfExercise = ({ day: d, movements }) => (
   <div className='mb-8'>
@@ -21,24 +19,17 @@ const DayOfExercise = ({ day: d, movements }) => (
         { `Total volume: ${ format(d.data.reduce((i, e) => i + (e.sets * e.reps * e.value), 0), d.data[0].unit) }` }
       </p>
     </div>
-    { d.data.map((e, index) => (
-        <StripedRow key={ e.created.getTime() } index={ index }>
-          <NavLink
-            exact
-            to={ routes.trackEditExercise.toPath(e.id) }
-            className='p-2 flex justify-between md:grid md:grid-cols-2'
-          >
-            <div className='flex items-center -ml-3 md:ml-0'>
-              <EditPencil />
-              { (movements[e.movement] && movements[e.movement].name)  || 'unknown' }
-            </div>
-            <div className='flex items-center text-right md:text-left'>
-              <p className='inline'>{ `${ e.sets } x ${ e.reps } x ${ format(e.value, e.unit) }` }</p>
-              <p className='hidden md:inline'>&nbsp;{ `= ${ format(e.sets * e.reps * e.value, e.unit) }` }</p>
-            </div>
-          </NavLink>
-        </StripedRow>
-    ))}
+    <TitledHistory
+      rowData={ d.data }
+      toPath={ e => routes.trackEditExercise.toPath(e.id) }
+      renderName={ e => (movements[e.movement] && movements[e.movement].name)  || 'unknown' }
+      renderDescription={ e => (
+        <>
+          <p className='inline'>{ `${ e.sets } x ${ e.reps } x ${ format(e.value, e.unit) }` }</p>
+          <p className='hidden md:inline'>&nbsp;{ `= ${ format(e.sets * e.reps * e.value, e.unit) }` }</p>
+        </>
+      )}
+    />
   </div>
 )
 
