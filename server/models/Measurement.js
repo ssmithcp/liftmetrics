@@ -14,7 +14,7 @@ const MeasurementSchema = new mongoose.Schema({
   },
   definition: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'measurementDefinition',
+    ref: 'measurementSite',
     required: true,
   },
   value: {

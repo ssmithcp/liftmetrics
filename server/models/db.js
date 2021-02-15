@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 
 const config = require('../config')
 
+/* global process */
+
 const connect = async () => {
   try {
     await mongoose.connect(config.get('mongoURI'),
