@@ -1,5 +1,12 @@
 import TitledPage from '../container/TitledPage'
-import Card from './Card'
+
+const Card = ({ children, className = ''}) => (
+  <div className={ `flex flex-col justify-center items-center ${ className }` }>
+    <div>
+      { children }
+    </div>
+  </div>
+)
 
 const ThreeCardLayout = ({ title, TopLeft, TopRight, Bottom }) => (
   <TitledPage title={ title } className='grid grid-cols-1 gap-6'>

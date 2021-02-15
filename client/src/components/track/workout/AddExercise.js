@@ -91,7 +91,6 @@ const AddExercise = ({ save }) => {
         />
         <p className='ml-2 inline'>{ `${ pluralWeight }` }</p>
       </div>
-      <input type='hidden' name='unit' value={ weightUnit } />
       <SaveButton
         doSave={ onSubmit }
         tabIndex='0'
