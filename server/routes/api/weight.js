@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     ...source,
   })
 
-  res.json(sanitize(newWeight)).send()
+  res.json(sanitize(newWeight))
 })
 
 module.exports = router

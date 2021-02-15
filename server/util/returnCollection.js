@@ -26,7 +26,7 @@ const returnCollection = async (model, req, res) => {
 
   const results = await model.find(filters)
 
-  res.json(envelope(results, req.query)).send()
+  res.json(envelope(results, req.query))
 }
 
 module.exports = returnCollection

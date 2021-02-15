@@ -59,7 +59,7 @@ const wrap = (profile, user) => ({
 
 router.get('/me', async (req, res) => {
   const profile = await getOrCreate(res.locals.user.id)
-  res.json(profile).send()
+  res.json(profile)
 })
 
 router.put('/me', async (req, res) => {
@@ -74,7 +74,7 @@ router.put('/me', async (req, res) => {
   )
 
   const user = await User.findById(userId)
-  res.json(wrap(updatedProfile, user)).send()
+  res.json(wrap(updatedProfile, user))
 })
 
 module.exports = router

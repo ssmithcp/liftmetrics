@@ -12,14 +12,14 @@ router.get('/',
       created: {},
     }
 
-    res.json(envelope({}, req.query)).send()
+    res.json(envelope({}, req.query))
   }
 )
 
 router.post('/', async (req, res) => {
   const source = req.body
 
-  res.json(envelope({}, req.query)).send()
+  res.json(envelope({}, req.query))
 })
 
 module.exports = router

@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     })
   }
 
-  res.json(envelope(movements, req.query)).send()
+  res.json(envelope(movements, req.query))
 })
 
 router.post('/', async (req, res) => {
@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
     ...source,
   })
 
-  res.json(sanitize(newWeight)).send()
+  res.json(sanitize(newWeight))
 })
 
 module.exports = router
