@@ -17,7 +17,7 @@ const tiles = [
     ...routes.trackSupplement,
     comingSoon: true,
   },
-  ...routes.trackMeasurement,
+  routes.trackMeasurement,
   {
     ...routes.trackGoal,
     comingSoon: true,
