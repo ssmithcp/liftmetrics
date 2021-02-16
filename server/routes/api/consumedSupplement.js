@@ -2,24 +2,24 @@ const router = require('express-async-router').AsyncRouter()
 
 const returnCollection = require('../../util/returnCollection')
 
-const Exercise = require('../../models/Exercise')
+const ConsumedSupplement = require('../../models/ConsumedSupplement')
 const sanitize = require('../../models/sanitize')
 
 router.get('/',
   returnCollection.validate,
-  returnCollection(Exercise)
+  returnCollection(ConsumedSupplement)
 )
 
 router.post('/', async (req, res) => {
   const source = req.body
-  console.log('adding exercise', source)
+  console.log('adding consumed supplement', source)
 
-  const newExercise = await Exercise.create({
+  const newConsumedSupplement = await ConsumedSupplement.create({
     user: res.locals.user.id,
     ...source,
   })
 
-  res.json(sanitize(newExercise))
+  res.json(sanitize(newConsumedSupplement))
 })
 
 module.exports = router

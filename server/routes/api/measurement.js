@@ -7,10 +7,7 @@ const sanitize = require('../../models/sanitize')
 
 router.get('/',
   returnCollection.validate,
-  async (req, res) => {
-    console.log('get measurements with query:', req.query)
-    await returnCollection(Measurement, req, res)
-  }
+  returnCollection(Measurement)
 )
 
 router.post('/', async (req, res) => {

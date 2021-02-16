@@ -7,10 +7,7 @@ const sanitize = require('../../models/sanitize')
 
 router.get('/',
   returnCollection.validate,
-  async (req, res) => {
-    console.log('get weights with query:', req.query)
-    await returnCollection(Weight, req, res)
-  }
+  returnCollection(Weight)
 )
 
 router.post('/', async (req, res) => {

@@ -4,7 +4,7 @@ const { formatErrors } = require('./errorFormat')
 
 const envelope = require('../models/envelope')
 
-const returnCollection = async (model, req, res) => {
+const returnCollection = model => async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res
