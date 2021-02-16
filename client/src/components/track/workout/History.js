@@ -9,7 +9,7 @@ import { normalize } from '../../../util/weight'
 import { format } from '../WeightDisplay'
 import TitledHistory from '../TitledHistory'
 
-const DayOfExercise = ({ day: d, movements }) => (
+const DayOfExercise = ({ day: d, movements, offset }) => (
   <div className='mb-8'>
     <div className='flex items-center justify-between md:grid md:grid-cols-2'>
       <h3 className='mb-2 text-xl'>
@@ -29,6 +29,7 @@ const DayOfExercise = ({ day: d, movements }) => (
           <p className='hidden md:inline'>&nbsp;{ `= ${ format(e.sets * e.reps * e.value, e.unit) }` }</p>
         </>
       )}
+      indexOffset={ offset }
     />
   </div>
 )
@@ -57,15 +58,21 @@ const History = () => {
       }))
   ), [exercises, unit])
 
+  let offset = 0
+
   return (
     <div>
-      { exercisesByDay.map(d =>
-          <DayOfExercise
+      { exercisesByDay.map(d => {
+          const oldOffset = offset
+          offset += d.data.length
+
+          return <DayOfExercise
             key={ d.day.getTime() }
             day={ d }
             movements={ movements }
+            offset={ oldOffset }
           />
-      )}
+      })}
     </div>
   )
 }
