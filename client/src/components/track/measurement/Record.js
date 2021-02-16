@@ -58,16 +58,16 @@ const AddMeasurement = ({ save }) => {
       />
       <div className='flex items-center text-xl mt-5'>
         <p>Side:</p>
-        <input type='radio' id='right-side' name='side' value='right' className='ml-4 mr-2' onChange={ onSideChange } />
+        <input type='radio' id='right-side' name='side' value='right' className='ml-4 mr-2' onChange={ onSideChange } checked={ side === 'right' }/>
         <label htmlFor='right-side'>Right</label>
-        <input type='radio' id='left-side' name='side' value='left' className='ml-4 mr-2' onChange={ onSideChange } />
+        <input type='radio' id='left-side' name='side' value='left' className='ml-4 mr-2' onChange={ onSideChange } checked={ side === 'left' }/>
         <label htmlFor='left-side'>Left</label>
         <input type='radio' id='no-side' name='side' value='N/A' className='ml-4 mr-2' onChange={ onSideChange } checked={ side === 'N/A' }/>
         <label htmlFor='no-side'>N/A</label>
       </div>
       <div className='flex items-center text-xl mt-5'>
         <p>Flexed</p>
-        <input type='checkbox' name='flexed' className='ml-3' onChange={ e => setFlexed(e.target.checked)} />
+        <input type='checkbox' name='flexed' className='ml-3' checked={ flexed } onChange={ e => setFlexed(e.target.checked)} />
       </div>
       <div>
         <DecimalInput

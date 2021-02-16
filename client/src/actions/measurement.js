@@ -4,7 +4,7 @@ import { defaultRange } from './shared'
 
 import { ADD_MEASUREMENT, ADD_MEASUREMENTS } from '../reducers/measurement'
 
-export const save = ({ site, value, unit, side, flexed, note }) => async dispatch => {
+export const save = ({ site, value, unit, side, flexed, created, note }) => async dispatch => {
   try {
     const res = await api.post('/measurement', {
       site,
@@ -12,7 +12,8 @@ export const save = ({ site, value, unit, side, flexed, note }) => async dispatc
       unit,
       side,
       flexed,
-      note
+      created,
+      note,
     })
     dispatch({
       type: ADD_MEASUREMENT,
