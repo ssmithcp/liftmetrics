@@ -10,7 +10,7 @@ const ConsumedSupplement = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  site: {
+  supplement: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'supplement',
     required: true,

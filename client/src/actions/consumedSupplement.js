@@ -4,10 +4,10 @@ import { defaultRange } from './shared'
 
 import { ADD_CONSUMED_SUPPLEMENT, ADD_CONSUMED_SUPPLEMENTS } from '../reducers/consumedSupplement'
 
-export const save = ({ site, servings }) => async dispatch => {
+export const save = ({ supplement, servings }) => async dispatch => {
   try {
     const res = await api.post('/supplement/consumed', {
-      site,
+      supplement,
       servings,
     })
     dispatch({
@@ -32,4 +32,4 @@ export const getConsumedSupplementsFrom = (startDate) => async dispatch => {
   }
 }
 
-export const getMeasurements = () => getConsumedSupplementsFrom(defaultRange())
+export const getConsumedSupplements = () => getConsumedSupplementsFrom(defaultRange())

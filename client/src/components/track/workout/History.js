@@ -19,18 +19,20 @@ const DayOfExercise = ({ day: d, movements, offset }) => (
         { `Total volume: ${ format(d.data.reduce((i, e) => i + (e.sets * e.reps * e.value), 0), d.data[0].unit) }` }
       </p>
     </div>
-    <TitledHistory
-      rowData={ d.data }
-      toPath={ e => routes.trackEditExercise.toPath(e.id) }
-      renderName={ e => (movements[e.movement] && movements[e.movement].name)  || 'unknown' }
-      renderDescription={ e => (
-        <>
-          <p className='inline'>{ `${ e.sets } x ${ e.reps } x ${ format(e.value, e.unit) }` }</p>
-          <p className='hidden md:inline'>&nbsp;{ `= ${ format(e.sets * e.reps * e.value, e.unit) }` }</p>
-        </>
-      )}
-      indexOffset={ offset }
-    />
+    { movements && Object.keys(movements).length > 0 && (
+        <TitledHistory
+          rowData={ d.data }
+          toPath={ e => routes.trackEditExercise.toPath(e.id) }
+          renderName={ e => (movements[e.movement] && movements[e.movement].name)  || 'unknown' }
+          renderDescription={ e => (
+            <>
+              <p className='inline'>{ `${ e.sets } x ${ e.reps } x ${ format(e.value, e.unit) }` }</p>
+              <p className='hidden md:inline'>&nbsp;{ `= ${ format(e.sets * e.reps * e.value, e.unit) }` }</p>
+            </>
+          )}
+          indexOffset={ offset }
+        />
+    )}
   </div>
 )
 

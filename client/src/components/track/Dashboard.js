@@ -13,10 +13,7 @@ const tiles = [
   },
   routes.trackWeight,
   routes.trackExercise,
-  {
-    ...routes.trackSupplement,
-    comingSoon: true,
-  },
+  routes.trackSupplement,
   routes.trackMeasurement,
   {
     ...routes.trackGoal,

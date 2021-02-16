@@ -23,6 +23,7 @@ import EditWeight from './track/weight/EditWeight'
 import Workout from './track/workout/Index'
 import EditExercise from './track/workout/EditExercise'
 import Measurement from './track/measurement/Index'
+import Supplement from './track/supplement/Index'
 
 import AnalyzeDashboard from './analyze/Dashboard'
 
@@ -79,6 +80,8 @@ const App = ({ logout }) => {
         <PrivateRoute path={ routes.trackEditExercise.path } render={ withContainer(EditExercise) } />
 
         <PrivateRoute path={ routes.trackMeasurement.path } exact render={ withContainer(Measurement) } />
+
+        <PrivateRoute path={ routes.trackSupplement.path } exact render={ withContainer(Supplement) } />
 
         <PrivateRoute path={ routes.analyzeHome.path } exact render={ withContainer(AnalyzeDashboard) } />
 

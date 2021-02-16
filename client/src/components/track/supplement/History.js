@@ -2,30 +2,27 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
 import routes from '../../navigation'
-import { normalize } from '../../../util/length'
 
 import ResponsiveDate from '../ResponsiveDate'
 import TitledHistory from '../TitledHistory'
 
 const History = () => {
-  const unit = useSelector(s => s.profile.lengthUnit)
-  const measurements = useSelector(s => s.measurement)
-  const sites = useSelector(s => s.measurementSite)
+  const consumedSupplements = useSelector(s => s.consumedSupplement)
+  const supplements = useSelector(s => s.supplement)
 
   const reversed = useMemo(() =>
-    measurements
-      .map(w => normalize(w, unit))
+    consumedSupplements
       .sort((a, b) => b.created.getTime() - a.created.getTime()),
-    [measurements, unit]
+    [consumedSupplements]
   )
 
   return (
-    sites && Object.keys(sites).length > 0
+    supplements && Object.keys(supplements).length > 0
     ? <TitledHistory
-        title='Recent measurements'
+        title='Recent supplements'
         rowData={ reversed }
         toPath={ m => routes.trackEditMeasurement.toPath(m.id) }
-        renderName={ m => `${ sites[m.site].name } ${ m.side !== 'N/A' ? m.side : '' }${ m.flexed ? ' flexed' : '' } - ${ m.value }${ m.unit }` }
+        renderName={ m => `${ supplements[m.supplement].name } - ${ m.servings } x ${ supplements[m.supplement].value }${ supplements[m.supplement].unit }` }
         renderDescription={ m => <ResponsiveDate date={ m.created } /> }
       />
     : <></>
