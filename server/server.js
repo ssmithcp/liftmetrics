@@ -32,8 +32,9 @@ app.use(urlPrefix + '/profile', require('./routes/api/profile'))
 app.use(urlPrefix + '/weight', require('./routes/api/weight'))
 app.use(urlPrefix + '/movement', require('./routes/api/movement'))
 app.use(urlPrefix + '/exercise', require('./routes/api/exercise'))
-app.use(urlPrefix + '/measurement', require('./routes/api/measurementSite'))
-app.use(urlPrefix + '/measurement', require('./routes/api/measurement'))
+app.use(urlPrefix + '/site', require('./routes/api/measurementSite'))
+app.use(urlPrefix + '/site/measurement', require('./routes/api/measurement'))
+app.use(urlPrefix + '/supplement', require('./routes/api/supplement'))
 
 /* global __dirname, process */
 

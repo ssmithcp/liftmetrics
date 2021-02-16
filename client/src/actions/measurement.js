@@ -6,7 +6,7 @@ import { ADD_MEASUREMENT, ADD_MEASUREMENTS } from '../reducers/measurement'
 
 export const save = ({ site, value, unit, side, flexed, created, note }) => async dispatch => {
   try {
-    const res = await api.post('/measurement', {
+    const res = await api.post('/site/measurement', {
       site,
       value,
       unit,
@@ -26,7 +26,7 @@ export const save = ({ site, value, unit, side, flexed, created, note }) => asyn
 
 export const getMeasurementFrom = (startDate) => async dispatch => {
   try {
-    const res = await api.get('/measurement', { params: { startDate } })
+    const res = await api.get('/site/measurement', { params: { startDate } })
 
     dispatch({
       type: ADD_MEASUREMENTS,

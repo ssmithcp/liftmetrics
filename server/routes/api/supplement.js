@@ -1,21 +1,21 @@
 const router = require('express-async-router').AsyncRouter()
 
-const Movement = require('../../models/Movement')
+const Supplement = require('../../models/Supplement')
 const getWithPreloads = require('../../util/getWithPreloads')
 const sanitize = require('../../models/sanitize')
 
-router.get('/', getWithPreloads(Movement))
+router.get('/', getWithPreloads(Supplement))
 
 router.post('/', async (req, res) => {
   const source = req.body
-  console.log('adding movement', source)
+  console.log('adding supplement', source)
 
-  const newWeight = await Movement.create({
+  const newSupplement = await Supplement.create({
     user: res.locals.user.id,
     ...source,
   })
 
-  res.json(sanitize(newWeight))
+  res.json(sanitize(newSupplement))
 })
 
 module.exports = router
