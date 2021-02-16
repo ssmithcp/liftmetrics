@@ -7,7 +7,7 @@ export const ADD_EXERCISE = 'ADD_EXERCISE'
 export const DELETE_EXERCISE = 'DELETE_EXERCISE'
 export const CLEAR_EXERCISES = 'CLEAR_EXERCISES'
 
-function EXERCISE(state = [], action) {
+function exercise(state = [], action) {
   switch (action.type) {
     case ADD_EXERCISE:
       return _.uniqBy(state.concat([action.payload]), w => w.id)
@@ -23,4 +23,4 @@ function EXERCISE(state = [], action) {
   }
 }
 
-export default EXERCISE
+export default exercise
