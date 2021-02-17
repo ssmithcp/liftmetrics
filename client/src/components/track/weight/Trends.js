@@ -24,15 +24,10 @@ const deltaToSummary = (weightDelta, unit) => {
   if (Math.abs(weightDelta) < LITTLE_CHANGE_DELTA) {
     return 'Effectively the same'
   }
-
-  const unitDisplay = Math.abs(weightDelta) > 1
-    ? (unit + 's')
-    : unit
-
   if (weightDelta > 0) {
-    return `Gained ${ format(weightDelta, unitDisplay) }`
+    return `Gained ${ format(weightDelta, unit) }`
   }
-  return `Lost ${ format(Math.abs(weightDelta), unitDisplay) }`
+  return `Lost ${ format(Math.abs(weightDelta), unit) }`
 }
 
 const valueOnDate = (values, date) => {
