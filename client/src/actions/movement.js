@@ -22,8 +22,7 @@ export const save = ({ name, type, targetedMuscles, modifiers }) => async dispat
 
 export const update = ({ id, name, type, targetedMuscles, modifiers }) => async dispatch => {
   try {
-    const res = await api.put('/movement', {
-      id,
+    const res = await api.put('/movement/' + id, {
       name,
       type,
       targetedMuscles,

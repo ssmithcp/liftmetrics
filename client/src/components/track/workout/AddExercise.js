@@ -5,7 +5,7 @@ import { save } from '../../../actions/exercise'
 
 import DecimalInput from '../../form/DecimalInput'
 import SaveButton from '../../util/SaveButton'
-import ResponsiveSelect from '../ResponsiveSelect'
+import MovementSelect from './MovementSelect'
 import routes from '../../navigation'
 import InternalLink from '../../navigation/InternalLink'
 
@@ -51,11 +51,10 @@ const AddExercise = ({ save }) => {
     <div>
       <form className='flex flex-col items-center'>
         <h1 className='text-xl mb-4'>Record exercise</h1>
-        <ResponsiveSelect
-          name='movement'
-          value={ movement }
-          setValue={ setMovement }
-          values={ sortedMovements }
+        <MovementSelect
+          movement={ movement }
+          setMovement={ setMovement }
+          movements={ sortedMovements }
         />
         <div>
           <label htmlFor='sets' className='text-lg'>Sets</label>
