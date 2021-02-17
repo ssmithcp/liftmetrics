@@ -68,16 +68,14 @@ const SaveButton = ({ doSave, disabled, className, ...rest }) => {
       disabled={ disabled || !saveEnabled }
       onClick={ onClick }
     >
-      <div className='flex justify-center'>
+      <div className='relative flex justify-center'>
         { displayedState === 'save' && <p>Save </p> }
-        { displayedState === 'saving' && (
-          <>
-            <p>Saving</p>
-            <Spinner className='fixed transform translate-x-11' />
-          </>
-        )}
+        { displayedState === 'saving' && <p>Saving</p> }
         { displayedState === 'saved' && <p>Saved!</p> }
         { displayedState === 'timedout' && <p>Save timed out, try again later!</p> }
+        <Spinner
+          className={ `ml-1 ${ displayedState !== 'saving' ? 'hidden' : '' }` }
+        />
       </div>
     </Button>
   )
