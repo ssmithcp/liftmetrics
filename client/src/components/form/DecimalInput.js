@@ -17,7 +17,7 @@ const DecimalInput = ({ name, placeholder, value, setValue, className }) => {
       name={ name }
       value={ value }
       onChange={ e => maybeSetValue(e.target.value) }
-      className={ `text-center ${ className }` }
+      className={ `my-3 text-center ${ className }` }
     />
   )
 }

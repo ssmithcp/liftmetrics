@@ -39,6 +39,8 @@ MovementSchema.index({ user: 1 })
 
 module.exports = mongoose.model('movement', MovementSchema)
 
+module.exports.types = types
+
 const movementPreloads = [
   {
     name: 'low bar back squat',

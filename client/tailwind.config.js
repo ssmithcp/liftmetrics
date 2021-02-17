@@ -22,6 +22,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         "profile": "180px auto",
+        "add-movement": "130px auto",
       },
     },
   },

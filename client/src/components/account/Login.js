@@ -50,6 +50,7 @@ const Login = ({ isLoggedIn, login }) => {
           name='email'
           value={ formData.email }
           onChange={ onChange }
+          className='my-3'
         />
         <Input
           required
@@ -61,6 +62,7 @@ const Login = ({ isLoggedIn, login }) => {
           autoComplete='false'
           value={ formData.password }
           onChange={ onChange }
+          className='my-3'
         />
         <SubmitButton
           value='Login'

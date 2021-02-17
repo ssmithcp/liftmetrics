@@ -20,6 +20,24 @@ export const save = ({ name, type, targetedMuscles, modifiers }) => async dispat
   }
 }
 
+export const update = ({ id, name, type, targetedMuscles, modifiers }) => async dispatch => {
+  try {
+    const res = await api.put('/movement', {
+      id,
+      name,
+      type,
+      targetedMuscles,
+      modifiers,
+    })
+    dispatch({
+      type: ADD_MOVEMENT,
+      payload: res.data,
+    })
+  } catch (err) {
+    alertAndThrow(err, dispatch)
+  }
+}
+
 export const getMovements = () => async dispatch => {
   try {
     const res = await api.get('/movement')

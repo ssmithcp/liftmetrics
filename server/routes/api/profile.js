@@ -5,6 +5,7 @@ const _ = require('lodash')
 const User = require('../../models/User')
 const Profile = require('../../models/Profile')
 const units = require('../../models/units')
+const { types: movementTypes } = require('../../models/Movement')
 
 const profileSanitize = res => {
   const copy = {
@@ -55,6 +56,7 @@ const wrap = (profile, user) => ({
   roles: user.roles,
   availableWeightUnits: units.weight,
   availableLengthUnits: units.length,
+  availableMovementTypes: movementTypes,
 })
 
 router.get('/me', async (req, res) => {

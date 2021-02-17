@@ -72,6 +72,7 @@ const SignUp = ({ isLoggedIn, register }) => {
           minLength='3'
           maxLength='50'
           onChange={ onChange }
+          className='my-3'
         />
         <Input
           required
@@ -82,6 +83,7 @@ const SignUp = ({ isLoggedIn, register }) => {
           minLength='1'
           maxLength='50'
           onChange={ onChange }
+          className='my-3'
         />
         <Input
           required
@@ -92,6 +94,7 @@ const SignUp = ({ isLoggedIn, register }) => {
           name='email'
           value={ formData.email }
           onChange={ onChange }
+          className='my-3'
         />
         <div>
           <button
@@ -109,7 +112,7 @@ const SignUp = ({ isLoggedIn, register }) => {
             placeholder='Password'
             name='password'
             autoComplete='false'
-            className='block w-full'
+            className='my-3 block w-full'
             value={ formData.password }
             onChange={ onChange }
           />
