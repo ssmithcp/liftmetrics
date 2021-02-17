@@ -42,7 +42,7 @@ const EditMovement = ({ getMovements, save, update }) => {
   },
   [movements, movementTypes])
 
-  const [movement, setMovement] = useState('')
+  const [movement, setMovement] = useState('new_movement')
   const [name, setName] = useState('')
   const [movementType, setMovementType] = useState(movementTypes[0].id)
   const [modifiers, setModifiers] = useState('')
@@ -139,7 +139,7 @@ const EditMovement = ({ getMovements, save, update }) => {
           <SaveButton
             doSave={ maybeSave }
             tabIndex='0'
-            disabled={ movement === '' }
+            disabled={ name === '' }
           />
         </div>
       </div>
