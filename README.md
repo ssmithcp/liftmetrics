@@ -9,7 +9,7 @@ Once registered, get a connection string to connect: [Get connection string](htt
 
 ## ENV variables
 
-'mongoURI', 'isDev' and 'jwtSecret' config variables need to be set to run. To develop locally, I suggest adding the following to your .bashrc file
+'mongoURI', 'isDev' and 'jwtSecret' config variables need to be set to run. To develop locally, I suggest adding the following to your ~/.bashrc file
 
 `export MONGO_URI="MONGO_CONNECTION_STRING_HERE"`
 

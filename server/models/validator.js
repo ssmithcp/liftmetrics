@@ -59,6 +59,10 @@ const freeformArray = (name, arrayMax, lengthMin, lengthMax) => ([
   arrayItemLength(name, lengthMin, lengthMax),
 ])
 
+const toLower = n => n.toLowerCase()
+
+const toLowerList = l => l.map(toLower)
+
 module.exports = {
   alphaString,
   namedLength,
@@ -71,4 +75,6 @@ module.exports = {
   lengthInRange,
   intInRange,
   freeformArray,
+  toLower,
+  toLowerList,
 }

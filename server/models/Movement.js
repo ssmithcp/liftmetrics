@@ -17,6 +17,7 @@ const MovementSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: validator.namedLength('Name', 1, 100),
+    set: validator.toLower,
   },
   type: {
     type: String,
@@ -27,11 +28,13 @@ const MovementSchema = new mongoose.Schema({
     type: [String],
     default: [ ],
     validate: validator.freeformArray('Targeted muscle', 25, 1, 100),
+    set: validator.toLowerList,
   },
   modifiers: {
     type: [String],
     default: [ ],
     validate: validator.freeformArray('Modifier', 25, 1, 100),
+    set: validator.toLowerList,
   },
 })
 

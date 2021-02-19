@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const validator = require('./validator')
 
-const Supplement = new mongoose.Schema({
+const SupplementSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -14,6 +14,7 @@ const Supplement = new mongoose.Schema({
     type: String,
     required: true,
     validate: validator.namedLength('Name', 1, 512),
+    set: validator.toLower,
   },
   value: {
     type: Number,
@@ -27,9 +28,13 @@ const Supplement = new mongoose.Schema({
   },
 })
 
-Supplement.index({ user: 1 })
+SupplementSchema.index({ user: 1 })
 
-module.exports = mongoose.model('supplement', Supplement)
+SupplementSchema.pre('save', m => {
+  console.log(m)
+})
+
+module.exports = mongoose.model('supplement', SupplementSchema)
 
 const preloads = [
   {

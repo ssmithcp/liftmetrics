@@ -14,6 +14,7 @@ const MeasurementSiteSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: validator.namedLength('Name', 1, 512),
+    set: validator.toLower,
   },
 })
 
