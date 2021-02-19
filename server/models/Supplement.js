@@ -30,10 +30,6 @@ const SupplementSchema = new mongoose.Schema({
 
 SupplementSchema.index({ user: 1 })
 
-SupplementSchema.pre('save', m => {
-  console.log(m)
-})
-
 module.exports = mongoose.model('supplement', SupplementSchema)
 
 const preloads = [
