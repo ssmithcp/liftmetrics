@@ -71,7 +71,7 @@ router.put('/me', async (req, res) => {
 
   const updatedProfile = await Profile.findOneAndUpdate(
     { user: userId },
-    _.pick(source, ['weightUnit', 'lengthUnit']),
+    _.pick(source, ['weightUnit', 'lengthUnit', 'weekStartDay']),
     { new: true, runValidators: true }
   )
 

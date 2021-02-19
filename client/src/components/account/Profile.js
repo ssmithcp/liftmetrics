@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { connect } from 'react-redux'
-import _ from 'lodash'
+import { connect, useSelector } from 'react-redux'
 import { IconContext } from 'react-icons'
 import { GoCheck } from 'react-icons/go'
 
@@ -10,7 +9,17 @@ import { logout } from '../../actions/user'
 
 import BigButton from '../util/BigButton'
 import TitledPage from '../container/TitledPage'
-import { dayTime } from '../../util/date'
+import ResponsiveDate from '../track/ResponsiveDate'
+
+const days = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+]
 
 const UpdatingOptions = ({ current, options, doUpdate }) => {
   const [showSaved, setShowSaved] = useState(false)
@@ -54,27 +63,37 @@ const UpdatingOptions = ({ current, options, doUpdate }) => {
   )
 }
 
-const Profile = ({ profile, profileOptions, update, logout }) => {
-  return <TitledPage title={ `Profile for ${ profile.firstName } ${ profile.lastName[0].toUpperCase() }` }>
+const Profile = ({ update, logout }) => {
+  const profile = useSelector(s => s.profile)
+
+  const { firstName, lastName } = profile
+
+  return <TitledPage title={ `Profile for ${ firstName } ${ lastName[0].toUpperCase() }` }>
     <div className='my-6 text-lg grid gap-2 grid-cols-profile'>
       <p>First name</p>
-      <p>{ profile.firstName }</p>
+      <p>{ firstName}</p>
       <p>Last name</p>
-      <p>{ profile.lastName }</p>
+      <p>{ lastName }</p>
       <p>Weight unit</p>
       <UpdatingOptions
         doUpdate={ val => update({ weightUnit: val }) }
         current={ profile.weightUnit }
-        options={ profileOptions.weightUnits }
+        options={ profile.availableWeightUnits }
       />
       <p>Length unit</p>
       <UpdatingOptions
         doUpdate={ val => update({ lengthUnit: val }) }
         current={ profile.lengthUnit }
-        options={ profileOptions.lengthUnits }
+        options={ profile.availableLengthUnits }
+      />
+      <p>Week start day</p>
+      <UpdatingOptions
+        doUpdate={ val => update({ weekStartDay: days.indexOf(val) }) }
+        current={ days[profile.weekStartDay || 1] }
+        options={ days }
       />
       <p>Last login</p>
-      <p>{ dayTime(profile.lastLogin) }</p>
+      <ResponsiveDate date={ profile.lastLogin } />
     </div>
 
     <BigButton onClick={ logout }>
@@ -83,19 +102,4 @@ const Profile = ({ profile, profileOptions, update, logout }) => {
   </TitledPage>
 }
 
-
-const mapStateToProps = state => ({
-  profile: _.omit(
-    _.pickBy(state.profile, (_, k) => !k.startsWith('available')),
-    ['roles', 'user', 'avatar']
-  ),
-  profileOptions: _.mapKeys(
-    _.pickBy(state.profile, (_, k) => k.startsWith('available')),
-    (_, k) => {
-      k = k.substring('available'.length)
-      return k[0].toLowerCase() + k.substring(1)
-    }
-  )
-})
-
-export default connect(mapStateToProps, { update, logout })(Profile)
+export default connect(null, { update, logout })(Profile)

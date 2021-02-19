@@ -24,6 +24,11 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  weekStartDay: {
+    type: Number,
+    default: 1,
+    validate: validator.intInRange('Week start day', 0, 6),
+  }
 })
 
 ProfileSchema.index({ user: 1 })
