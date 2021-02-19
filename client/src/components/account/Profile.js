@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { IconContext } from 'react-icons'
 import { GoCheck } from 'react-icons/go'
 
+import manage from '../../util/timer'
 import { update } from '../../actions/profile'
 import { logout } from '../../actions/user'
 
@@ -13,17 +14,25 @@ import { dayTime } from '../util/date'
 
 const UpdatingOptions = ({ current, options, doUpdate }) => {
   const [showSaved, setShowSaved] = useState(false)
+  const [register, unregister, clearAll] = manage(useRef([]))
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(clearAll, [])
 
   const savedNotification = () => {
     setShowSaved(true)
     // TODO handle case where we navigate away from profile before this fires
-    setTimeout(() => setShowSaved(false), 5000)
+    const id = setTimeout(() => {
+      setShowSaved(false)
+      unregister(id)
+    }, 5000)
+    register(id)
   }
 
   return (
     <div className='flex'>
       <select
-        className='w-40 md:w-52'
+        className='w-16 md:w-52'
         value={ current }
         onChange={ e => doUpdate(e.target.value).then(savedNotification) }
       >

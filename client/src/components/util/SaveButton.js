@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 
+import manage from '../../util/timer'
+
 import Button from './Button'
 import Spinner from './Spinner'
 
@@ -12,11 +14,10 @@ const SaveButton = ({ doSave, disabled, className, ...rest }) => {
   const xhrCompleted = useRef(false)
   const showSavingMin = useRef(-1)
   const showTimeoutAt = useRef(-1)
-  const timerIds = useRef([])
+  const [register, unregister, clearAll] = manage(useRef([]))
 
-  const register = id => timerIds.current.push(id)
-  const unregister = id => timerIds.current = timerIds.current.filter(i => i !== id)
-  useEffect(() => (() => timerIds.current.map(clearInterval)), [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(clearAll, [])
 
   const maybeUpdateDisplayedState = finished => {
     const now = Date.now()
@@ -34,8 +35,7 @@ const SaveButton = ({ doSave, disabled, className, ...rest }) => {
 
     if (done) {
       setSaveEnabled(true)
-      const id = setTimeout(() => setDisplayedState('save'), 5000)
-      register(id)
+      register(setTimeout(() => setDisplayedState('save'), 5000))
       finished()
     }
   }

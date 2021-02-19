@@ -7,7 +7,7 @@ import TitledPage from './TitledPage'
 
 const Tile = ({ iconStyle, title, comingSoon }) => (
   <div
-    className='p-4 md:p-8 md:w-56 md:h-56 flex flex-col items-center justify-between hover:bg-gray-200'
+    className='p-4 md:p-8 flex flex-col items-center justify-between hover:bg-gray-200'
     title={ `Track ${ title.toLowerCase() }` }
   >
     { comingSoon && (
