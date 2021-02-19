@@ -1,4 +1,4 @@
-import { day, dayTime } from '../util/date'
+import { day, dayTime } from '../../util/date'
 
 const ResponsiveDate = ({ date }) => (
   <>

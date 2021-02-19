@@ -10,7 +10,7 @@ import { logout } from '../../actions/user'
 
 import BigButton from '../util/BigButton'
 import TitledPage from '../container/TitledPage'
-import { dayTime } from '../util/date'
+import { dayTime } from '../../util/date'
 
 const UpdatingOptions = ({ current, options, doUpdate }) => {
   const [showSaved, setShowSaved] = useState(false)

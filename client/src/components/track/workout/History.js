@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { startOfDay, isToday } from 'date-fns'
 
 import routes from '../../navigation'
-import { day } from '../../util/date'
+import { day } from '../../../util/date'
 import { normalize } from '../../../util/weight'
 
 import { format } from '../WeightDisplay'

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import { round, withCommas } from '../util/number'
+import { round, withCommas } from '../../util/number'
 
 export const format = (value, unit) => `${ withCommas(round(value)) }${ unit }${ value >= 1 ? 's' : ''}`
 

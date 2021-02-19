@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
 import routes from '../../navigation'
-import { round } from '../../util/number'
+import { round } from '../../../util/number'
 
 import ResponsiveDate from '../ResponsiveDate'
 import TitledHistory from '../TitledHistory'
