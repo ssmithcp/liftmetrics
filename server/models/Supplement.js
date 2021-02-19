@@ -25,6 +25,7 @@ const SupplementSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: validator.namedLength('Unit', 1, 512),
+    set: validator.toLower,
   },
 })
 

@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
 import routes from '../../navigation'
+import { round } from '../../util/number'
 
 import ResponsiveDate from '../ResponsiveDate'
 import TitledHistory from '../TitledHistory'
@@ -21,8 +22,8 @@ const History = () => {
     ? <TitledHistory
         title='Recent supplements'
         rowData={ reversed }
-        toPath={ m => routes.trackEditMeasurement.toPath(m.id) }
-        renderName={ m => `${ supplements[m.supplement].name } - ${ m.servings } x ${ supplements[m.supplement].value }${ supplements[m.supplement].unit }` }
+        toPath={ m => routes.trackEditConsumedSupplement.toPath(m.id) }
+        renderName={ m => `${ supplements[m.supplement].name } - ${ round(m.servings * supplements[m.supplement].value) } ${ supplements[m.supplement].unit }` }
         renderDescription={ m => <ResponsiveDate date={ m.created } /> }
       />
     : <></>

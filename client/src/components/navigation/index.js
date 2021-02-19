@@ -61,7 +61,7 @@ const routes = {
     title: 'Supplement',
     path: '/track/supplement',
   },
-  trackEditSupplement: {
+  trackEditConsumedSupplement: {
     title: 'Edit supplement',
     path: '/track/supplement/:id',
     toPath: id => `/track/supplement/${ id }`

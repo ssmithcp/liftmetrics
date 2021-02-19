@@ -19,6 +19,7 @@ const AddMeasurement = ({ save }) => {
   const sortedSites = useMemo(() =>
     Object.keys(sites)
       .map(k => sites[k])
+      .map(s => ({ ...s, name: s.name[0].toUpperCase() + s.name.substring(1) }))
       .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
   , [sites])
 
