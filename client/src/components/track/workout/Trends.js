@@ -44,7 +44,7 @@ const Trends = () => {
 
   return (
     <div className='text-lg flex flex-col items-center'>
-      <h1 className='mb-2'>Top sets per muscle this week</h1>
+      <h1 className='mb-2'>Most sets per muscle this week</h1>
       <div>
         { setsPerMuscle.map(e =>
           <p
