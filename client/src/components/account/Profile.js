@@ -23,7 +23,7 @@ const UpdatingOptions = ({ current, options, doUpdate }) => {
   return (
     <div className='flex'>
       <select
-        className='w-52'
+        className='w-40 md:w-52'
         value={ current }
         onChange={ e => doUpdate(e.target.value).then(savedNotification) }
       >

@@ -13,7 +13,7 @@ const DayOfExercise = ({ day: d, movements, offset }) => (
   <div className='mb-8'>
     <div className='flex items-center justify-between md:grid md:grid-cols-2'>
       <h3 className='mb-2 text-xl'>
-        { isToday(d.day) ? 'Today\'s workout'  : `Workout on ${ day(d.day) }` }
+        { isToday(d.day) ? 'Today\'s workout'  : day(d.day) }
       </h3>
       <p className='text-right md:text-left'>
         { `Total volume: ${ format(d.data.reduce((i, e) => i + (e.sets * e.reps * e.value), 0), d.data[0].unit) }` }

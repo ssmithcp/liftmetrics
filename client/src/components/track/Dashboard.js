@@ -7,14 +7,14 @@ const tiles = [
     ...routes.trackFood,
     comingSoon: true,
   },
-  {
-    ...routes.trackSleep,
-    comingSoon: true,
-  },
   routes.trackWeight,
   routes.trackExercise,
   routes.trackSupplement,
   routes.trackMeasurement,
+  {
+    ...routes.trackSleep,
+    comingSoon: true,
+  },
   {
     ...routes.trackGoal,
     comingSoon: true,

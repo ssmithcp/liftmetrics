@@ -1,9 +1,8 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import Button from './Button'
 import Spinner from './Spinner'
 
-// TODO handle timer callbacks nicely when we navigate away from page before they fire
 // TODO don't show 'Saved!' when xhr comes back with a validation error
 
 const SaveButton = ({ doSave, disabled, className, ...rest }) => {
@@ -13,6 +12,11 @@ const SaveButton = ({ doSave, disabled, className, ...rest }) => {
   const xhrCompleted = useRef(false)
   const showSavingMin = useRef(-1)
   const showTimeoutAt = useRef(-1)
+  const timerIds = useRef([])
+
+  const register = id => timerIds.current.push(id)
+  const unregister = id => timerIds.current = timerIds.current.filter(i => i !== id)
+  useEffect(() => (() => timerIds.current.map(clearInterval)), [])
 
   const maybeUpdateDisplayedState = finished => {
     const now = Date.now()
@@ -30,7 +34,8 @@ const SaveButton = ({ doSave, disabled, className, ...rest }) => {
 
     if (done) {
       setSaveEnabled(true)
-      setTimeout(() => setDisplayedState('save'), 5000)
+      const id = setTimeout(() => setDisplayedState('save'), 5000)
+      register(id)
       finished()
     }
   }
@@ -45,9 +50,13 @@ const SaveButton = ({ doSave, disabled, className, ...rest }) => {
     showTimeoutAt.current = Date.now() + 5000
 
     const id = setInterval(
-      () => maybeUpdateDisplayedState(() => clearInterval(id)),
+      () => maybeUpdateDisplayedState(() => {
+        clearInterval(id)
+        unregister(id)
+      }),
       300
     )
+    register(id)
   }
 
   const onClick = e => {
@@ -69,7 +78,7 @@ const SaveButton = ({ doSave, disabled, className, ...rest }) => {
       onClick={ onClick }
     >
       <div className='relative flex justify-center'>
-        { displayedState === 'save' && <p>Save </p> }
+        { displayedState === 'save' && <p>Save</p> }
         { displayedState === 'saving' && <p>Saving</p> }
         { displayedState === 'saved' && <p>Saved!</p> }
         { displayedState === 'timedout' && <p>Save timed out, try again later!</p> }
