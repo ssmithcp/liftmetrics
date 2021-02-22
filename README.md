@@ -1,5 +1,7 @@
 # LiftMetrics
 
+Liftmetrics is a portfolio site written using the MERN stack: mongodb, express, react and node. It uses redux and react router of course and the ever exciting tailwind css utility first library.
+
 ## Setup
 
 This site uses mongodb for persistent storage. You can set up a local mongo instance or use a hosted solution like mongo atlas.

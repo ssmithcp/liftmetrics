@@ -23,8 +23,9 @@ const About = () => (
       />
       <div>
         <P><span className="text-2xl mr-2">👋</span>My name is Scott and LiftMetrics is a portfolio project that I built and maintain.</P>
-        <P>To contact me about a job opportunity, reach out on <SafeExternalLink to={ config.get('linkedinURL') }>LinkedIn</SafeExternalLink> or shoot me an email at <span className='font-mono text-base'>ssmith <strong>dot</strong> cp <strong>at</strong> gmail <strong>dot</strong> com</span>. Check out some of my other projects on <SafeExternalLink to={ config.get('githubURL') }>GitHub</SafeExternalLink> or jump to a <SafeExternalLink to={ config.get('portfolioURL') }>CSS showcase</SafeExternalLink> project whose source is <SafeExternalLink to={ config.get('portfolioGithubURL') }>here</SafeExternalLink>.</P>
-        <P>The source code for LiftMetrics isn’t publicly available on the off chance I monetize the site; if you’re a potential client or employer and would like to see the code, just ask!</P>
+        <P>To contact me about a job opportunity, reach out on <SafeExternalLink to={ config.get('linkedinURL') }>LinkedIn</SafeExternalLink> or shoot me an email at <span className='font-mono text-base'>ssmith.cp <strong>at</strong> gmail.com</span>.</P>
+        <P>Check out <SafeExternalLink to={ config.get('lmGithubURL') }>LiftMetrics source</SafeExternalLink> or jump to a <SafeExternalLink to={ config.get('portfolioURL') }>CSS showcase</SafeExternalLink> project whose source is <SafeExternalLink to={ config.get('portfolioGithubURL') }>here.</SafeExternalLink> I have a few other projects on <SafeExternalLink to={ config.get('githubURL') }>GitHub</SafeExternalLink> - more to come!</P>
+        <P>LiftMetrics is an 'Alpha' release. There is so much functionality I'd like to add, in addition to nailing down the UI/UX but I have a lot more I want to learn about the full stack space. For the few of you actually using the site, let me know if there is a feature you're dying to see - maybe I can crank it out for you!</P>
       </div>
     </div>
     <h2 className='text-xl my-4 font-bold'>About the site</h2>
