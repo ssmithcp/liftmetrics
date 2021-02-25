@@ -7,7 +7,9 @@ import { day } from '../../../util/date'
 import { normalize } from '../../../util/weight'
 
 import { format } from '../WeightDisplay'
+import { formatName } from './MovementSelect'
 import TitledHistory from '../TitledHistory'
+import ExerciseDisplay from './ExerciseDisplay'
 
 const DayOfExercise = ({ day: d, movements, offset }) => (
   <div className='mb-8'>
@@ -23,13 +25,8 @@ const DayOfExercise = ({ day: d, movements, offset }) => (
         <TitledHistory
           rowData={ d.data }
           toPath={ e => routes.trackEditExercise.toPath(e.id) }
-          renderName={ e => (movements[e.movement] && movements[e.movement].name)  || 'unknown' }
-          renderDescription={ e => (
-            <>
-              <p className='inline'>{ `${ e.sets } x ${ e.reps } x ${ format(e.value, e.unit) }` }</p>
-              <p className='hidden md:inline'>&nbsp;{ `= ${ format(e.sets * e.reps * e.value, e.unit) }` }</p>
-            </>
-          )}
+          renderName={ e => (movements[e.movement] && formatName(movements[e.movement]).name)  || 'unknown' }
+          renderDescription={ e => <ExerciseDisplay exercise={ e } />}
           indexOffset={ offset }
         />
     )}

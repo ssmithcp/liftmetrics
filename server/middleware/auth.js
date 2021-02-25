@@ -9,6 +9,7 @@ const authenticateRequest = function (req, res, next) {
 
   jwt.verify(req.cookies.access_token, config.get('jwtSecret'), async (error, decoded) => {
     if (error) {
+      console.log('error in jwt.verify', error)
       return res.status(401).end()
     }
 

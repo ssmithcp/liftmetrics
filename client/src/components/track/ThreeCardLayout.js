@@ -9,14 +9,14 @@ const Card = ({ children, className = ''}) => (
 )
 
 const ThreeCardLayout = ({ title, TopLeft, TopRight, Bottom }) => (
-  <TitledPage title={ title } className='grid grid-cols-1 gap-6'>
+  <TitledPage className='grid grid-cols-1 gap-6'>
     <div className='grid grid-cols-1 md:grid-cols-2'>
-      <Card className='pt-4 pb-10 md:py-12'>
+      <Card className='py-4 md:py-12'>
         <TopLeft />
       </Card>
       <div className='border-t md:border-t-0 md:border-l'>
         {/* assumes that left card has a larger height */}
-        <Card className='py-10 md:py-0 md:h-full'>
+        <Card className='py-4 md:py-0 md:h-full'>
           <TopRight />
         </Card>
       </div>

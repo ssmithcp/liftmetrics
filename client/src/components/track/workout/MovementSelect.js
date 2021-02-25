@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import ResponsiveSelect from '../ResponsiveSelect'
 
-const formatNames = movement => {
+export const formatName = movement => {
   const copy = { ...movement }
   copy.name = copy.name.toLowerCase()
 
@@ -24,7 +24,7 @@ const formatNames = movement => {
 }
 
 const MovementSelect = ({ movement, setMovement, movements }) => {
-  const formattedMovements = useMemo(() => movements.map(formatNames), [movements])
+  const formattedMovements = useMemo(() => movements.map(formatName), [movements])
 
   return (
     <ResponsiveSelect
