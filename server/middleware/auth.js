@@ -4,6 +4,7 @@ const User = require('../models/User')
 
 const authenticateRequest = function (req, res, next) {
   if (!req.cookies || !req.cookies.access_token) {
+    console.log('401 no cookies on request')
     return res.status(401).end()
   }
 
