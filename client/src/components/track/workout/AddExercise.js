@@ -64,6 +64,7 @@ const AddExercise = ({ save }) => {
       setSets('')
       setReps('')
       setWeight('')
+      setNote('')
     })
   }
 
