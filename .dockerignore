@@ -1,0 +1,12 @@
+.git
+
+*Dockerfile*
+*docker-compose*
+
+node_modules
+
+*.md
+
+.profile
+client/build
+client/node_modules

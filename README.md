@@ -29,3 +29,19 @@ After the environment variables have been set, install dependencies with `npm i`
 
 Set up environment variables then, but change `isDev` value to 'false' like `export NODE_CONFIG="{\"mongoURI\":\"${MONGO_URI}\",\"isDev\":false,\"jwtSecret\":\"${JWT_SECRET}\"}"`
 then run `npm i && npm run heroku-postbuild && npm start`. Node is started on port 5000 by default; you can view the homepage at [localhost:5000](http://localhost:5000)
+
+## Run from docker image
+
+Install and configure docker locally; this was tested using docker on linux (ubuntu).
+
+Assuming the MONGO_URI and JWT_SECRET are in your exported in your environment and you're in the root liftmetrics directory, build the docker image with
+
+`docker image build --build-arg MONGO_URI=$MONGO_URI --build-arg JWT_SECRET=$JWT_SECRET -t liftmetrics .`
+
+Then start it with (assuming it will run on local port 80)
+
+`docker container run -p 80:5000 liftmetrics`
+
+_Note: this docker image is configured to run locally and is vulnerable to XSS in a production environment_
+
+To run locally without HTTPS, the access_token cookie must not have the "Secure" flag set so that the cookie can be returned and saved in the browser. To use the container in a production environment, remove 'isDocker:true' from the docker file and use HTTPS.

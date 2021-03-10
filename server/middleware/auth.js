@@ -47,7 +47,7 @@ const attachAuthToken = (res, user) => (
 
         res.cookie('access_token', token, {
           httpOnly: true,
-          secure: !config.get('isDev'),
+          secure: !config.get('isDev') && !config.get('isDocker'),
           sameSite: true,
           expires: new Date(Date.now() + (expires * 1000))
         })
