@@ -12,9 +12,9 @@ const Index = () => (
     </div>
     <img src={ barbell } alt='barbell' className='w-550px my-7' />
     <ul className='flex text-4xl mb-2'>
-      <li className='m-6'>Lift</li>
-      <li className='m-6'>Track</li>
-      <li className='m-6'>PR</li>
+      <li className='mx-6'>Lift</li>
+      <li className='mx-6'>Track</li>
+      <li className='mx-6'>PR</li>
     </ul>
   </FullScreen>
 )

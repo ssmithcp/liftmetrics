@@ -19,7 +19,7 @@ const About = () => (
       <img
         src={ scottSquat }
         alt='scott squatting'
-        className='h-56 w-56 mr-7 mb-2 lg:float-left'
+        className='h-56 w-56 mb-2 md:mr-7 md:float-left'
       />
       <div>
         <P><span className="text-2xl mr-2">👋</span>My name is Scott and LiftMetrics is a portfolio project that I built and maintain.</P>
