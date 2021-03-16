@@ -24,18 +24,18 @@ db.connect()
 
 const urlPrefix = config.get('urlPrefix')
 
-// all endpoints except /user/* endpoints need to be authorized
-app.use(urlPrefix + '/user', require('./routes/api/user'))
+// all endpoints except /users/* endpoints need to be authorized
+app.use(urlPrefix + '/users', require('./routes/api/user'))
 
 app.use(urlPrefix, auth)
-app.use(urlPrefix + '/profile', require('./routes/api/profile'))
-app.use(urlPrefix + '/weight', require('./routes/api/weight'))
-app.use(urlPrefix + '/movement', require('./routes/api/movement'))
-app.use(urlPrefix + '/exercise', require('./routes/api/exercise'))
-app.use(urlPrefix + '/site', require('./routes/api/measurementSite'))
-app.use(urlPrefix + '/site/measurement', require('./routes/api/measurement'))
-app.use(urlPrefix + '/supplement', require('./routes/api/supplement'))
-app.use(urlPrefix + '/supplement/consumed', require('./routes/api/consumedSupplement'))
+app.use(urlPrefix + '/profiles', require('./routes/api/profile'))
+app.use(urlPrefix + '/weights', require('./routes/api/weight'))
+app.use(urlPrefix + '/movements', require('./routes/api/movement'))
+app.use(urlPrefix + '/exercises', require('./routes/api/exercise'))
+app.use(urlPrefix + '/sites', require('./routes/api/measurementSite'))
+app.use(urlPrefix + '/sites/measurements', require('./routes/api/measurement'))
+app.use(urlPrefix + '/supplements', require('./routes/api/supplement'))
+app.use(urlPrefix + '/supplements/consumed', require('./routes/api/consumedSupplement'))
 
 /* global __dirname, process */
 

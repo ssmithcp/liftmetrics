@@ -5,7 +5,7 @@ import { ADD_MOVEMENT, ADD_MOVEMENTS } from '../reducers/movement'
 
 export const save = ({ name, type, targetedMuscles, modifiers }) => async dispatch => {
   try {
-    const res = await api.post('/movement', {
+    const res = await api.post('/movements', {
       name,
       type,
       targetedMuscles,
@@ -22,7 +22,7 @@ export const save = ({ name, type, targetedMuscles, modifiers }) => async dispat
 
 export const update = ({ id, name, type, targetedMuscles, modifiers }) => async dispatch => {
   try {
-    const res = await api.put('/movement/' + id, {
+    const res = await api.put('/movements/' + id, {
       name,
       type,
       targetedMuscles,
@@ -39,7 +39,7 @@ export const update = ({ id, name, type, targetedMuscles, modifiers }) => async 
 
 export const getMovements = () => async dispatch => {
   try {
-    const res = await api.get('/movement')
+    const res = await api.get('/movements')
 
     dispatch({
       type: ADD_MOVEMENTS,

@@ -6,7 +6,7 @@ import { ADD_EXERCISE, ADD_EXERCISES } from '../reducers/exercise'
 
 export const save = ({ movement, sets, reps, value, unit, created, note }) => async dispatch => {
   try {
-    const res = await api.post('/exercise', {
+    const res = await api.post('/exercises', {
       movement,
       sets,
       reps,
@@ -26,7 +26,7 @@ export const save = ({ movement, sets, reps, value, unit, created, note }) => as
 
 export const getExerciesesFrom = (startDate) => async dispatch => {
   try {
-    const res = await api.get('/exercise', { params: { startDate } })
+    const res = await api.get('/exercises', { params: { startDate } })
 
     dispatch({
       type: ADD_EXERCISES,

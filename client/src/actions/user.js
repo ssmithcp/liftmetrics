@@ -7,9 +7,9 @@ import { RESET } from '../reducers/shared'
 
 export const register = formData => async dispatch => {
   try {
-    await api.post('/user/register', formData)
+    await api.post('/users/register', formData)
 
-    const res = await api.get('/profile/me')
+    const res = await api.get('/profiles/me')
     profileUpdated(res.data)(dispatch)
   } catch (err) {
     alertAndThrow(err, dispatch)
@@ -18,9 +18,9 @@ export const register = formData => async dispatch => {
 
 export const login = formData => async dispatch => {
   try {
-    await api.post('/user/login', formData)
+    await api.post('/users/login', formData)
 
-    const res = await api.get('/profile/me')
+    const res = await api.get('/profiles/me')
     profileUpdated(res.data)(dispatch)
   } catch (err) {
     alertAndThrow(err, dispatch)
@@ -29,7 +29,7 @@ export const login = formData => async dispatch => {
 
 export const logout = () => async dispatch => {
   try {
-    await api.get('/user/logout')
+    await api.get('/users/logout')
     profileUpdated(null)(dispatch)
     dispatch({
       type: RESET,

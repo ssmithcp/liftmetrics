@@ -5,7 +5,7 @@ import { ADD_MEASUREMENT_SITE, ADD_MEASUREMENT_SITES } from '../reducers/measure
 
 export const save = ({ name }) => async dispatch => {
   try {
-    const res = await api.post('/site', {
+    const res = await api.post('/sites', {
       name,
     })
     dispatch({
@@ -19,7 +19,7 @@ export const save = ({ name }) => async dispatch => {
 
 export const getMeasurementSites = () => async dispatch => {
   try {
-    const res = await api.get('/site')
+    const res = await api.get('/sites')
 
     dispatch({
       type: ADD_MEASUREMENT_SITES,

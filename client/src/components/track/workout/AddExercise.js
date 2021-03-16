@@ -23,7 +23,6 @@ const AddExercise = ({ save }) => {
   const [weight, setWeight] = useState('')
   const [note, setNote] = useState('')
 
-
   const sortedMovements = useMemo(() =>
       Object.keys(movements)
         .map(k => movements[k])
@@ -69,8 +68,6 @@ const AddExercise = ({ save }) => {
   }
 
   const pluralWeight = weightUnit + 's'
-
-console.log(lastExercise)
 
   return (
     <div>

@@ -6,7 +6,7 @@ import { ADD_WEIGHT, ADD_WEIGHTS } from '../reducers/weight'
 
 export const save = ({ value, unit, created }) => async dispatch => {
   try {
-    const res = await api.post('/weight', {
+    const res = await api.post('/weights', {
       value,
       unit,
       created,
@@ -22,7 +22,7 @@ export const save = ({ value, unit, created }) => async dispatch => {
 
 export const getWeightsFrom = (startDate) => async dispatch => {
   try {
-    const res = await api.get('/weight', { params: { startDate } })
+    const res = await api.get('/weights', { params: { startDate } })
 
     dispatch({
       type: ADD_WEIGHTS,

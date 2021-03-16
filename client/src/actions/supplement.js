@@ -5,7 +5,7 @@ import { ADD_SUPPLEMENT, ADD_SUPPLEMENTS } from '../reducers/supplement'
 
 export const save = ({ name, value, unit }) => async dispatch => {
   try {
-    const res = await api.post('/supplement', {
+    const res = await api.post('/supplements', {
       name,
       value,
       unit,
@@ -21,7 +21,7 @@ export const save = ({ name, value, unit }) => async dispatch => {
 
 export const getSupplements = () => async dispatch => {
   try {
-    const res = await api.get('/supplement')
+    const res = await api.get('/supplements')
 
     dispatch({
       type: ADD_SUPPLEMENTS,

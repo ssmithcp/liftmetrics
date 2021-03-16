@@ -6,7 +6,7 @@ import { ADD_CONSUMED_SUPPLEMENT, ADD_CONSUMED_SUPPLEMENTS } from '../reducers/c
 
 export const save = ({ supplement, servings }) => async dispatch => {
   try {
-    const res = await api.post('/supplement/consumed', {
+    const res = await api.post('/supplements/consumed', {
       supplement,
       servings,
     })
@@ -21,7 +21,7 @@ export const save = ({ supplement, servings }) => async dispatch => {
 
 export const getConsumedSupplementsFrom = (startDate) => async dispatch => {
   try {
-    const res = await api.get('/supplement/consumed', { params: { startDate } })
+    const res = await api.get('/supplements/consumed', { params: { startDate } })
 
     dispatch({
       type: ADD_CONSUMED_SUPPLEMENTS,

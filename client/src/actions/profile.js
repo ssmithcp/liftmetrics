@@ -15,7 +15,7 @@ export const profileUpdated = profile => dispatch => {
 
 export const getProfile = () => async dispatch => {
   try {
-    const res = await api.get('/profile/me')
+    const res = await api.get('/profiles/me')
     profileUpdated(res.data)(dispatch)
   } catch (err) {
     alertAndThrow(err, dispatch)
@@ -24,7 +24,7 @@ export const getProfile = () => async dispatch => {
 
 export const update = body => async dispatch => {
   try {
-    const res = await api.put('/profile/me', body)
+    const res = await api.put('/profiles/me', body)
     profileUpdated(res.data)(dispatch)
   } catch (err) {
     alertAndThrow(err, dispatch)
