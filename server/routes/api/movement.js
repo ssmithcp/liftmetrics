@@ -37,4 +37,12 @@ router.put('/:id',
   }
 )
 
+router.get('/:id',
+  param('id').notEmpty(),
+  async (req, res) => {
+    const movement = await Movement.findById(req.params.id)
+    res.json(sanitize(movement))
+  }
+)
+
 module.exports = router

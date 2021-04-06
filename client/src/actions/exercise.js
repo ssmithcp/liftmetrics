@@ -24,7 +24,7 @@ export const save = ({ movement, sets, reps, value, unit, created, note }) => as
   }
 }
 
-export const getExerciesesFrom = (startDate) => async dispatch => {
+export const getExerciesesFrom = startDate => async dispatch => {
   try {
     const res = await api.get('/exercises', { params: { startDate } })
 
@@ -38,3 +38,16 @@ export const getExerciesesFrom = (startDate) => async dispatch => {
 }
 
 export const getExercises = () => getExerciesesFrom(defaultRange())
+
+export const getExerciseById = id => async dispatch => {
+  try {
+    const res = await api.get(`/exercises/${ id }`)
+
+    dispatch({
+      type: ADD_EXERCISE,
+      payload: res.data,
+    })
+  } catch (err) {
+    alertAndThrow(err, dispatch)
+  }
+}
