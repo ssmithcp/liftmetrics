@@ -10,6 +10,7 @@ import MovementSelect from './MovementSelect'
 import routes from '../../navigation'
 import InternalLink from '../../navigation/InternalLink'
 import ExerciseDisplay from './ExerciseDisplay'
+import NoteTextArea from '../../form/NoteTextArea'
 
 const AddExercise = ({ save }) => {
   const weightUnit = useSelector(s => s.profile.weightUnit)
@@ -115,15 +116,9 @@ const AddExercise = ({ save }) => {
           />
           <p className='ml-2 inline'>{ `${ pluralWeight }` }</p>
         </div>
-        <textarea
-          name='note'
-          value={ note }
-          onChange={ e => setNote(e.target.value) }
-          rows='2'
-          cols='35'
-          placeholder='Notes'
-          autoCorrect='off'
-          className='border border-gray-400 p-2 focus:outline-none focus:border-black'
+        <NoteTextArea
+          note={ note }
+          setNote={ setNote }
         />
         <SaveButton
           doSave={ onSubmit }

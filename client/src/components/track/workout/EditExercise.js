@@ -7,11 +7,12 @@ import { formatName } from './MovementSelect'
 import { dayTime } from '../../../util/date'
 
 import TitledPage from '../../container/TitledPage'
-import DecimalInput from '../../form/DecimalInput'
+import DebouncedDecimalInput from '../../form/DebouncedDecimalInput'
+import DebouncedNoteTextArea from '../../form/DebouncedNoteTextArea'
 import WithSavedNotification from '../../util/WithSavedNotification'
 
 const SaveDecimal = ({ value, setValue }) => ({ savedNotification }) => (
-  <DecimalInput
+  <DebouncedDecimalInput
     className='w-16'
     value={ value }
     setValue={ v => setValue(v).then(savedNotification) }
@@ -24,14 +25,13 @@ const Label = ({ children }) => (
   </div>
 )
 
-const SaveString = ({ value, setValue }) => ({ savedNotification }) => {
-
-  return <textarea
-    className='border border-gray-400 p-2 focus:outline-none focus:border-black w-full'
+const SaveString = ({ value, setValue }) => ({ savedNotification }) => (
+  <DebouncedNoteTextArea
+    className='w-full'
     value={ value }
-    onChange={ e => setValue(e.target.value).then(savedNotification) }
+    setValue={ v => setValue(v).then(savedNotification) }
   />
-}
+)
 
 const EditExercise = ({ match: { params: { id } }, getExerciseById, getMovementById, update }) => {
   const movements = useSelector(s => s.movement)
@@ -109,6 +109,7 @@ const EditExercise = ({ match: { params: { id } }, getExerciseById, getMovementB
               setValue: v => update(id, { note: v })
             })
           }
+          className='flex-col'
         />
       </div>
     </TitledPage>
