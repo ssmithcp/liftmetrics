@@ -21,7 +21,7 @@ const WithSavedNotification = ({ Saveable }) => {
   }
 
   return (
-    <div className='flex'>
+    <div className='flex items-center'>
       <Saveable savedNotification={ savedNotification } />
       { showSaved && <SavedCheckmark /> }
     </div>

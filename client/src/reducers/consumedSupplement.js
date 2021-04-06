@@ -10,9 +10,9 @@ export const CLEAR_CONSUMED_SUPPLEMENTS = 'CLEAR_CONSUMED_SUPPLEMENTS'
 function consumedSupplement(state = [], action) {
   switch (action.type) {
     case ADD_CONSUMED_SUPPLEMENT:
-      return _.uniqBy(state.concat([action.payload]), w => w.id)
+      return _.uniqBy([action.payload].concat(state), w => w.id)
     case ADD_CONSUMED_SUPPLEMENTS:
-      return _.uniqBy(state.concat(action.payload), w => w.id)
+      return _.uniqBy(action.payload.concat(state), w => w.id)
     case DELETE_CONSUMED_SUPPLEMENT:
       return state.filter(w => w.id !== action.id)
     case RESET:

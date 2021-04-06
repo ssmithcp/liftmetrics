@@ -1,15 +1,39 @@
 import { useState, useEffect } from 'react'
 import { useSelector, connect } from 'react-redux'
 
-import { getExerciseById } from '../../../actions/exercise'
+import { getExerciseById, update } from '../../../actions/exercise'
 import { getMovementById } from '../../../actions/movement'
 import { formatName } from './MovementSelect'
-import { day } from '../../../util/date'
+import { dayTime } from '../../../util/date'
 
 import TitledPage from '../../container/TitledPage'
 import DecimalInput from '../../form/DecimalInput'
+import WithSavedNotification from '../../util/WithSavedNotification'
 
-const EditExercise = ({ match: { params: { id } }, getExerciseById, getMovementById }) => {
+const SaveDecimal = ({ value, setValue }) => ({ savedNotification }) => (
+  <DecimalInput
+    className='w-16'
+    value={ value }
+    setValue={ v => setValue(v).then(savedNotification) }
+  />
+)
+
+const Label = ({ children }) => (
+  <div className='flex items-center'>
+    { children }
+  </div>
+)
+
+const SaveString = ({ value, setValue }) => ({ savedNotification }) => {
+
+  return <textarea
+    className='border border-gray-400 p-2 focus:outline-none focus:border-black w-full'
+    value={ value }
+    onChange={ e => setValue(e.target.value).then(savedNotification) }
+  />
+}
+
+const EditExercise = ({ match: { params: { id } }, getExerciseById, getMovementById, update }) => {
   const movements = useSelector(s => s.movement)
   const exercises = useSelector(s => s.exercise)
 
@@ -35,23 +59,60 @@ const EditExercise = ({ match: { params: { id } }, getExerciseById, getMovementB
     }
   }, [exercise, movements, getMovementById])
 
-  console.log(movement)
-  console.log(Object.assign({}, exercise))
+  if (!exercise) {
+    return <></>
+  }
+  if (exercise.missing) {
+    return <p>{ `Exercise ${ id } not found` }</p>
+  }
 
   const movementString = movement
     ? (movement.missing ? 'Unknown' : formatName(movement).name)
     : ''
-  const exerciseDate = exercise && exercise.created ? day(exercise.created) : ''
 
   return (
     <TitledPage
-      title={ `Edit movement ${ movementString } on ${ exerciseDate }` }
-      className='grid-cols-profile'
+      title={ `Edit exercise '${ movementString }' on ${ dayTime(exercise.created) }` }
+      className='grid grid-cols-edit-exercise text-lg'
     >
-      <p>Sets</p>
-      {/* <DecimalInput /> */}
+      <Label>Movement</Label>
+      <Label>{ movementString }</Label>
+      <Label>Sets</Label>
+      <WithSavedNotification Saveable={
+          SaveDecimal({
+            value: exercise.sets,
+            setValue: v => update(id, { sets: v })
+          })
+        }
+      />
+      <Label>Reps</Label>
+      <WithSavedNotification Saveable={
+          SaveDecimal({
+            value: exercise.reps,
+            setValue: v => update(id, { reps: v })
+          })
+        }
+      />
+      <Label>{ `Weight (${ exercise.unit }s)` }</Label>
+      <WithSavedNotification Saveable={
+          SaveDecimal({
+            value: exercise.value,
+            setValue: v => update(id, { value: v })
+          })
+        }
+      />
+      <div className='col-span-2'>
+        <p>Notes</p>
+        <WithSavedNotification Saveable={
+            SaveString({
+              value: exercise.note || '',
+              setValue: v => update(id, { note: v })
+            })
+          }
+        />
+      </div>
     </TitledPage>
   )
 }
 
-export default connect(null, { getExerciseById, getMovementById })(EditExercise)
+export default connect(null, { getExerciseById, getMovementById, update })(EditExercise)

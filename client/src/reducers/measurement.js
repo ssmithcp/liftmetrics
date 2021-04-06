@@ -10,9 +10,9 @@ export const CLEAR_MEASUREMENTS = 'CLEAR_MEASUREMENTS'
 function measurement(state = [], action) {
   switch (action.type) {
     case ADD_MEASUREMENT:
-      return _.uniqBy(state.concat([action.payload]), w => w.id)
+      return _.uniqBy([action.payload].concat(state), w => w.id)
     case ADD_MEASUREMENTS:
-      return _.uniqBy(state.concat(action.payload), w => w.id)
+      return _.uniqBy(action.payload.concat(state), w => w.id)
     case DELETE_MEASUREMENT:
       return state.filter(w => w.id !== action.id)
     case RESET:

@@ -10,9 +10,9 @@ export const CLEAR_EXERCISES = 'CLEAR_EXERCISES'
 function exercise(state = [], action) {
   switch (action.type) {
     case ADD_EXERCISE:
-      return _.uniqBy(state.concat([action.payload]), w => w.id)
+      return _.uniqBy([action.payload].concat(state), w => w.id)
     case ADD_EXERCISES:
-      return _.uniqBy(state.concat(action.payload), w => w.id)
+      return _.uniqBy(action.payload.concat(state), w => w.id)
     case DELETE_EXERCISE:
       return state.filter(w => w.id !== action.id)
     case RESET:

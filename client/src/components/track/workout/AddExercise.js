@@ -122,9 +122,7 @@ const AddExercise = ({ save }) => {
           rows='2'
           cols='35'
           placeholder='Notes'
-          autoComplete='off'
           autoCorrect='off'
-          autoCapitalize='off'
           className='border border-gray-400 p-2 focus:outline-none focus:border-black'
         />
         <SaveButton

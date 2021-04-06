@@ -37,7 +37,7 @@ api.interceptors.response.use(
     return res
   },
   err => {
-    if (err.response.status === 401) {
+    if (err.response && err.response.status === 401) {
       profileUpdated(null)(store.dispatch)
       store.dispatch({
         type: RESET,

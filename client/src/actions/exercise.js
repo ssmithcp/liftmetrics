@@ -51,3 +51,16 @@ export const getExerciseById = id => async dispatch => {
     alertAndThrow(err, dispatch)
   }
 }
+
+export const update = (id, body) => async dispatch => {
+  try {
+    const res = await api.put(`/exercises/${ id }`, body)
+
+    dispatch({
+      type: ADD_EXERCISE,
+      payload: res.data,
+    })
+  } catch (err) {
+    alertAndThrow(err, dispatch)
+  }
+}

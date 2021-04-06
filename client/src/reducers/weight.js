@@ -10,9 +10,9 @@ export const CLEAR_WEIGHTS = 'CLEAR_WEIGHTS'
 function weight(state = [], action) {
   switch (action.type) {
     case ADD_WEIGHT:
-      return _.uniqBy(state.concat([action.payload]), w => w.id)
+      return _.uniqBy([action.payload].concat(state), w => w.id)
     case ADD_WEIGHTS:
-      return _.uniqBy(state.concat(action.payload), w => w.id)
+      return _.uniqBy(action.payload.concat(state), w => w.id)
     case DELETE_WEIGHT:
       return state.filter(w => w.id !== action.id)
     case RESET:

@@ -21,8 +21,9 @@ module.exports = {
         "750px" : "750px",
       },
       gridTemplateColumns: {
-        "profile": "180px auto",
+        "edit-exercise": "125px auto",
         "add-movement": "150px auto",
+        "profile": "180px auto",
       },
     },
   },
