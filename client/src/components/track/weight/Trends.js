@@ -87,7 +87,7 @@ const DeltaSummary = ({ description, start, end, weights, unit }) => {
   )
 }
 
-const Trends = ({ className }) => {
+const Trends = () => {
   const unit = useSelector(s => s.profile.weightUnit)
   const unsortedWeights = useSelector(s => s.weight)
 
@@ -104,7 +104,7 @@ const Trends = ({ className }) => {
   }
 
   return (
-    <>
+    <div className='flex flex-col items-center'>
       <h3 className='text-xl text-center mb-4'>Trends</h3>
       <div>
         <DeltaSummary
@@ -129,7 +129,7 @@ const Trends = ({ className }) => {
           unit={ unit }
         />
       </div>
-    </>
+    </div>
   )
 }
 

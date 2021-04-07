@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { startOfDay, isToday } from 'date-fns'
+import { isToday } from 'date-fns'
 
 import routes from '../../navigation'
 import { day } from '../../../util/date'
-import { normalize } from '../../../util/weight'
+import { exercisesByDay } from './utils'
 
 import { format } from '../WeightDisplay'
 import { formatName } from './MovementSelect'
@@ -25,7 +25,7 @@ const DayOfExercise = ({ day: d, movements, offset }) => (
         <TitledHistory
           rowData={ d.data }
           toPath={ e => routes.trackEditExercise.toPath(e.id) }
-          renderName={ e => (movements[e.movement] && formatName(movements[e.movement]).name)  || 'unknown' }
+          renderName={ e => (movements[e.movement] && formatName(movements[e.movement]).name) || 'unknown' }
           renderDescription={ e => <ExerciseDisplay exercise={ e } />}
           indexOffset={ offset }
         />
@@ -37,31 +37,13 @@ const History = () => {
   const movements = useSelector(s => s.movement)
   const unit = useSelector(s => s.profile.weightUnit)
   const exercises = useSelector(s => s.exercise)
-
-  const exercisesByDay = useMemo(() => (
-    Object.values(
-        exercises
-        .map(w => normalize(w, unit))
-        .reduce((a, v) => {
-          const day = startOfDay(v.created)
-
-          a[day] = a[day] || { day, data: [] }
-          a[day].data.push(v)
-
-          return a
-        }, {}))
-      .sort((a, b) => b.day.getTime() - a.day.getTime())
-      .map(d => ({
-        day: d.day,
-        data: d.data.sort((a, b) => a.created.getTime() - b.created.getTime()),
-      }))
-  ), [exercises, unit])
+  const ebd = useMemo(() => exercisesByDay(exercises, unit), [exercises, unit])
 
   let offset = 0
 
   return (
     <div>
-      { exercisesByDay.map(d => {
+      { ebd.map(d => {
           const oldOffset = offset
           offset += d.data.length
 

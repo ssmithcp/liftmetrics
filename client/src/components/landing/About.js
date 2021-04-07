@@ -22,7 +22,7 @@ const About = () => (
         className='h-56 w-56 mb-2 md:mr-7 md:float-left'
       />
       <div>
-        <P><span className="text-2xl mr-2">👋</span>My name is Scott and LiftMetrics is a portfolio project that I built and maintain.</P>
+        <P><span className='text-2xl mr-2'>👋</span>My name is Scott and LiftMetrics is a portfolio project that I built and maintain.</P>
         <P>To contact me about a job opportunity, reach out on <SafeExternalLink to={ config.get('linkedinURL') }>LinkedIn</SafeExternalLink> or shoot me an email at <span className='font-mono text-base'>ssmith.cp <strong>at</strong> gmail.com</span>.</P>
         <P>Check out <SafeExternalLink to={ config.get('lmGithubURL') }>LiftMetrics source</SafeExternalLink> or jump to a <SafeExternalLink to={ config.get('portfolioURL') }>CSS showcase</SafeExternalLink> project whose source is <SafeExternalLink to={ config.get('portfolioGithubURL') }>here.</SafeExternalLink> I have a few other projects on <SafeExternalLink to={ config.get('githubURL') }>GitHub</SafeExternalLink> - more to come!</P>
         <P>LiftMetrics is an 'Alpha' release. There is so much functionality I'd like to add, in addition to nailing down the UI/UX but I have a lot more I want to learn about the full stack space. For the few of you actually using the site, let me know if there is a feature you're dying to see - maybe I can crank it out for you!</P>

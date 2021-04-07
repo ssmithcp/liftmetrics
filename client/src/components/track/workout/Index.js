@@ -7,7 +7,7 @@ import { getExercises } from '../../../actions/exercise'
 import ThreeCardLayout from '../ThreeCardLayout'
 
 import AddExercise from './AddExercise'
-import Trends from './Trends'
+import ExerciseTabbedPanel from './ExerciseTabbedPanel'
 import History from './History'
 
 const Workout = ({ getMovements, getExercises }) => {
@@ -17,7 +17,7 @@ const Workout = ({ getMovements, getExercises }) => {
   return <ThreeCardLayout
       title='Workouts'
       TopLeft={ AddExercise }
-      TopRight={ Trends }
+      TopRight={ ExerciseTabbedPanel }
       Bottom={ History }
     />
 }

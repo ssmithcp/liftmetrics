@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import { startOfWeek, isAfter } from 'date-fns'
 
-const Trends = () => {
+const SetsPerMuscle = () => {
   const movements = useSelector(s => s.movement)
   const exercises = useSelector(s => s.exercise)
   const weekStartDay = useSelector(s => s.profile.weekStartDay)
@@ -43,20 +43,20 @@ const Trends = () => {
   }
 
   return (
-    <div className='text-lg flex flex-col items-center'>
-      <h1 className='mb-2'>Most sets per muscle this week</h1>
-      <div>
+    <div className='flex flex-col'>
+      <h2>Most sets per muscle this week</h2>
+      <ol className='ml-3 list-inside list-disc'>
         { setsPerMuscle.map(e =>
-          <p
+          <li
             key={ e.muscle }
             className='my-2'
           >
             { e.sets + ' sets for ' + e.muscle}
-          </p>
+          </li>
         )}
-      </div>
+      </ol>
     </div>
   )
 }
 
-export default Trends
+export default SetsPerMuscle
