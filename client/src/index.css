@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito');
 
 @tailwind base;
+
+@layer base {
+	input,
+	textarea {
+		@apply rounded-none;
+	}
+}
+
 @tailwind components;
 @tailwind utilities;
