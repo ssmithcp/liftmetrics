@@ -117,8 +117,8 @@ const AddExercise = ({ save }) => {
           <p className='ml-2 inline'>{ `${ pluralWeight }` }</p>
         </div>
         <NoteTextArea
-          note={ note }
-          setNote={ setNote }
+          value={ note }
+          setValue={ setNote }
         />
         <SaveButton
           doSave={ onSubmit }
