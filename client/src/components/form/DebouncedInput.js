@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 
 import manage from '../../util/timer'
 
-const DebouncedInput = ({ delay = 1000, Input, value, setValue, ...rest}) => {
+const DebouncedInput = ({ delay = 1500, Input, value, setValue, ...rest}) => {
   const [eagerValue, setEagerValue] = useState(value)
   const [register, unregister, clearAll] = manage(useRef([]))
 
