@@ -23,12 +23,18 @@ Once registered, get a connection string to connect: [Get connection string](htt
 
 ## Run site locally in development mode
 
-After the environment variables have been set, install dependencies with `npm i` then run with `npm run dev`
+After the environment variables have been set
+
+- Install dependencies with `npm i && npm --prefix client install`
+- Then start the client and server with `npm run dev`
+- If the index page doesn't open automatically, it is hosted at [localhost:3000](http://localhost:3000)
 
 ## Run site in production mode
 
 Set up environment variables then, but change `isDev` value to 'false' like `export NODE_CONFIG="{\"mongoURI\":\"${MONGO_URI}\",\"isDev\":false,\"jwtSecret\":\"${JWT_SECRET}\"}"`
-then run `npm i && npm run heroku-postbuild && npm start`. Node is started on port 5000 by default; you can view the homepage at [localhost:5000](http://localhost:5000)
+then run `npm i && npm run heroku-postbuild && npm start`.
+
+Node is started on port 5000 by default; you can view the homepage at [localhost:5000](http://localhost:5000)
 
 ## Run from docker image
 
