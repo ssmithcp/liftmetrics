@@ -1,13 +1,13 @@
-import { StrictMode } from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { StrictMode } from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import store from './store'
+import store from './store';
 
-import App from './components/App'
+import App from './components/App';
 
-import './index.css'
+import './index.css';
 
 const Root = () => (
   <StrictMode>
@@ -17,9 +17,9 @@ const Root = () => (
       </Router>
     </Provider>
   </StrictMode>
-)
+);
 
 ReactDOM.render(
   <Root />,
   document.getElementById('root')
-)
+);
