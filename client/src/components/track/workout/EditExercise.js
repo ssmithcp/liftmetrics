@@ -33,7 +33,8 @@ const SaveString = ({ value, setValue }) => ({ savedNotification }) => (
   />
 )
 
-const EditExercise = ({ match: { params: { id } }, getExerciseById, getMovementById, update }) => {
+const EditExercise = (props) => {
+  const { match: { params: { id } }, getExerciseById, getMovementById, update } = props;
   const movements = useSelector(s => s.movement)
   const exercises = useSelector(s => s.exercise)
 

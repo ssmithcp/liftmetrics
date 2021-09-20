@@ -10,6 +10,10 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^14.14.41",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.9",
     "autoprefixer": "^9.8.6",
     "axios": "^0.21.1",
     "date-fns": "^2.16.1",
@@ -25,6 +29,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "typescript": "^4.2.4",
     "uuid": "^3.4.0",
     "validator": "^13.5.2"
   },
@@ -56,6 +61,7 @@
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
+    "@types/react-router-dom": "^5.1.9",
     "babel-plugin-lodash": "^3.3.4"
   }
 }

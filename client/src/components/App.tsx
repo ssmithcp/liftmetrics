@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 
@@ -35,15 +35,15 @@ import NotFound from './landing/NotFound'
 import { logout } from '../actions/user'
 import { getProfile } from '../util/profileStorage'
 
-const withContainer = Page => props => (
+const withContainer = (Page: React.FC) => (props: any) => (
   <PageWidthContainer className='mt-20 md:mt-24'>
     <main>
-      <Page { ...props } />
+      <Page {...props} />
     </main>
   </PageWidthContainer>
 )
 
-const App = ({ logout }) => {
+const App = ({ logout }: {logout: any}) => {
   useEffect(() => {
     if (window) {
       const doLogout = () => {
