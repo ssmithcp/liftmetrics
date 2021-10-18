@@ -1,16 +1,18 @@
-import config from '../../util/config'
-import SafeExternalLink from '../navigation/SafeExternalLink'
-import InternalLink from '../navigation/InternalLink'
+import React from 'react';
 
-import routes from '../navigation'
+import config from '../../util/config';
+import SafeExternalLink from '../navigation/SafeExternalLink';
+import InternalLink from '../navigation/InternalLink';
 
-import scottSquat from '../images/scott_squat_low.jpg'
+import routes from '../navigation';
 
-const P = ({ children }) => (
+import scottSquat from '../images/scott_squat_low.jpg';
+
+const P = ({ children }: { children: React.ReactNode }) => (
   <p className='mb-3'>
     { children }
   </p>
-)
+);
 
 const About = () => (
   <section className='text-lg flex flex-col select-text md:block'>
@@ -34,6 +36,6 @@ const About = () => (
     <P>For example: you can determine which bicep exercise most effectively grows your guns 💪 and how staying up late to play ‘Escape From Tarkov’ influences your one rep max squat weight.</P>
     <P><InternalLink to={ routes.signUp.path }>Create an account</InternalLink> and start kicking ass!</P>
   </section>
-)
+);
 
-export default About
+export default About;

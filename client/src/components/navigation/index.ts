@@ -1,4 +1,14 @@
-const routes = {
+export interface Route {
+  title: string;
+  path: string;
+  toPath?: (id: string) => string;
+}
+
+interface RoutesList {
+  [key: string]: Route;
+}
+
+const routes: RoutesList = {
   index: {
     title: 'Landing page',
     path: '/'
@@ -95,6 +105,6 @@ const routes = {
     title: 'Progress graph',
     path: '/analyze/graph'
   },
-}
+};
 
-export default routes
+export default routes;
