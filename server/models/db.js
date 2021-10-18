@@ -8,12 +8,10 @@ const connect = async () => {
   try {
     await mongoose.connect(config.get('mongoURI'),
     {
-			useNewUrlParser: true,
-			useCreateIndex: true,
-			useFindAndModify: false,
+      useNewUrlParser: true,
       useUnifiedTopology: true,
       autoIndex: true,
-		})
+    })
     console.log('connected to mongo db')
   } catch (e) {
     console.error('connecting to mongo db', e)
