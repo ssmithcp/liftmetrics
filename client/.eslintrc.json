@@ -29,6 +29,12 @@
             "error",
             "unix"
         ],
+        "max-len": [
+            2,
+            120,
+            4,
+            {"ignoreComments": true, "ignoreUrls": true, "ignorePattern": "^\\s*var\\s.+=\\s*require\\s*\\("}
+        ],
         "quotes": [
             "error",
             "single"

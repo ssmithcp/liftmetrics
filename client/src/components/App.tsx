@@ -88,7 +88,10 @@ const App = ({ logout }: {logout: any}) => {
         <PrivateRoute path={ routes.trackEditMeasurement.path } render={ withContainer(EditMeasurement) } />
 
         <PrivateRoute path={ routes.trackSupplement.path } exact render={ withContainer(Supplement) } />
-        <PrivateRoute path={ routes.trackEditConsumedSupplement.path } render={ withContainer(EditConsumedSupplement) } />
+        <PrivateRoute
+          path={ routes.trackEditConsumedSupplement.path }
+          render={ withContainer(EditConsumedSupplement) }
+        />
 
         <PrivateRoute path={ routes.analyzeHome.path } exact render={ withContainer(AnalyzeDashboard) } />
 
