@@ -11,3 +11,6 @@ const middleware = composeWithDevTools(applyMiddleware(
 const store = createStore(reducer, middleware);
 
 export default store;
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
