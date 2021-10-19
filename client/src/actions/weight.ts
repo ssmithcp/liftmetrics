@@ -23,7 +23,7 @@ export const save =
       }
     };
 
-export const getWeightsFrom = (startDate: Instant) => async (dispatch: AppDispatch) => {
+export const getWeightsFrom = (startDate: Date) => async (dispatch: AppDispatch) => {
   try {
     const res = await api.get('/weights', { params: { startDate } });
 
