@@ -2,7 +2,7 @@ import React from 'react';
 
 import config from '../../util/config';
 import SafeExternalLink from '../navigation/SafeExternalLink';
-import InternalLink from '../navigation/InternalLink';
+import InternalLink from 'components/navigation/InternalLink';
 
 import routes from '../navigation';
 
@@ -32,15 +32,15 @@ const About = () => (
           and hooks in particular. Please use this as proof of my ability to build a site by myself and my ability to
           write consistent clean code.  I'm currently refactoring the site - watch for updates!</P>
         <P>
-          To contact me about a job opportunity, reach out on
-          <SafeExternalLink to={ config.get('linkedinURL') }>LinkedIn</SafeExternalLink> or shoot me an email at
+          To contact me about a job opportunity, reach out on{' '}
+          <SafeExternalLink to={ config.get('linkedinURL') }>LinkedIn</SafeExternalLink> or shoot me an email at{' '}
           <span className='font-mono text-base'>ssmith.cp <strong>at</strong> gmail.com</span>.
         </P>
         <P>
           Check out <SafeExternalLink to={ config.get('lmGithubURL') }>LiftMetrics source</SafeExternalLink> or jump to
-          a <SafeExternalLink to={ config.get('portfolioURL') }>CSS showcase</SafeExternalLink> project whose source is
-          <SafeExternalLink to={ config.get('portfolioGithubURL') }>here.</SafeExternalLink> I have a few other projects
-          on <SafeExternalLink to={ config.get('githubURL') }>GitHub</SafeExternalLink> - more to come!
+          a <SafeExternalLink to={ config.get('portfolioURL') }>CSS showcase</SafeExternalLink> project whose source
+          is <SafeExternalLink to={ config.get('portfolioGithubURL') }>here.</SafeExternalLink> I have a few other
+          projects on <SafeExternalLink to={ config.get('githubURL') }>GitHub</SafeExternalLink> - more to come!
         </P>
       </div>
     </div>
