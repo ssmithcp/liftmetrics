@@ -28,7 +28,7 @@ const About = () => (
           <span className='text-2xl mr-2'>👋</span>My name is Scott and LiftMetrics is a portfolio project that I built
           and maintain. I wrote this app many months ago, between January 21' and April 21'. I've learned
           <em>a lot</em> since writing this and this site isn't reflective of my current ability or style.
-          Specifically, now I prefer typescript and not redux, my css has improved as well as my overall grasp on react
+          Specifically, now I prefer typescript, my css has improved as well as my overall grasp on react
           and hooks in particular. Please use this as proof of my ability to build a site by myself and my ability to
           write consistent clean code.  I'm currently refactoring the site - watch for updates!</P>
         <P>
