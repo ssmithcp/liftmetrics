@@ -1,10 +1,10 @@
 import React from 'react';
 
-import config from '../../util/config';
-import SafeExternalLink from '../navigation/SafeExternalLink';
+import config from 'util/config';
+import SafeExternalLink from 'components/navigation/SafeExternalLink';
 import InternalLink from 'components/navigation/InternalLink';
 
-import routes from '../navigation';
+import routes from 'components/navigation';
 
 import scottSquat from '../images/scott_squat_low.jpg';
 
@@ -15,8 +15,8 @@ const P = ({ children }: { children: React.ReactNode }) => (
 );
 
 const About = () => (
-  <section className='text-lg flex flex-col select-text md:block'>
-    <h1 className='text-3xl text-center pb-4'>Welcome to LiftMetrics!</h1>
+  <section className='text-lg flex flex-col select-text md:block' aria-labelledby='lm-heading'>
+    <h1 id='lm-heading' className='text-3xl text-center pb-4'>Welcome to LiftMetrics!</h1>
     <div className='flex flex-col items-center md:flex-row'>
       <img
         src={ scottSquat }
@@ -33,14 +33,14 @@ const About = () => (
           write consistent clean code.  I'm currently refactoring the site - watch for updates!</P>
         <P>
           To contact me about a job opportunity, reach out on{' '}
-          <SafeExternalLink to={ config.get('linkedinURL') }>LinkedIn</SafeExternalLink> or shoot me an email at{' '}
+          <SafeExternalLink to={ config.linkedinURL }>LinkedIn</SafeExternalLink> or shoot me an email at{' '}
           <span className='font-mono text-base'>ssmith.cp <strong>at</strong> gmail.com</span>.
         </P>
         <P>
-          Check out <SafeExternalLink to={ config.get('lmGithubURL') }>LiftMetrics source</SafeExternalLink> or jump to
-          a <SafeExternalLink to={ config.get('portfolioURL') }>CSS showcase</SafeExternalLink> project whose source
-          is <SafeExternalLink to={ config.get('portfolioGithubURL') }>here.</SafeExternalLink> I have a few other
-          projects on <SafeExternalLink to={ config.get('githubURL') }>GitHub</SafeExternalLink> - more to come!
+          Check out <SafeExternalLink to={ config.lmGithubURL }>LiftMetrics source</SafeExternalLink> or jump to
+          a <SafeExternalLink to={ config.cssPortfolioURL }>CSS showcase</SafeExternalLink> project whose source
+          is <SafeExternalLink to={ config.cssPortfolioGithubURL }>here.</SafeExternalLink> I have a few other
+          projects on <SafeExternalLink to={ config.githubURL }>GitHub</SafeExternalLink> - more to come!
         </P>
       </div>
     </div>
