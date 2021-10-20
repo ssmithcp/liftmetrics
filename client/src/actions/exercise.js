@@ -1,8 +1,8 @@
-import api from '../util/api'
-import { alertAndThrow } from './alert'
-import { defaultRange } from './shared'
+import api from '../util/api';
+import { alertAndThrow } from './alert';
+import { defaultRange } from './shared';
 
-import { ADD_EXERCISE, ADD_EXERCISES } from '../reducers/exercise'
+import { ADD_EXERCISE, ADD_EXERCISES } from '../reducers/exercise';
 
 export const save = ({ movement, sets, reps, value, unit, created, note }) => async dispatch => {
   try {
@@ -14,53 +14,53 @@ export const save = ({ movement, sets, reps, value, unit, created, note }) => as
       unit,
       created,
       note,
-    })
+    });
     dispatch({
       type: ADD_EXERCISE,
       payload: res.data,
-    })
+    });
   } catch (err) {
-    alertAndThrow(err, dispatch)
+    alertAndThrow(err, dispatch);
   }
-}
+};
 
 export const getExerciesesFrom = startDate => async dispatch => {
   try {
-    const res = await api.get('/exercises', { params: { startDate } })
+    const res = await api.get('/exercises', { params: { startDate } });
 
     dispatch({
       type: ADD_EXERCISES,
       payload: res.data.data,
-    })
+    });
   } catch (err) {
-    alertAndThrow(err, dispatch)
+    alertAndThrow(err, dispatch);
   }
-}
+};
 
-export const getExercises = () => getExerciesesFrom(defaultRange())
+export const getExercises = () => getExerciesesFrom(defaultRange());
 
 export const getExerciseById = id => async dispatch => {
   try {
-    const res = await api.get(`/exercises/${ id }`)
+    const res = await api.get(`/exercises/${ id }`);
 
     dispatch({
       type: ADD_EXERCISE,
       payload: res.data,
-    })
+    });
   } catch (err) {
-    alertAndThrow(err, dispatch)
+    alertAndThrow(err, dispatch);
   }
-}
+};
 
 export const update = (id, body) => async dispatch => {
   try {
-    const res = await api.put(`/exercises/${ id }`, body)
+    const res = await api.put(`/exercises/${ id }`, body);
 
     dispatch({
       type: ADD_EXERCISE,
       payload: res.data,
-    })
+    });
   } catch (err) {
-    alertAndThrow(err, dispatch)
+    alertAndThrow(err, dispatch);
   }
-}
+};
