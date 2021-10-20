@@ -1,7 +1,12 @@
 export const Style = 'text-primary cursor-pointer hover:underline';
 
-const SafeExternalLink = ({ to, children }: { to:string; children: React.ReactNode }) => (
-  <a href={ to } target='_blank' rel='noopener noreferrer' className={ Style }>
+interface SafeExternalLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  to:string;
+  children: React.ReactNode;
+}
+
+const SafeExternalLink = ({ to, children, ...rest }: SafeExternalLinkProps) => (
+  <a href={ to } target='_blank' rel='noopener noreferrer' className={ Style } { ...rest }>
     { children }
   </a>
 );

@@ -1,12 +1,12 @@
-import { connect, useSelector } from 'react-redux'
+import { connect, useSelector } from 'react-redux';
 
-import { update } from '../../actions/profile'
-import { logout } from '../../actions/user'
+import { update } from '../../actions/profile';
+import { logout } from '../../actions/user';
 
-import WithSavedNotification from '../util/WithSavedNotification'
-import BigButton from '../util/BigButton'
-import TitledPage from '../container/TitledPage'
-import ResponsiveDate from '../track/ResponsiveDate'
+import WithSavedNotification from '../util/WithSavedNotification';
+import BigButton from '../util/BigButton';
+import TitledPage from '../container/TitledPage';
+import ResponsiveDate from '../track/ResponsiveDate';
 
 const days = [
   'Sunday',
@@ -16,7 +16,7 @@ const days = [
   'Thursday',
   'Friday',
   'Saturday',
-]
+];
 
 const SavingOptions = ({ current, options, doUpdate }) => ({ savedNotification }) => (
   <select
@@ -30,12 +30,12 @@ const SavingOptions = ({ current, options, doUpdate }) => ({ savedNotification }
       </option>
     )}
   </select>
-)
+);
 
 const Profile = ({ update, logout }) => {
-  const profile = useSelector(s => s.profile)
+  const profile = useSelector(s => s.profile);
 
-  const { firstName, lastName } = profile
+  const { firstName, lastName } = profile;
 
   return <TitledPage title={ `Profile for ${ firstName } ${ lastName[0].toUpperCase() }` }>
     <div className='my-6 text-lg grid gap-2 grid-cols-profile'>
@@ -45,30 +45,30 @@ const Profile = ({ update, logout }) => {
       <p>{ lastName }</p>
       <p>Weight unit</p>
       <WithSavedNotification Saveable={
-          SavingOptions({
-            doUpdate: val => update({ weightUnit: val }),
-            current: profile.weightUnit,
-            options: profile.availableWeightUnits,
-          })
-        }
+        SavingOptions({
+          doUpdate: val => update({ weightUnit: val }),
+          current: profile.weightUnit,
+          options: profile.availableWeightUnits,
+        })
+      }
       />
       <p>Length unit</p>
       <WithSavedNotification Saveable={
-          SavingOptions({
-            doUpdate: val => update({ lengthUnit: val }),
-            current: profile.lengthUnit,
-            options: profile.availableLengthUnits,
-          })
-        }
+        SavingOptions({
+          doUpdate: val => update({ lengthUnit: val }),
+          current: profile.lengthUnit,
+          options: profile.availableLengthUnits,
+        })
+      }
       />
       <p>Week start day</p>
       <WithSavedNotification Saveable={
-          SavingOptions({
-            doUpdate: val => update({ weekStartDay: days.indexOf(val) }),
-            current: days[profile.weekStartDay === undefined ? 1 : profile.weekStartDay],
-            options: days,
-          })
-        }
+        SavingOptions({
+          doUpdate: val => update({ weekStartDay: days.indexOf(val) }),
+          current: days[profile.weekStartDay === undefined ? 1 : profile.weekStartDay],
+          options: days,
+        })
+      }
       />
       <p>Last login</p>
       <ResponsiveDate date={ profile.lastLogin } />
@@ -77,7 +77,7 @@ const Profile = ({ update, logout }) => {
     <BigButton onClick={ logout }>
       Logout!
     </BigButton>
-  </TitledPage>
-}
+  </TitledPage>;
+};
 
-export default connect(null, { update, logout })(Profile)
+export default connect(null, { update, logout })(Profile);

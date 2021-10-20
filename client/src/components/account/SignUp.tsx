@@ -1,30 +1,36 @@
-import { useState } from 'react'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
+import { useState } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 
-import config from '../../util/config'
-import { register } from '../../actions/user'
+import config from 'util/config';
+import { register, RegistrationFields } from 'actions/user';
 
-import Input from '../form/Input'
-import SafeExternalLink from '../navigation/SafeExternalLink'
-import InternalLink from '../navigation/InternalLink'
+import Input from 'components/form/Input';
+import SafeExternalLink from 'components/navigation/SafeExternalLink';
+import InternalLink from 'components/navigation/InternalLink';
 
-import MediumWidth from '../container/MediumWidth'
-import routes from '../navigation'
-import SubmitButton from '../form/SubmitButton'
+import MediumWidth from 'components/container/MediumWidth';
+import routes from 'components/navigation';
+import SubmitButton from 'components/form/SubmitButton';
+import { RootState } from 'store';
 
 // TODO submit form on enter on password
 
-const SignUp = ({ isLoggedIn, register }) => {
-  const [showPassword, setShowPassword] = useState(true)
+interface SignupProps {
+  isLoggedIn: boolean;
+  register: (input: RegistrationFields) => Promise<void>;
+}
 
-  const toggleShowPassword = e => {
-    e.preventDefault()
-    setShowPassword(!showPassword)
-  }
+const SignUp = ({ isLoggedIn, register }: SignupProps) => {
+  const [showPassword, setShowPassword] = useState(true);
 
-  const defaultState = config.isDev
+  const toggleShowPassword = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
+  const defaultState: RegistrationFields = config.isDev
     ? {
       firstName: 'Scott',
       lastName: 'Smith',
@@ -36,23 +42,24 @@ const SignUp = ({ isLoggedIn, register }) => {
       lastName: '',
       email: '',
       password: '',
-    }
-  const [formData, setFormData] = useState(defaultState)
-  const [submitEnabled, setSubmitEnabled] = useState(true)
+    };
+  const [formData, setFormData] = useState(defaultState);
+  const [submitEnabled, setSubmitEnabled] = useState(true);
 
   if (isLoggedIn) {
-    return <Redirect to={ routes.home.path } />
+    return <Redirect to={ routes.home.path } />;
   }
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
-    e.preventDefault()
-    setSubmitEnabled(false)
+  const onSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    setSubmitEnabled(false);
 
     register(formData)
-      .catch(() => setSubmitEnabled(true))
-  }
+      .catch(() => setSubmitEnabled(true));
+  };
 
   return (
     <MediumWidth title='Sign Up' className='text-center'>
@@ -100,7 +107,7 @@ const SignUp = ({ isLoggedIn, register }) => {
           <button
             className='text-right text-primary focus:outline-none p-2 -my-2 float-right z-10'
             onClick={ toggleShowPassword }
-            tabIndex='-1'
+            tabIndex={-1}
           >
             { showPassword ? 'Show' : 'Hide' }
           </button>
@@ -123,14 +130,16 @@ const SignUp = ({ isLoggedIn, register }) => {
         />
       </form>
       <p className='text-sm'>
-        * Your avatar is sourced from <SafeExternalLink to='https://gravatar.com' tabIndex='-1'>gravatar.com</SafeExternalLink> using this email
+        * Your avatar is sourced from{' '}
+        <SafeExternalLink to='https://gravatar.com' tabIndex={-1}>gravatar.com</SafeExternalLink>{' '}
+        using this email
       </p>
     </MediumWidth>
-  )
-}
+  );
+};
 
-const mapStateToProps = state =>({
+const mapStateToProps = (state: RootState) =>({
   isLoggedIn: state.profile !== null
-})
+});
 
-export default connect(mapStateToProps, { register })(SignUp)
+export default connect(mapStateToProps, { register })(SignUp);
