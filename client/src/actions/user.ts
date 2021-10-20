@@ -1,11 +1,11 @@
-import api from '../util/api';
+import api from 'util/api';
 
 import { profileUpdated } from './profile';
 
 import { alertAndThrow } from './alert';
-import { RESET } from '../reducers/shared';
+import { RESET } from 'reducers/shared';
 
-import { AppDispatch } from '../store';
+import { AppDispatch } from 'store';
 
 export interface RegistrationFields {
   firstName: string;

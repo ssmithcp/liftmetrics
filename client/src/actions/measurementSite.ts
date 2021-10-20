@@ -1,9 +1,10 @@
-import api from '../util/api';
+import api from 'util/api';
 import { alertAndThrow } from './alert';
 
-import { ADD_MEASUREMENT_SITE, ADD_MEASUREMENT_SITES } from '../reducers/measurementSite';
+import { ADD_MEASUREMENT_SITE, ADD_MEASUREMENT_SITES } from 'reducers/measurementSite';
+import { AppDispatch } from 'store';
 
-export const save = ({ name }) => async dispatch => {
+export const save = ({ name }:{ name: string }) => async (dispatch: AppDispatch) => {
   try {
     const res = await api.post('/sites', {
       name,
@@ -17,7 +18,7 @@ export const save = ({ name }) => async dispatch => {
   }
 };
 
-export const getMeasurementSites = () => async dispatch => {
+export const getMeasurementSites = () => async (dispatch: AppDispatch) => {
   try {
     const res = await api.get('/sites');
 

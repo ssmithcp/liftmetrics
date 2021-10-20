@@ -1,9 +1,9 @@
-import api from '../util/api';
+import api from 'util/api';
 import { alertAndThrow } from './alert';
 import { defaultRange } from './shared';
 
-import { ADD_WEIGHT, ADD_WEIGHTS } from '../reducers/weight';
-import { AppDispatch } from '../store';
+import { ADD_WEIGHT, ADD_WEIGHTS } from 'reducers/weight';
+import { AppDispatch } from 'store';
 
 export const save =
   ({ value, unit, created }: { value: Weight, unit: WeightUnit, created: Instant }) =>
