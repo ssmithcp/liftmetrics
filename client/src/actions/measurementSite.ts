@@ -2,7 +2,7 @@ import api from 'util/api';
 import { alertAndThrow } from './alert';
 
 import { ADD_MEASUREMENT_SITE, ADD_MEASUREMENT_SITES } from 'reducers/measurementSite';
-import { AppDispatch } from 'store';
+import { AppDispatch } from 'types/redux';
 
 export const save = ({ name }:{ name: string }) => async (dispatch: AppDispatch) => {
   try {

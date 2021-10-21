@@ -1,4 +1,4 @@
-import { AppDispatch } from 'store';
+import { AppDispatch } from 'types/redux';
 import { v4 as uuidv4 } from 'uuid';
 
 export const SET_ALERT = 'SET_ALERT';

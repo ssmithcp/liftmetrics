@@ -3,7 +3,7 @@ import { alertAndThrow } from './alert';
 import { defaultRange } from './shared';
 
 import { ADD_MEASUREMENT, ADD_MEASUREMENTS } from 'reducers/measurement';
-import { AppDispatch } from 'store';
+import { AppDispatch } from 'types/redux';
 
 interface SaveMeasurementFields {
   site: string;

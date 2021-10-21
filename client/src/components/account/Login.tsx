@@ -10,7 +10,7 @@ import SubmitButton from 'components/form/SubmitButton';
 
 import InternalLink from 'components/navigation/InternalLink';
 import routes from 'components/navigation';
-import { RootState } from 'store';
+import { RootState } from 'types/redux';
 
 interface LoginProps {
   isLoggedIn: boolean;

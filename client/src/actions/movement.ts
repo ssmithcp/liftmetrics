@@ -2,7 +2,7 @@ import api from 'util/api';
 import { alertAndThrow } from './alert';
 
 import { ADD_MOVEMENT, ADD_MOVEMENTS } from 'reducers/movement';
-import { AppDispatch } from 'store';
+import { AppDispatch } from 'types/redux';
 
 interface SaveMovementFields {
   name: string;

@@ -13,7 +13,7 @@ import InternalLink from 'components/navigation/InternalLink';
 import MediumWidth from 'components/container/MediumWidth';
 import routes from 'components/navigation';
 import SubmitButton from 'components/form/SubmitButton';
-import { RootState } from 'store';
+import { RootState } from 'types/redux';
 
 // TODO submit form on enter on password
 

@@ -5,7 +5,7 @@ import { profileUpdated } from './profile';
 import { alertAndThrow } from './alert';
 import { RESET } from 'reducers/shared';
 
-import { AppDispatch } from 'store';
+import { AppDispatch } from 'types/redux';
 
 export interface RegistrationFields {
   firstName: string;

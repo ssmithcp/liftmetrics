@@ -3,7 +3,7 @@ import { alertAndThrow } from './alert';
 import { defaultRange } from './shared';
 
 import { ADD_WEIGHT, ADD_WEIGHTS } from 'reducers/weight';
-import { AppDispatch } from 'store';
+import { AppDispatch } from 'types/redux';
 
 export const save =
   ({ value, unit, created }: { value: Weight, unit: WeightUnit, created: Instant }) =>

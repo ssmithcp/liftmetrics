@@ -3,7 +3,7 @@ import { alertAndThrow } from './alert';
 import { defaultRange } from './shared';
 
 import { ADD_EXERCISE, ADD_EXERCISES } from '../reducers/exercise';
-import { AppDispatch } from 'store';
+import { AppDispatch } from 'types/redux';
 
 interface SaveExerciseFields {
   movement: string;

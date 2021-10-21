@@ -3,7 +3,7 @@ import { alertAndThrow } from './alert';
 import { defaultRange } from './shared';
 
 import { ADD_CONSUMED_SUPPLEMENT, ADD_CONSUMED_SUPPLEMENTS } from '../reducers/consumedSupplement';
-import { AppDispatch } from 'store';
+import { AppDispatch } from 'types/redux';
 
 export const save = ({ supplement, servings }: { supplement: string, servings: string}) =>
   async (dispatch: AppDispatch) => {

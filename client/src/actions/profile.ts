@@ -3,7 +3,7 @@ import api from 'util/api';
 import { PROFILE_UPDATED } from 'reducers/profile';
 import { setProfile } from 'util/profileStorage';
 import { alertAndThrow } from './alert';
-import { AppDispatch } from 'store';
+import { AppDispatch } from 'types/redux';
 
 interface UserProfile {
   weightUnit: WeightUnit;

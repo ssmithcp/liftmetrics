@@ -2,7 +2,7 @@ import api from 'util/api';
 import { alertAndThrow } from './alert';
 
 import { ADD_SUPPLEMENT, ADD_SUPPLEMENTS } from 'reducers/supplement';
-import { AppDispatch } from 'store';
+import { AppDispatch } from 'types/redux';
 
 interface SaveSupplementFields {
   name: string;
