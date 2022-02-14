@@ -7,7 +7,7 @@ ARG JWT_SECRET
 
 ENV NODE_CONFIG="{\"mongoURI\":\"${MONGO_URI}\",\"isDev\":false,\"jwtSecret\":\"${JWT_SECRET}\",\"isDocker\":true}"
 
-EXPOSE 5000
+EXPOSE 5001
 
 COPY package*.json ./
 COPY . .

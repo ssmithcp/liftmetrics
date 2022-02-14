@@ -53,7 +53,7 @@ app.use((err, req, res, _next) => {
   res.status(500).send('internal error')
 })
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5001
 app.listen(port, () => {
   console.log(`environment is '${process.env.NODE_ENV}' isDev '${config.get('isDev')}'`)
   console.log(`server started on port ${port}`)

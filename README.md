@@ -36,7 +36,7 @@ After the environment variables have been set
 Set up environment variables then, but change `isDev` value to 'false' like `export NODE_CONFIG="{\"mongoURI\":\"${MONGO_URI}\",\"isDev\":false,\"jwtSecret\":\"${JWT_SECRET}\"}"`
 then run `npm i && npm run heroku-postbuild && npm start`.
 
-Node is started on port 5000 by default; you can view the homepage at [localhost:5000](http://localhost:5000)
+Node is started on port 5001 by default; you can view the homepage at [localhost:5001](http://localhost:5001)
 
 ## Run from docker image
 
@@ -48,7 +48,7 @@ Assuming MONGO_URI and JWT_SECRET are in your exported environment and you're in
 
 Then start it with (assuming it will run on local port 80)
 
-`docker container run -p 80:5000 liftmetrics`
+`docker container run -p 80:5001 liftmetrics`
 
 _Note: this docker image is configured to run locally and is vulnerable to XSS in a production environment_
 
